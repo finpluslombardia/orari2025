@@ -155,7 +155,7 @@
       display: inline-block;
       white-space: nowrap;
       will-change: transform;
-      animation: ticker var(--ticker-duration, 30s) linear infinite;
+      animation: ticker var(--ticker-duration, 20s) linear infinite;
     }
     .ticker__content {
       display: inline-block;
@@ -321,7 +321,7 @@
             if (timeToStart <= 0 && timeToStart > -corso.durata) {
                 style = 'green'; // In corso
             } else if (timeToStart <= 5 && timeToStart > 0) {
-                style = 'yellow'; // Inizio tra 15 min
+                style = 'yellow'; // Inizio tra 5 min
             }
 
             htmlContent += `
@@ -352,17 +352,18 @@
         const copy2 = document.getElementById('ticker-copy-2');
         const track = document.getElementById('ticker-track');
         
-        // Se il testo è lo stesso, non ricalcolare animazione (evita scatti)
         if (copy1.textContent === text) return;
 
         copy1.textContent = text;
         copy2.textContent = text;
 
-        // Calcolo velocità basata sulla lunghezza del testo
-        // Più lungo è il testo, più tempo serve
         requestAnimationFrame(() => {
             const width = copy1.offsetWidth;
-            const duration = Math.max(20, width / 100); // Circa 100px al secondo
+            // MODIFICATO QUI:
+            // Prima dividevamo per 100. Dividere per 250 significa che viaggia a 250px al secondo (molto più veloce)
+            const speed = 250; 
+            
+            const duration = width / speed; 
             track.style.setProperty('--ticker-duration', `${duration}s`);
         });
     }
