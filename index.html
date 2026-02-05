@@ -6,9 +6,9 @@
   <title>Orari Piscina Lampugnano - Milano Cortina Style</title>
   
   <!-- Carichiamo i font Google: Montserrat con tutti i pesi, inclusi Italic per il look dinamico -->
-  <link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)">
-  <link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin>
-  <link href="[https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap](https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap)" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -79,10 +79,10 @@
 
     .datetime { text-align: right; line-height: 0.9; }
     
-    /* STILE OROLOGIO: Simula il font "Milano Cortina Bold Italic" */
+    /* STILE OROLOGIO: Font "Milano Cortina" Style (Montserrat ExtraBold Italic) */
     .datetime .time { 
         font-family: "Montserrat", sans-serif;
-        font-weight: 900; /* Extra Bold */
+        font-weight: 900; /* Extra Bold / Black */
         font-style: italic; /* Italic */
         font-size: 110px; 
         letter-spacing: -5px; 
@@ -141,11 +141,12 @@
 
     .course > div { padding: 20px 40px; display: flex; align-items: center; }
     
+    /* Font Attività: Stesso stile dell'orologio (Bold Italic) */
     .course .attivita { 
         flex: 2; 
         font-size: 55px; 
-        font-weight: 800; 
-        font-style: italic; /* Dinamismo */
+        font-weight: 900; /* Aumentato a 900 per il massimo impatto */
+        font-style: italic; 
         color: var(--deep-blue); 
         letter-spacing: -2px; 
     }
@@ -187,15 +188,16 @@
     /* ====== MASCOTTE (TINA & MILO) ====== */
     .mascotte-overlay {
       position: fixed;
-      bottom: 80px; /* Poggia sul footer */
-      right: 0;     /* Allineata a destra */
-      /* Altezza calcolata per coprire circa gli ultimi 2 box */
-      height: 60vh; 
-      max-height: 700px;
+      /* "Attaccate" al ticker: bottom = altezza del footer */
+      bottom: var(--footer-height); 
+      right: 0;     
+      /* Altezza dinamica per coprire circa gli ultimi 2 box */
+      height: 55vh; 
+      max-height: 650px;
       width: auto;
       z-index: 3000; /* SOPRA I CORSI */
-      pointer-events: none; /* Non blocca i click se necessario */
-      filter: drop-shadow(-5px 0 15px rgba(255,255,255,0.8)); /* Bagliore per staccarla */
+      pointer-events: none; 
+      filter: drop-shadow(-5px 0 15px rgba(255,255,255,0.8));
     }
 
     /* ====== FOOTER TICKER ====== */
@@ -203,7 +205,7 @@
       background: linear-gradient(90deg, var(--deep-blue) 0%, #1a3c66 100%);
       color: white; height: var(--footer-height); overflow: hidden;
       display: flex; align-items: center; position: fixed; bottom: 0; left: 0; right: 0;
-      z-index: 4000; /* Sopra a tutto, anche alle mascotte */
+      z-index: 4000; /* Il footer è sopra le mascotte (o le mascotte poggiano su di esso) */
       border-top: 4px solid var(--olympic-cyan);
     }
     .ticker { width: 100%; height: 100%; overflow: hidden; position: relative; white-space: nowrap; display: flex; align-items: center; }
@@ -217,7 +219,7 @@
 
   <!-- 
     IMMAGINE MASCOTTE 
-    Posizionata in basso a destra, sopra i box.
+    Posizionata per poggiare sul ticker.
     Deve chiamarsi "mascotte.png" nella cartella.
   -->
   <img src="mascotte.png" class="mascotte-overlay" alt="Mascotte Milano Cortina" onerror="this.style.display='none'">
