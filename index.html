@@ -2,28 +2,50 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <title>Orari Piscina Lampugnano</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orari Piscina Lampugnano - Milano Cortina Style</title>
+  
+  <!-- Font Montserrat per un look più "Olimpico/Sportivo" e geometrico -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --primary-color: #003366;
-      --bg-color: #f0f8ff;
-      /* MODIFICATO: Header molto più alto */
-      --header-height: 220px; 
+      /* Palette Ispirata a Milano Cortina 2026 */
+      --deep-blue: #0B2341;       /* Blu Notte */
+      --olympic-cyan: #00A19C;    /* Ciano Ghiaccio */
+      --snow-white: #F0F8FF;      /* Bianco Neve */
+      --ice-glass: rgba(255, 255, 255, 0.85); /* Effetto vetro */
+      --status-green: #008f5d;    /* Verde smeraldo scuro */
+      --status-gold: #C6A800;     /* Oro Olimpico */
+      --status-gray: #788995;     /* Grigio Ardesia */
+
+      --header-height: 200px; 
       --footer-height: 80px;
     }
 
     body {
-      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      font-family: "Montserrat", sans-serif;
       margin: 0;
-      background-color: var(--bg-color);
-      color: var(--primary-color);
-      letter-spacing: -0.5px;
+      /* Sfondo a gradiente che simula un paesaggio innevato */
+      background: radial-gradient(circle at 10% 20%, rgb(235, 249, 255) 0%, rgb(245, 247, 250) 90%);
+      color: var(--deep-blue);
       display: flex;
       flex-direction: column;
       height: 100vh;
       overflow: hidden;
+      position: relative;
+    }
+
+    /* Decorazione vettoriale di sfondo (Le curve delle piste) */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: 
+        radial-gradient(at 80% 0%, hsla(189,100%,56%,0.1) 0px, transparent 50%),
+        radial-gradient(at 0% 50%, hsla(210,100%,40%,0.05) 0px, transparent 50%);
+      z-index: -1;
+      pointer-events: none;
     }
 
     /* ====== HEADER ====== */
@@ -31,36 +53,46 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #ffffff;
-      padding: 0 40px; /* Più padding laterale */
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      /* Effetto Glassmorphism */
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+      padding: 0 50px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
       height: var(--header-height);
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 1000;
     }
+
     header img {
-      /* MODIFICATO: Logo più grande */
-      height: 85%; 
+      height: 75%; 
       width: auto;
       object-fit: contain;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
     }
-    .datetime { text-align: right; line-height: 1; }
+
+    .datetime { 
+      text-align: right; 
+      line-height: 0.9; 
+    }
     
-    /* MODIFICATO: Font orario molto più grande */
     .datetime .time { 
-        font-weight: 700; 
+        font-weight: 800; /* Extra bold */
         font-size: 110px; 
-        letter-spacing: -3px; 
-        color: #003366;
+        letter-spacing: -4px; 
+        background: -webkit-linear-gradient(45deg, var(--deep-blue), #0056b3);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
     
-    /* MODIFICATO: Font data più grande */
     .datetime .date { 
         font-weight: 500; 
-        font-size: 45px; 
-        color: #004080; 
-        text-transform: capitalize; 
+        font-size: 38px; 
+        color: var(--status-gray); 
+        text-transform: uppercase; 
+        letter-spacing: 2px;
         margin-top: 5px;
     }
 
@@ -74,82 +106,115 @@
       margin-top: var(--header-height);
       margin-bottom: var(--footer-height);
       overflow-y: hidden;
+      /* Un tocco di prospettiva */
+      perspective: 1000px;
     }
+
     #courses {
       width: 100%;
-      max-width: 1700px;
+      max-width: 1600px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 30px; /* Spazio aumentato tra i box per riempire lo schermo */
+      gap: 25px; 
     }
 
-    /* ====== CORSI ====== */
+    /* ====== CORSI - GLI "ICE BLOCKS" ====== */
     .course {
       display: flex;
-      border-radius: 16px; /* Bordi più arrotondati */
+      border-radius: 20px;
       overflow: hidden;
-      background-color: #fff;
-      box-shadow: 0 6px 10px rgba(0,0,0,0.06);
+      /* Design a schede fluttuanti */
+      background: #ffffff;
+      box-shadow: 0 10px 25px rgba(11, 35, 65, 0.08);
       width: 100%;
       position: relative;
-      transition: all 0.3s ease;
+      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      border: 1px solid rgba(255,255,255,0.8);
     }
+    
+    .course:nth-child(1) { transform: scale(1.02); z-index: 10; } /* Il primo corso è leggermente più grande */
+
     .course > div {
-      padding: 25px 35px; /* Box un po' più ariosi */
+      padding: 20px 40px;
       display: flex;
       align-items: center;
     }
+
     .course .attivita {
       flex: 2;
-      font-size: 60px; /* Font leggermente più grande */
+      font-size: 55px;
       font-weight: 700;
-      color: var(--primary-color);
+      color: var(--deep-blue);
+      letter-spacing: -1px;
     }
+
     .course .dettagli {
       flex: 1.2;
       display: flex;
       justify-content: space-around;
-      background-color: rgba(0,0,0,0.03);
-      border-left: 1px solid rgba(0,0,0,0.05);
+      /* Sfondo leggermente azzurrino per i dati */
+      background: linear-gradient(90deg, #f4faff 0%, #ebf5ff 100%);
+      border-left: 1px solid rgba(0,0,0,0.03);
     }
+
     .info-box {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
     }
-    .info-label { font-size: 22px; text-transform: uppercase; color: #666; font-weight: 600; margin-bottom: 5px; }
-    .info-time { font-size: 60px; font-weight: 700; color: #000; line-height: 1; }
 
-    /* Colori stato */
-    .green  { background-color: #d1e7dd; border-left: 20px solid #198754; }
-    .yellow { background-color: #fff3cd; border-left: 20px solid #ffc107; }
-    .gray   { background-color: #f8f9fa; border-left: 20px solid #6c757d; color: #6c757d; }
+    .info-label { 
+      font-size: 18px; 
+      text-transform: uppercase; 
+      color: var(--status-gray); 
+      font-weight: 600; 
+      letter-spacing: 1px;
+      margin-bottom: 2px; 
+    }
+
+    .info-time { 
+      font-size: 55px; 
+      font-weight: 800; 
+      color: var(--deep-blue); 
+      line-height: 1; 
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Colori stato e barre laterali "Sci" */
+    .green  { border-left: 15px solid var(--status-green); }
+    .yellow { border-left: 15px solid var(--status-gold); background-color: #fffdf5; }
+    .gray   { border-left: 15px solid var(--status-gray); opacity: 0.8; filter: grayscale(80%); }
     
-    /* Animazione */
-    .yellow { animation: pulse-border 2s infinite; }
-    @keyframes pulse-border {
-      0% { border-left-color: #ffc107; }
-      50% { border-left-color: #ffdb72; }
-      100% { border-left-color: #ffc107; }
+    /* Animazione "Gold Pulse" per i corsi in scadenza */
+    .yellow { 
+      animation: gold-pulse 2s infinite ease-in-out; 
+    }
+    
+    @keyframes gold-pulse {
+      0% { box-shadow: 0 0 0 0 rgba(198, 168, 0, 0.4); border-left-color: #C6A800; }
+      70% { box-shadow: 0 0 0 15px rgba(198, 168, 0, 0); border-left-color: #ffd700; }
+      100% { box-shadow: 0 0 0 0 rgba(198, 168, 0, 0); border-left-color: #C6A800; }
     }
 
     /* Messaggio vuoto */
     .empty-message {
       text-align: center;
-      font-size: 50px;
-      font-weight: 500;
-      color: var(--primary-color);
-      background: white;
+      font-size: 40px;
+      font-weight: 600;
+      color: var(--deep-blue);
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(5px);
       padding: 60px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border-radius: 30px;
+      border: 1px solid rgba(255,255,255,0.8);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.05);
     }
 
     /* ====== FOOTER TICKER ====== */
     footer {
-      background: #003366;
+      background: linear-gradient(90deg, var(--deep-blue) 0%, #1a3c66 100%);
       color: white;
       height: var(--footer-height);
       overflow: hidden;
@@ -158,7 +223,9 @@
       position: fixed;
       bottom: 0; left: 0; right: 0;
       z-index: 1000;
+      border-top: 4px solid var(--olympic-cyan); /* Linea di accento */
     }
+
     .ticker {
       width: 100%;
       height: 100%;
@@ -168,19 +235,23 @@
       display: flex;
       align-items: center;
     }
+    
     .ticker__track {
       display: inline-block;
       white-space: nowrap;
       will-change: transform;
       animation: ticker var(--ticker-duration, 20s) linear infinite;
     }
+    
     .ticker__content {
       display: inline-block;
       padding-right: 100px;
-      font-size: 40px;
+      font-size: 32px;
       font-weight: 500;
+      letter-spacing: 0.5px;
       line-height: var(--footer-height);
     }
+    
     @keyframes ticker {
       0%   { transform: translateX(0); }
       100% { transform: translateX(-50%); }
@@ -190,7 +261,8 @@
 <body>
 
   <header>
-    <img src="CF Lampugnano blu xl.png" alt="Logo Piscina" onerror="this.style.display='none'; document.write('<h2>Piscina Lampugnano</h2>')"/>
+    <!-- Assicurati che il file PNG abbia uno sfondo trasparente per il massimo effetto -->
+    <img src="CF Lampugnano blu xl.png" alt="Logo Piscina" onerror="this.style.display='none'; document.write('<h2 style=\'font-size:40px; color:#0B2341\'>PISCINA LAMPUGNANO</h2>')"/>
     <div class="datetime">
       <div class="time" id="clock">--:--</div>
       <div class="date" id="date">--</div>
@@ -199,7 +271,9 @@
 
   <div class="container">
     <div id="courses">
-        <div class="empty-message">Caricamento corsi in corso...</div>
+        <div class="empty-message">
+            ❄️ Caricamento corsi in corso...
+        </div>
     </div>
   </div>
 
@@ -212,6 +286,7 @@
     </div>
   </footer>
 
+  <!-- SCRIPT ORIGINALE NON MODIFICATO NELLA LOGICA -->
   <script>
     /* ====== OROLOGIO ====== */
     function updateClock() {
@@ -313,11 +388,11 @@
         if (courses.length === 0) {
            htmlContent = `
             <div class="empty-message">
-              🏊‍♂️ Le attività di oggi sono terminate.<br>
-              <span style="font-size:30px; color:#666">Vi aspettiamo domani!</span>
+              ❄️ Le attività di oggi sono terminate.<br>
+              <span style="font-size:30px; color:var(--status-gray)">Vi aspettiamo domani!</span>
             </div>`;
         } else {
-          // MODIFICATO: Mostra massimo 4 corsi
+          // Mostra massimo 4 corsi
           const visible = courses.slice(0, 4); 
           
           visible.forEach(corso => {
@@ -362,7 +437,7 @@
 
         requestAnimationFrame(() => {
             const width = copy1.offsetWidth;
-            const speed = 200; // Velocità elevata
+            const speed = 200; // Velocità
             const duration = width / speed; 
             track.style.setProperty('--ticker-duration', `${duration}s`);
         });
