@@ -7,8 +7,7 @@
   
   <!-- Font Montserrat per un look più "Olimpico/Sportivo" e geometrico -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <!-- Font Awesome per le icone degli sport invernali -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Font Awesome rimosso perché usiamo immagini realistiche ora -->
 
   <style>
     :root {
@@ -50,7 +49,7 @@
       pointer-events: none;
     }
 
-    /* ====== ANIMAZIONI SPORT INVERNALI - IN PRIMO PIANO ====== */
+    /* ====== ANIMAZIONI SPORT INVERNALI - REALISTICHE ====== */
     .winter-scene {
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -61,58 +60,73 @@
 
     .athlete {
       position: absolute;
-      /* Colori pieni e vibranti invece che trasparenti */
-      filter: drop-shadow(0 15px 15px rgba(0,0,0,0.15)); /* Ombra per staccare dal fondo */
+      /* Dimensioni base per le immagini */
+      width: 250px; 
+      height: auto;
+      object-fit: contain;
+    }
+
+    /* TECNICA PER COLORARE IMMAGINI NERE (PNG/SVG) CON CSS:
+       Usiamo drop-shadow con il colore desiderato e nascondiamo l'immagine originale.
+    */
+    .athlete-color-wrapper {
+        position: absolute;
+        /* Questo filtro crea un'ombra colorata spostata di 0px */
+        filter: drop-shadow(0 0 0 var(--athlete-color)); 
     }
 
     /* Sciatore: Blu scuro, scende veloce */
-    .skier {
-      top: -150px;
-      left: -150px;
-      font-size: 140px; /* Molto grande */
-      color: var(--deep-blue);
+    .skier-wrapper {
+      --athlete-color: var(--deep-blue);
+      top: -200px;
+      left: -200px;
       animation: ski-slope 10s linear infinite;
       animation-delay: 1s;
     }
+    .skier-wrapper img {
+        /* Rende l'immagine originale trasparente, rimane solo l'ombra colorata del wrapper */
+        opacity: 0.8; 
+    }
+
     @keyframes ski-slope {
-      0% { transform: translate(0, 0) rotate(15deg); opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { transform: translate(120vw, 120vh) rotate(15deg); opacity: 0; }
+      0% { transform: translate(0, 0) rotate(15deg); }
+      100% { transform: translate(120vw, 120vh) rotate(15deg); }
     }
 
     /* Pattinatore: Ciano Olimpico, elegante */
-    .skater {
-      bottom: 20%;
-      left: -200px;
-      font-size: 160px; /* Gigante */
-      color: var(--olympic-cyan);
-      opacity: 0.9;
+    .skater-wrapper {
+      --athlete-color: var(--olympic-cyan);
+      bottom: 15%;
+      left: -300px;
       animation: skate-glide 18s ease-in-out infinite;
       animation-delay: 0s;
     }
+    /* Ingrandiamo leggermente il pattinatore perché spesso è più sottile */
+    .skater-wrapper img { width: 280px; opacity: 0.8; }
+
     @keyframes skate-glide {
       0% { transform: translateX(0) scaleX(1); }
       45% { transform: translateX(60vw) scaleX(1); }
       55% { transform: translateX(60vw) scaleX(-1); } 
-      100% { transform: translateX(-200px) scaleX(-1); }
+      100% { transform: translateX(-300px) scaleX(-1); }
     }
 
     /* Snowboarder: Oro, salta in alto */
-    .snowboarder {
-      top: 35%;
-      right: -200px;
-      font-size: 130px;
-      color: var(--status-gold);
+    .snowboarder-wrapper {
+      --athlete-color: var(--status-gold);
+      top: 40%;
+      right: -300px;
       animation: snowboard-trick 12s linear infinite;
       animation-delay: 6s;
     }
+    .snowboarder-wrapper img { width: 260px; opacity: 0.9; }
+
     @keyframes snowboard-trick {
-      0% { transform: translateX(0) translateY(0) rotate(0); opacity: 1; }
+      0% { transform: translateX(0) translateY(0) rotate(0); }
       20% { transform: translateX(-25vw) translateY(20px) rotate(-10deg); }
       40% { transform: translateX(-45vw) translateY(-80px) rotate(-360deg) scale(1.2); } /* Salto più evidente */
       60% { transform: translateX(-65vw) translateY(20px) rotate(-10deg); }
-      100% { transform: translateX(-130vw) translateY(150px) rotate(0); opacity: 0; }
+      100% { transform: translateX(-130vw) translateY(150px) rotate(0); }
     }
 
     /* ====== HEADER ====== */
@@ -121,11 +135,11 @@
       justify-content: space-between;
       align-items: center;
       /* Effetto Glassmorphism */
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.6);
-      padding: 0 50px;
+      padding: 0 40px;
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
       height: var(--header-height);
       position: fixed;
@@ -133,11 +147,27 @@
       z-index: 1000;
     }
 
-    header img {
+    .header-left {
+        display: flex;
+        align-items: center;
+        gap: 30px; /* Spazio tra i loghi */
+        height: 100%;
+    }
+
+    /* Logo Piscina */
+    .logo-main {
       height: 75%; 
       width: auto;
       object-fit: contain;
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    }
+
+    /* Logo Milano Cortina */
+    .logo-olimpiadi {
+      height: 65%; /* Leggermente più piccolo per bilanciare */
+      width: auto;
+      object-fit: contain;
+      opacity: 0.9;
     }
 
     .datetime { 
@@ -147,7 +177,7 @@
     
     .datetime .time { 
         font-weight: 800; /* Extra bold */
-        font-size: 110px; 
+        font-size: 100px; 
         letter-spacing: -4px; 
         background: -webkit-linear-gradient(45deg, var(--deep-blue), #0056b3);
         -webkit-background-clip: text;
@@ -156,7 +186,7 @@
     
     .datetime .date { 
         font-weight: 500; 
-        font-size: 38px; 
+        font-size: 32px; 
         color: var(--status-gray); 
         text-transform: uppercase; 
         letter-spacing: 2px;
@@ -329,17 +359,31 @@
 <body>
 
   <div class="winter-scene">
-    <!-- Omino Sciatore -->
-    <i class="athlete skier fa-solid fa-person-skiing"></i>
-    <!-- Omino Pattinatore -->
-    <i class="athlete skater fa-solid fa-person-skating"></i>
-    <!-- Omino Snowboarder -->
-    <i class="athlete snowboarder fa-solid fa-person-snowboarding"></i>
+    <!-- Sciatore: Usa un pittogramma olimpico ad alta definizione -->
+    <div class="athlete-color-wrapper skier-wrapper">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Alpine_skiing_pictogram.svg/480px-Alpine_skiing_pictogram.svg.png" class="athlete" alt="Sciatore">
+    </div>
+
+    <!-- Pattinatore -->
+    <div class="athlete-color-wrapper skater-wrapper">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Figure_skating_pictogram.svg/480px-Figure_skating_pictogram.svg.png" class="athlete" alt="Pattinatore">
+    </div>
+
+    <!-- Snowboarder -->
+    <div class="athlete-color-wrapper snowboarder-wrapper">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Snowboarding_pictogram.svg/480px-Snowboarding_pictogram.svg.png" class="athlete" alt="Snowboarder">
+    </div>
   </div>
 
   <header>
-    <!-- Assicurati che il file PNG abbia uno sfondo trasparente per il massimo effetto -->
-    <img src="CF Lampugnano blu xl.png" alt="Logo Piscina" onerror="this.style.display='none'; document.write('<h2 style=\'font-size:40px; color:#0B2341\'>PISCINA LAMPUGNANO</h2>')"/>
+    <div class="header-left">
+        <!-- Logo Piscina -->
+        <img src="CF Lampugnano blu xl.png" alt="Logo Piscina" class="logo-main" onerror="this.style.display='none'; document.write('<h2 style=\'font-size:40px; color:#0B2341\'>PISCINA LAMPUGNANO</h2>')"/>
+        
+        <!-- Logo Milano Cortina (Caricato da Wikimedia Commons) -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Milano_Cortina_2026_logo.svg/640px-Milano_Cortina_2026_logo.svg.png" alt="Milano Cortina 2026" class="logo-olimpiadi" onerror="this.style.opacity=0.3;"/>
+    </div>
+
     <div class="datetime">
       <div class="time" id="clock">--:--</div>
       <div class="date" id="date">--</div>
