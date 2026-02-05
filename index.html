@@ -178,215 +178,43 @@
       padding: 60px; border-radius: 30px;
     }
 
+    /* ====== MASCOTTE OVERLAY ====== */
+    .mascotte-overlay {
+      position: fixed;
+      bottom: var(--footer-height); /* Si appoggia esattamente sul footer */
+      right: 20px; /* Leggermente staccato dal bordo destro */
+      z-index: 2000; /* Sopra i box dei corsi */
+      height: 55vh; /* Copre circa metà schermo (gli ultimi 2 box) */
+      max-height: 600px;
+      width: auto;
+      pointer-events: none; /* Lascia che i click passino attraverso se necessario */
+      /* Un leggero bagliore bianco per staccarle dai box sottostanti */
+      filter: drop-shadow(0 0 15px rgba(255,255,255,0.9)); 
+    }
+
     /* ====== FOOTER TICKER ====== */
     footer {
       background: linear-gradient(90deg, var(--deep-blue) 0%, #1a3c66 100%);
       color: white; height: var(--footer-height); overflow: hidden;
       display: flex; align-items: center; position: fixed; bottom: 0; left: 0; right: 0;
-      z-index: 1000; border-top: 4px solid var(--olympic-cyan);
+      z-index: 3000; /* Il footer sta sopra anche alle mascotte */
+      border-top: 4px solid var(--olympic-cyan);
     }
     .ticker { width: 100%; height: 100%; overflow: hidden; position: relative; white-space: nowrap; display: flex; align-items: center; }
     .ticker__track { display: inline-block; white-space: nowrap; will-change: transform; animation: ticker var(--ticker-duration, 20s) linear infinite; }
     .ticker__content { display: inline-block; padding-right: 100px; font-size: 32px; font-weight: 600; font-style: italic; line-height: var(--footer-height); }
     @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    /* ==========================================================================
-       SEZIONE ANIMAZIONI SPORT INVERNALI 
-       ========================================================================== */
-    .winter-scene {
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      pointer-events: none; z-index: 2000; overflow: hidden;
-    }
-
-    /* Stile base per tutti gli atleti */
-    .athlete-container {
-      position: absolute;
-      visibility: hidden; /* Nascosto finché non parte l'animazione */
-      opacity: 0;
-      width: 280px; 
-      height: 280px;
-    }
-
-    .athlete-svg {
-      width: 100%; 
-      height: 100%; 
-      display: block;
-      /* Ombra stilizzata per dare profondità */
-      filter: drop-shadow(4px 8px 6px rgba(11, 35, 65, 0.2));
-    }
-
-    /* --- CLASSI DI ANIMAZIONE (Velocizzate) --- */
-
-    /* 1. SCIATORE: Veloce e diagonale */
-    .run-skier {
-      visibility: visible; opacity: 1;
-      top: -300px; left: -300px; 
-      /* Ridotto a 4s per renderlo più scattante */
-      animation: anim-ski-slope 4s linear forwards;
-    }
-    @keyframes anim-ski-slope {
-      0% { transform: translate(0, 0) rotate(20deg); }
-      100% { transform: translate(120vw, 120vh) rotate(20deg); }
-    }
-
-    /* 2. PATTINATORE: Fluido ma veloce */
-    .run-skater {
-      visibility: visible; opacity: 1;
-      bottom: 12%; left: -300px;
-      /* Ridotto a 6s */
-      animation: anim-skate-glide 6s ease-in-out forwards;
-    }
-    @keyframes anim-skate-glide {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(120vw); }
-    }
-
-    /* 3. SNOWBOARDER: Salto veloce */
-    .run-snowboarder {
-      visibility: visible; opacity: 1;
-      top: 35%; right: -300px;
-      /* Ridotto a 5s */
-      animation: anim-snowboard-trick 5s linear forwards;
-    }
-    @keyframes anim-snowboard-trick {
-      0% { transform: translateX(0) translateY(0) rotate(0); }
-      30% { transform: translateX(-30vw) translateY(20px) rotate(-10deg); }
-      50% { transform: translateX(-50vw) translateY(-80px) rotate(-360deg) scale(1.1); } 
-      70% { transform: translateX(-70vw) translateY(20px) rotate(-10deg); }
-      100% { transform: translateX(-130vw) translateY(150px) rotate(0); }
-    }
-
-    /* 4. HOCKEY: Sprint rapidissimo */
-    .run-hockey {
-      visibility: visible; opacity: 1;
-      bottom: 25%; left: -350px;
-      /* Ridotto a 3s - Molto veloce! */
-      animation: anim-hockey-rush 3s ease-out forwards; 
-    }
-    @keyframes anim-hockey-rush {
-      0% { transform: translateX(0) skewX(-15deg); } 
-      100% { transform: translateX(120vw) skewX(-15deg); }
-    }
-
-    /* 5. CURLING: Più veloce del normale, scivolata decisa */
-    .run-curling {
-      visibility: visible; opacity: 1;
-      bottom: 5%; right: -350px;
-      /* Ridotto a 8s */
-      animation: anim-curling-slide 8s linear forwards; 
-    }
-    @keyframes anim-curling-slide {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(-120vw, -15vh); } 
-    }
-
   </style>
 </head>
 <body>
 
-  <div class="winter-scene">
-    <!-- 
-       I PITTOGRAMMI (SEMPLIFICATI) 
-       Forme pulite, spesse e immediatamente riconoscibili.
-    -->
-
-    <!-- 1. SCIATORE (Colore: Deep Blue) -->
-    <div id="skier" class="athlete-container">
-       <svg class="athlete-svg" viewBox="0 0 100 100" fill="none" stroke="var(--deep-blue)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
-         <!-- Testa -->
-         <circle cx="65" cy="20" r="6" fill="var(--deep-blue)" stroke="none"/>
-         <!-- Corpo a uovo (discesa) -->
-         <path d="M60 30 L 40 45 L 35 60 L 50 65 L 70 50 Z" />
-         <!-- Braccia piegate -->
-         <path d="M60 30 L 75 40 L 70 55" />
-         <!-- Gambe piegate -->
-         <path d="M50 65 L 45 75 L 60 80" />
-         <!-- Sci (Linee lunghe) -->
-         <path d="M10 90 L 95 55" stroke-width="5"/>
-         <path d="M15 95 L 90 65" stroke-width="5"/>
-         <!-- Bastoncino -->
-         <path d="M70 55 L 90 45" stroke-width="3"/>
-       </svg>
-    </div>
-
-    <!-- 2. PATTINATORE (Colore: Olympic Cyan) -->
-    <div id="skater" class="athlete-container">
-        <svg class="athlete-svg" viewBox="0 0 100 100" fill="none" stroke="var(--olympic-cyan)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
-             <!-- Testa -->
-             <circle cx="70" cy="25" r="6" fill="var(--olympic-cyan)" stroke="none"/>
-             <!-- Schiena curva -->
-             <path d="M65 35 L 40 40 L 30 55" />
-             <!-- Braccio dietro (tipico speed skating) -->
-             <path d="M40 40 L 50 30 L 60 25" /> 
-             <!-- Braccio avanti -->
-             <path d="M65 35 L 60 50 L 70 60" />
-             <!-- Gamba appoggio -->
-             <path d="M30 55 L 40 70 L 60 70" />
-             <!-- Gamba spinta -->
-             <path d="M30 55 L 15 65 L 20 75" />
-             <!-- Pattini -->
-             <path d="M55 75 L 75 75" stroke-width="4"/>
-             <path d="M10 80 L 30 70" stroke-width="4"/>
-        </svg>
-    </div>
-
-    <!-- 3. SNOWBOARDER (Colore: Gold) -->
-    <div id="snowboarder" class="athlete-container">
-       <svg class="athlete-svg" viewBox="0 0 100 100" fill="none" stroke="var(--status-gold)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
-            <!-- Testa -->
-            <circle cx="50" cy="20" r="6" fill="var(--status-gold)" stroke="none"/>
-            <!-- Corpo raggruppato -->
-            <path d="M45 30 L 35 45 L 45 55 L 60 45 L 55 30 Z" />
-            <!-- Braccia per bilanciamento -->
-            <path d="M45 30 L 25 35" />
-            <path d="M55 30 L 75 25" />
-            <!-- Gambe piegate -->
-            <path d="M35 45 L 30 60 L 40 65" />
-            <path d="M60 45 L 65 60 L 55 65" />
-            <!-- Tavola -->
-            <path d="M20 75 Q 50 85 80 55" stroke-width="7" />
-       </svg>
-    </div>
-
-    <!-- 4. HOCKEY (Colore: Deep Blue) -->
-    <div id="hockey" class="athlete-container">
-       <svg class="athlete-svg" viewBox="0 0 100 100" fill="none" stroke="var(--deep-blue)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
-            <!-- Testa -->
-            <circle cx="60" cy="20" r="6" fill="var(--deep-blue)" stroke="none"/>
-            <!-- Corpo inclinato avanti -->
-            <path d="M55 30 L 40 45 L 45 60" />
-            <!-- Braccia che tengono il bastone -->
-            <path d="M55 30 L 65 40 L 55 50" /> <!-- Braccio alto -->
-            <path d="M55 30 L 45 40 L 40 50" /> <!-- Braccio basso -->
-            <!-- Gambe in corsa -->
-            <path d="M45 60 L 30 70 L 40 80" />
-            <path d="M45 60 L 60 70 L 55 85" />
-            <!-- Bastone -->
-            <path d="M65 40 L 25 85 L 15 80" stroke-width="5"/>
-            <!-- Puck -->
-            <circle cx="10" cy="85" r="3" fill="var(--deep-blue)" stroke="none"/>
-       </svg>
-    </div>
-
-    <!-- 5. CURLING (Colore: Deep Blue) -->
-    <div id="curling" class="athlete-container">
-       <svg class="athlete-svg" viewBox="0 0 100 100" fill="none" stroke="var(--deep-blue)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
-           <!-- Testa -->
-           <circle cx="70" cy="30" r="6" fill="var(--deep-blue)" stroke="none"/>
-           <!-- Schiena lunga -->
-           <path d="M65 40 L 40 50 L 30 55" />
-           <!-- Gamba scivolamento (dietro) -->
-           <path d="M40 50 L 60 55 L 80 55" />
-           <!-- Gamba piegata (avanti) -->
-           <path d="M40 50 L 30 65 L 45 65" />
-           <!-- Braccio con stone -->
-           <path d="M65 40 L 50 45 L 25 60" />
-           <!-- Stone (semplificata) -->
-           <path d="M15 60 L 35 60 L 35 70 L 15 70 Z" fill="var(--status-gray)" stroke="none" />
-           <path d="M22 55 L 28 55 L 28 60 L 22 60 Z" fill="var(--status-gold)" stroke="none" /> <!-- Manico -->
-       </svg>
-    </div>
-  </div>
+  <!-- 
+    IMMAGINE MASCOTTE 
+    Si sovrappone ai box in basso a destra.
+    Assicurati di avere il file "mascotte.png" nella stessa cartella.
+  -->
+  <img src="mascotte.png" class="mascotte-overlay" alt="Mascotte Milano Cortina" onerror="this.style.display='none'">
 
   <header>
     <div class="header-left">
@@ -418,39 +246,6 @@
   </footer>
 
   <script>
-    /* ====== GESTIONE ANIMAZIONI "REGISTA" ====== */
-    const sports = [
-        { id: 'skier',       animClass: 'run-skier' },
-        { id: 'skater',      animClass: 'run-skater' },
-        { id: 'snowboarder', animClass: 'run-snowboarder' },
-        { id: 'hockey',      animClass: 'run-hockey' },
-        { id: 'curling',     animClass: 'run-curling' }
-    ];
-
-    function playRandomAnimation() {
-        // 1. Scegli uno sport a caso
-        const randomSport = sports[Math.floor(Math.random() * sports.length)];
-        const element = document.getElementById(randomSport.id);
-        
-        // 2. Avvia l'animazione aggiungendo la classe
-        element.classList.add(randomSport.animClass);
-
-        // 3. Quando l'animazione finisce...
-        element.addEventListener('animationend', function cleanup() {
-            // Rimuovi la classe (resetta l'atleta fuori schermo)
-            element.classList.remove(randomSport.animClass);
-            element.removeEventListener('animationend', cleanup);
-            
-            // 4. Pausa ridotta per più azione (tra 1 e 4 secondi)
-            const delay = Math.floor(Math.random() * 3000) + 1000;
-            setTimeout(playRandomAnimation, delay);
-        });
-    }
-
-    // Avvia il ciclo rapidamente
-    setTimeout(playRandomAnimation, 1000);
-
-
     /* ====== LOGICA OROLOGIO E DATI (INVARIATA) ====== */
     function updateClock() {
       const now = new Date();
