@@ -188,14 +188,14 @@
     /* ====== MASCOTTE (TINA & MILO) ====== */
     .mascotte-overlay {
       position: fixed;
-      /* "Attaccate" al ticker: bottom = altezza del footer */
-      bottom: var(--footer-height); 
+      /* Ora sono ancorate al fondo pagina (0) invece che sopra il footer (80px) */
+      bottom: 0; 
       right: 0;     
-      /* Altezza dinamica per coprire circa gli ultimi 2 box */
-      height: 55vh; 
-      max-height: 650px;
+      /* Altezza ridotta per non invadere troppo i box superiori */
+      height: 45vh; 
+      max-height: 550px;
       width: auto;
-      z-index: 3000; /* SOPRA I CORSI */
+      z-index: 5000; /* Davanti a tutto */
       pointer-events: none; 
       filter: drop-shadow(-5px 0 15px rgba(255,255,255,0.8));
     }
@@ -205,7 +205,7 @@
       background: linear-gradient(90deg, var(--deep-blue) 0%, #1a3c66 100%);
       color: white; height: var(--footer-height); overflow: hidden;
       display: flex; align-items: center; position: fixed; bottom: 0; left: 0; right: 0;
-      z-index: 4000; /* Il footer è sopra le mascotte (o le mascotte poggiano su di esso) */
+      z-index: 4000; 
       border-top: 4px solid var(--olympic-cyan);
     }
     .ticker { width: 100%; height: 100%; overflow: hidden; position: relative; white-space: nowrap; display: flex; align-items: center; }
@@ -219,7 +219,7 @@
 
   <!-- 
     IMMAGINE MASCOTTE 
-    Posizionata per poggiare sul ticker.
+    Posizionata per poggiare sul fondo pagina.
     Deve chiamarsi "mascotte.png" nella cartella.
   -->
   <img src="mascotte.png" class="mascotte-overlay" alt="Mascotte Milano Cortina" onerror="this.style.display='none'">
