@@ -142,31 +142,12 @@
       object-fit: contain;
     }
 
-    /* Logo Milano Cortina ricostruito in CSS/SVG per affidabilità */
-    .logo-mc-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        opacity: 0.9;
-    }
-    .mc-text {
-        font-family: "Montserrat", sans-serif;
-        font-weight: 800;
-        font-size: 24px;
-        line-height: 1;
-        color: var(--deep-blue);
-        text-transform: uppercase;
-        margin-bottom: 5px;
-    }
-    .mc-year {
-        font-weight: 300;
-        font-size: 24px;
-        color: var(--status-gray);
-    }
-    .rings-svg {
-        width: 100px;
-        margin-top: 5px;
+    /* Stile per il logo caricato dall'utente */
+    .logo-olimpiadi {
+      height: 70%; /* Altezza bilanciata rispetto al logo piscina */
+      width: auto;
+      object-fit: contain;
+      /* opacity: 0.9; Rimosso per lasciare i colori originali brillanti */
     }
 
     .datetime { 
@@ -381,19 +362,10 @@
         <img src="CF Lampugnano blu xl.png" alt="Logo Piscina" class="logo-main" onerror="this.style.display='none'; document.querySelector('.fallback-title').style.display='block'"/>
         <h2 class="fallback-title" style="display:none; font-size:40px; color:#0B2341; margin:0">PISCINA LAMPUGNANO</h2>
         
-        <!-- Logo Milano Cortina (Generato via codice) -->
-        <div class="logo-mc-container">
-            <div class="mc-text">MILANO CORTINA</div>
-            <div class="mc-year">2026</div>
-            <!-- Cerchi olimpici SVG -->
-            <svg class="rings-svg" viewBox="0 0 100 45">
-                <circle cx="20" cy="15" r="14" fill="none" stroke="#0081C8" stroke-width="3" />
-                <circle cx="50" cy="15" r="14" fill="none" stroke="#000000" stroke-width="3" />
-                <circle cx="80" cy="15" r="14" fill="none" stroke="#EE334E" stroke-width="3" />
-                <circle cx="35" cy="30" r="14" fill="none" stroke="#FCB131" stroke-width="3" />
-                <circle cx="65" cy="30" r="14" fill="none" stroke="#00A651" stroke-width="3" />
-            </svg>
-        </div>
+        <!-- ISTRUZIONI PER L'UTENTE: -->
+        <!-- 1. Salva il file del tuo logo Milano Cortina nella stessa cartella di questo file html. -->
+        <!-- 2. Rinomina il file come "logo-milanocortina.png" (o cambia il nome qui sotto in src="") -->
+        <img src="logo-milanocortina.png" alt="Milano Cortina 2026" class="logo-olimpiadi" onerror="this.style.display='none'"/>
     </div>
 
     <div class="datetime">
