@@ -5,12 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Orari Piscina Lampugnano - Milano Cortina Style</title>
   
-  <!-- Carichiamo i pesi Italic per simulare il font dinamico -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+  <!-- Carichiamo i font Google: Montserrat con tutti i pesi, inclusi Italic per il look dinamico -->
+  <link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)">
+  <link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin>
+  <link href="[https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap](https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap)" rel="stylesheet">
 
   <style>
     :root {
-      /* Palette Ispirata a Milano Cortina 2026 */
+      /* Palette Ufficiale Milano Cortina 2026 */
       --deep-blue: #0B2341;       
       --olympic-cyan: #00A19C;    
       --snow-white: #F0F8FF;      
@@ -24,9 +26,9 @@
     }
 
     body {
-      /* Font base */
       font-family: "Montserrat", sans-serif;
       margin: 0;
+      /* Sfondo "Ghiaccio" */
       background: radial-gradient(circle at 10% 20%, rgb(235, 249, 255) 0%, rgb(245, 247, 250) 90%);
       color: var(--deep-blue);
       display: flex;
@@ -36,7 +38,7 @@
       position: relative;
     }
 
-    /* Decorazione vettoriale di sfondo */
+    /* Pattern vettoriale leggero sullo sfondo */
     body::before {
       content: '';
       position: absolute;
@@ -77,14 +79,17 @@
 
     .datetime { text-align: right; line-height: 0.9; }
     
-    /* FONT SIMILARE MILANO CORTINA: ExtraBold Italic */
+    /* STILE OROLOGIO: Simula il font "Milano Cortina Bold Italic" */
     .datetime .time { 
+        font-family: "Montserrat", sans-serif;
         font-weight: 900; /* Extra Bold */
         font-style: italic; /* Italic */
         font-size: 110px; 
         letter-spacing: -5px; 
+        /* Gradiente sul testo */
         background: -webkit-linear-gradient(45deg, var(--deep-blue), #0056b3);
-        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text; 
+        -webkit-text-fill-color: transparent;
     }
     .datetime .date { 
         font-weight: 600; 
@@ -118,7 +123,7 @@
       gap: 25px; 
     }
 
-    /* ====== CORSI ====== */
+    /* ====== BOX CORSI ====== */
     .course {
       display: flex;
       border-radius: 20px;
@@ -129,17 +134,18 @@
       position: relative;
       transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
       border: 1px solid rgba(255,255,255,0.8);
+      z-index: 20; /* Stanno sotto le mascotte ma sopra lo sfondo */
     }
     
-    .course:nth-child(1) { transform: scale(1.02); z-index: 10; }
+    .course:nth-child(1) { transform: scale(1.02); z-index: 25; }
 
     .course > div { padding: 20px 40px; display: flex; align-items: center; }
     
     .course .attivita { 
         flex: 2; 
         font-size: 55px; 
-        font-weight: 800; /* Più bold */
-        font-style: italic; /* Corsivo sportivo */
+        font-weight: 800; 
+        font-style: italic; /* Dinamismo */
         color: var(--deep-blue); 
         letter-spacing: -2px; 
     }
@@ -156,7 +162,7 @@
     .info-time { 
         font-size: 60px; 
         font-weight: 900; 
-        font-style: italic; /* Corsivo */
+        font-style: italic;
         color: var(--deep-blue); 
         line-height: 1; 
         font-variant-numeric: tabular-nums; 
@@ -178,18 +184,18 @@
       padding: 60px; border-radius: 30px;
     }
 
-    /* ====== MASCOTTE OVERLAY ====== */
+    /* ====== MASCOTTE (TINA & MILO) ====== */
     .mascotte-overlay {
       position: fixed;
-      bottom: var(--footer-height); /* Si appoggia esattamente sul footer */
-      right: 20px; /* Leggermente staccato dal bordo destro */
-      z-index: 2000; /* Sopra i box dei corsi */
-      height: 55vh; /* Copre circa metà schermo (gli ultimi 2 box) */
-      max-height: 600px;
+      bottom: 80px; /* Poggia sul footer */
+      right: 0;     /* Allineata a destra */
+      /* Altezza calcolata per coprire circa gli ultimi 2 box */
+      height: 60vh; 
+      max-height: 700px;
       width: auto;
-      pointer-events: none; /* Lascia che i click passino attraverso se necessario */
-      /* Un leggero bagliore bianco per staccarle dai box sottostanti */
-      filter: drop-shadow(0 0 15px rgba(255,255,255,0.9)); 
+      z-index: 3000; /* SOPRA I CORSI */
+      pointer-events: none; /* Non blocca i click se necessario */
+      filter: drop-shadow(-5px 0 15px rgba(255,255,255,0.8)); /* Bagliore per staccarla */
     }
 
     /* ====== FOOTER TICKER ====== */
@@ -197,7 +203,7 @@
       background: linear-gradient(90deg, var(--deep-blue) 0%, #1a3c66 100%);
       color: white; height: var(--footer-height); overflow: hidden;
       display: flex; align-items: center; position: fixed; bottom: 0; left: 0; right: 0;
-      z-index: 3000; /* Il footer sta sopra anche alle mascotte */
+      z-index: 4000; /* Sopra a tutto, anche alle mascotte */
       border-top: 4px solid var(--olympic-cyan);
     }
     .ticker { width: 100%; height: 100%; overflow: hidden; position: relative; white-space: nowrap; display: flex; align-items: center; }
@@ -211,17 +217,18 @@
 
   <!-- 
     IMMAGINE MASCOTTE 
-    Si sovrappone ai box in basso a destra.
-    Assicurati di avere il file "mascotte.png" nella stessa cartella.
+    Posizionata in basso a destra, sopra i box.
+    Deve chiamarsi "mascotte.png" nella cartella.
   -->
   <img src="mascotte.png" class="mascotte-overlay" alt="Mascotte Milano Cortina" onerror="this.style.display='none'">
 
   <header>
     <div class="header-left">
+        <!-- Logo Piscina -->
         <img src="CF Lampugnano blu xl.png" alt="Logo Piscina" class="logo-main" onerror="this.style.display='none'; document.querySelector('.fallback-title').style.display='block'"/>
         <h2 class="fallback-title" style="display:none; font-size:40px; color:#0B2341; margin:0">PISCINA LAMPUGNANO</h2>
         
-        <!-- Logo Milano Cortina caricato da file -->
+        <!-- Logo Milano Cortina -->
         <img src="logo-milanocortina.png" alt="Milano Cortina 2026" class="logo-olimpiadi" onerror="this.style.display='none'"/>
     </div>
     <div class="datetime">
