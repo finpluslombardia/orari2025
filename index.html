@@ -36,24 +36,25 @@
     body::before, body::after {
       content: '';
       position: absolute;
-      top: -10vh;
-      width: 40vw;
-      height: 150vh;
-      background: linear-gradient(to bottom, rgba(255, 215, 0, 0.15) 0%, rgba(255, 255, 255, 0) 100%);
+      top: -15vh;
+      width: 50vw;
+      height: 160vh;
+      /* Luci molto più intense: cuore bianco che sfuma in oro e poi scompare */
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7) 0%, rgba(255, 215, 0, 0.4) 30%, transparent 100%);
       clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
       z-index: 0;
       pointer-events: none;
-      filter: blur(25px);
+      filter: blur(35px);
       transform-origin: top center;
-      animation: sweep 12s infinite alternate ease-in-out;
+      animation: sweep 10s infinite alternate ease-in-out;
     }
-    body::before { left: 5%; transform: rotate(30deg); }
-    body::after { right: 5%; transform: rotate(-30deg); animation-delay: -6s; }
+    body::before { left: 0%; transform: rotate(35deg); }
+    body::after { right: 0%; transform: rotate(-35deg); animation-delay: -5s; }
 
     @keyframes sweep {
-      0% { transform: rotate(25deg); opacity: 0.3; }
-      50% { opacity: 0.8; }
-      100% { transform: rotate(-25deg); opacity: 0.3; }
+      0% { transform: rotate(35deg); opacity: 0.5; filter: blur(40px); }
+      50% { opacity: 1; filter: blur(25px); }
+      100% { transform: rotate(-35deg); opacity: 0.5; filter: blur(40px); }
     }
 
     /* ====== HEADER INSEGNA ARISTON ====== */
@@ -130,30 +131,6 @@
       overflow-y: hidden;
       position: relative;
       z-index: 10;
-    }
-
-    /* Filigrane giganti sullo sfondo (Musica e Fiori) */
-    .container::before {
-      content: '🎼';
-      position: absolute;
-      top: 50%;
-      left: 8%;
-      transform: translateY(-50%) rotate(-15deg);
-      font-size: 45vh;
-      color: rgba(255, 255, 255, 0.08);
-      z-index: 0;
-      pointer-events: none;
-    }
-    .container::after {
-      content: '💐';
-      position: absolute;
-      top: 50%;
-      right: 8%;
-      transform: translateY(-50%) rotate(15deg);
-      font-size: 35vh;
-      opacity: 0.06;
-      z-index: 0;
-      pointer-events: none;
     }
 
     #courses {
