@@ -7,13 +7,12 @@
 
   <style>
     :root {
-      /* COLORI TEMA SANREMO LIGHT */
-      --sanremo-gold: #D4AF37;
-      --sanremo-gold-glow: #F3E5AB;
-      --sanremo-red: #E60000;
-      --sanremo-red-dark: #660000;
-      --sanremo-night: #1A365D; /* Blu elegante, non più nero */
-      --sanremo-stage: #2B6CB0; /* Azzurro palco/piscina */
+      /* COLORI TEMA SANREMO GIOIOSO E VIVACE */
+      --sanremo-gold: #FFD700; /* Oro super brillante */
+      --sanremo-gold-glow: #FFF7B0;
+      --sanremo-red: #FF1A1A; /* Rosso vivo e acceso */
+      --sanremo-night: #004DE6; /* Blu elettrico vivace (non più scuro) */
+      --sanremo-stage: #00CCFF; /* Azzurro brillante stile luce da piscina/palco */
       
       --header-height: 220px; 
       --footer-height: 80px;
@@ -22,6 +21,7 @@
     body {
       font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
       margin: 0;
+      /* Sfondo luminoso ed energico */
       background: radial-gradient(circle at 50% 10%, var(--sanremo-stage), var(--sanremo-night) 90%);
       color: white;
       letter-spacing: -0.5px;
@@ -32,40 +32,41 @@
       position: relative;
     }
 
-    /* ====== FARI DA PALCOSCENICO (ANIMATI) ====== */
+    /* ====== FARI DA PALCOSCENICO FESTOSI (ANIMATI) ====== */
     body::before, body::after {
       content: '';
       position: absolute;
       top: -15vh;
       width: 50vw;
       height: 160vh;
-      /* Luci molto più intense: cuore bianco che sfuma in oro e poi scompare */
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7) 0%, rgba(255, 215, 0, 0.4) 30%, transparent 100%);
+      /* Luci allegre con sfumature bianco, oro e rosa/magenta */
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 0%, rgba(255, 215, 0, 0.5) 20%, rgba(255, 51, 153, 0.3) 50%, transparent 100%);
       clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
       z-index: 0;
       pointer-events: none;
-      filter: blur(35px);
+      filter: blur(30px);
       transform-origin: top center;
-      animation: sweep 10s infinite alternate ease-in-out;
+      animation: sweep 8s infinite alternate ease-in-out;
     }
     body::before { left: 0%; transform: rotate(35deg); }
-    body::after { right: 0%; transform: rotate(-35deg); animation-delay: -5s; }
+    body::after { right: 0%; transform: rotate(-35deg); animation-delay: -4s; }
 
     @keyframes sweep {
-      0% { transform: rotate(35deg); opacity: 0.5; filter: blur(40px); }
-      50% { opacity: 1; filter: blur(25px); }
-      100% { transform: rotate(-35deg); opacity: 0.5; filter: blur(40px); }
+      0% { transform: rotate(35deg); opacity: 0.6; filter: blur(35px); }
+      50% { opacity: 1; filter: blur(20px); }
+      100% { transform: rotate(-35deg); opacity: 0.6; filter: blur(35px); }
     }
 
-    /* ====== HEADER INSEGNA ARISTON ====== */
+    /* ====== HEADER FESTOSO ====== */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: linear-gradient(to bottom, rgba(26, 54, 93, 0.95), rgba(43, 108, 176, 0.95));
+      /* Blu brillante e pulito */
+      background: linear-gradient(to bottom, #0033CC, #0066FF);
       padding: 0 40px;
-      border-bottom: 8px dotted var(--sanremo-gold);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      border-bottom: 8px solid var(--sanremo-gold);
+      box-shadow: 0 10px 30px rgba(0, 102, 255, 0.5);
       height: var(--header-height);
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -73,29 +74,29 @@
       overflow: hidden; 
     }
     
-    /* Pattern di emoji animate nello sfondo dell'header */
+    /* Pattern di emoji a COLORI PIENI e vivaci */
     header::before {
       content: '💐 🎵 ✨ 🎤 🌸 🎶 ⭐ 🌹 💐 🎵 ✨ 🎤 🌸 🎶 ⭐ 🌹 💐 🎵 ✨ 🎤 🌸 🎶 ⭐ 🌹 💐 🎵 ✨ 🎤 🌸 🎶 ⭐ 🌹 💐 🎵 ✨ 🎤 🌸 🎶 ⭐ 🌹 💐 🎵 ✨ 🎤 🌸 🎶 ⭐ 🌹 💐 🎵 ✨ 🎤 🌸 🎶 ⭐ 🌹 💐 🎵 ✨ 🎤 🌸 🎶 ⭐ 🌹 💐 🎵 ✨ 🎤 🌸 🎶 ⭐ 🌹 💐 🎵 ✨ 🎤 🌸 🎶 ⭐ 🌹 💐 🎵 ✨ 🎤 🌸 🎶 ⭐ 🌹';
       position: absolute;
       top: -50%; left: -10%; right: -10%; bottom: -50%;
-      font-size: 45px;
+      font-size: 50px;
       line-height: 1.8;
-      letter-spacing: 20px;
-      opacity: 0.85; /* Reso ancora più visibile (prima era 0.45) */
+      letter-spacing: 25px;
+      opacity: 0.95; /* Quasi 100% visibili, niente più effetto spento */
       z-index: 1;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       align-content: center;
       pointer-events: none;
-      text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
     }
 
     header img {
       height: 85%; 
       width: auto;
       object-fit: contain;
-      filter: drop-shadow(0px 0px 15px rgba(255, 255, 255, 0.3));
+      filter: drop-shadow(0px 0px 20px rgba(255, 255, 255, 0.6));
       position: relative;
       z-index: 2; 
     }
@@ -107,13 +108,13 @@
         font-size: 115px; 
         letter-spacing: -3px; 
         color: #fff; 
-        text-shadow: 0 0 15px rgba(255, 255, 255, 0.5), 0 0 30px var(--sanremo-gold);
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px var(--sanremo-gold);
     }
     
     .datetime .date { 
-        font-weight: 600; 
+        font-weight: 700; 
         font-size: 40px; 
-        color: var(--sanremo-gold-glow); 
+        color: var(--sanremo-gold); 
         text-transform: uppercase; 
         letter-spacing: 2px;
         margin-top: 10px;
@@ -144,27 +145,26 @@
       z-index: 2;
     }
 
-    /* ====== CORSI (Grafiche "Cantanti in Gara") ====== */
+    /* ====== CORSI (Luminosi e Allegri) ====== */
     .course {
       display: flex;
       border-radius: 20px; 
       overflow: hidden;
-      background-color: rgba(255, 255, 255, 0.95); 
+      background-color: #FFFFFF; /* Bianco puro per massima luminosità */
       border: none;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      box-shadow: 0 10px 30px rgba(0, 50, 150, 0.3);
       width: 100%;
       position: relative;
       transition: all 0.3s ease;
     }
     
-    /* Spartito Musicale di sfondo per i corsi (Pentagramma + Note) */
+    /* Spartito Musicale DORATO e allegro */
     .course::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      /* Aumentata l'opacità di linee e note per renderle molto più marcate */
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='350' height='120'%3E%3Cg stroke='%23000' stroke-width='1.5' opacity='0.35'%3E%3Cline x1='0' y1='30' x2='350' y2='30'/%3E%3Cline x1='0' y1='45' x2='350' y2='45'/%3E%3Cline x1='0' y1='60' x2='350' y2='60'/%3E%3Cline x1='0' y1='75' x2='350' y2='75'/%3E%3Cline x1='0' y1='90' x2='350' y2='90'/%3E%3C/g%3E%3Ctext x='15' y='80' font-size='55' opacity='0.25'%3E🎼%3C/text%3E%3Ctext x='150' y='65' font-size='35' opacity='0.25'%3E🎵%3C/text%3E%3Ctext x='260' y='75' font-size='40' opacity='0.25'%3E🎶%3C/text%3E%3C/svg%3E");
+      /* Linee colore oro brillante e note molto visibili */
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='350' height='120'%3E%3Cg stroke='%23FFCC00' stroke-width='2.5' opacity='0.7'%3E%3Cline x1='0' y1='30' x2='350' y2='30'/%3E%3Cline x1='0' y1='45' x2='350' y2='45'/%3E%3Cline x1='0' y1='60' x2='350' y2='60'/%3E%3Cline x1='0' y1='75' x2='350' y2='75'/%3E%3Cline x1='0' y1='90' x2='350' y2='90'/%3E%3C/g%3E%3Ctext x='15' y='80' font-size='55' opacity='0.5'%3E🎼%3C/text%3E%3Ctext x='150' y='65' font-size='35' opacity='0.5'%3E🎵%3C/text%3E%3Ctext x='260' y='75' font-size='40' opacity='0.5'%3E🎶%3C/text%3E%3C/svg%3E");
       background-size: 350px auto;
       pointer-events: none;
       z-index: 0;
@@ -175,23 +175,22 @@
       display: flex;
       align-items: center;
       position: relative;
-      z-index: 1; /* Tiene il testo sopra lo spartito musicale */
+      z-index: 1; 
     }
     
     .course .attivita {
       flex: 2;
       font-size: 65px; 
-      font-weight: 700;
-      color: var(--sanremo-night); 
-      text-shadow: none;
+      font-weight: 800;
+      color: #002266; /* Blu carico e brillante */
       text-transform: uppercase;
     }
     .course .dettagli {
       flex: 1.2;
       display: flex;
       justify-content: space-around;
-      background-color: rgba(0,0,0,0.03);
-      border-left: 1px solid rgba(0,0,0,0.08);
+      background-color: rgba(255, 230, 0, 0.08); /* Leggerissimo riflesso giallo gioioso */
+      border-left: 2px solid rgba(255, 215, 0, 0.4);
     }
     .info-box {
       display: flex;
@@ -199,58 +198,60 @@
       align-items: center;
       justify-content: center;
     }
-    .info-label { font-size: 20px; text-transform: uppercase; color: #666; font-weight: 600; margin-bottom: 5px; letter-spacing: 2px;}
-    .info-time { font-size: 65px; font-weight: 700; color: #222; line-height: 1; text-shadow: none;}
+    .info-label { font-size: 20px; text-transform: uppercase; color: #555; font-weight: 700; margin-bottom: 5px; letter-spacing: 2px;}
+    .info-time { font-size: 65px; font-weight: 800; color: #111; line-height: 1;}
 
-    /* STATI DEI CORSI ESTREMI */
-    .green  { 
-        background-color: #FEFCF5;
-        border-left: 20px solid var(--sanremo-gold); 
-        box-shadow: 0 5px 25px rgba(212, 175, 55, 0.3);
-    }
-    .yellow { 
-        background-color: #FDF4F5;
-        border-left: 20px solid var(--sanremo-red); 
-        animation: extreme-pulse 1.5s infinite; 
-    }
-    .gray   { 
-        background-color: #F8F9FA;
-        border-left: 20px solid #A0AAB2; 
-    }
-    .gray .attivita, .gray .info-time { color: #555; }
+    /* STATI DEI CORSI "POP" */
     
-    @keyframes extreme-pulse {
-      0% { border-left-color: var(--sanremo-red); box-shadow: 0 0 0px rgba(230, 0, 0, 0); }
-      50% { border-left-color: #FF1A1A; box-shadow: 0 0 20px rgba(230, 0, 0, 0.4); }
-      100% { border-left-color: var(--sanremo-red); box-shadow: 0 0 0px rgba(230, 0, 0, 0); }
+    /* In corso (Verde vivace) */
+    .green  { 
+        background-color: #F0FFF0;
+        border-left: 20px solid #32CD32; 
+        box-shadow: 0 5px 25px rgba(50, 205, 50, 0.4);
+    }
+    
+    /* Tra poco (Arancione/Giallo Solare Pulsante) */
+    .yellow { 
+        background-color: #FFFFE0;
+        border-left: 20px solid #FF8C00; 
+        animation: happy-pulse 1.5s infinite; 
+    }
+    @keyframes happy-pulse {
+      0% { border-left-color: #FF8C00; box-shadow: 0 0 0px rgba(255, 140, 0, 0); }
+      50% { border-left-color: #FFD700; box-shadow: 0 0 25px rgba(255, 215, 0, 0.7); }
+      100% { border-left-color: #FF8C00; box-shadow: 0 0 0px rgba(255, 140, 0, 0); }
     }
 
-    /* Messaggio vuoto */
+    /* In attesa (Azzurro chiarissimo e pulito) */
+    .gray   { 
+        background-color: #F0F8FF;
+        border-left: 20px solid #87CEEB; 
+    }
+    
+    /* Messaggio vuoto super festoso */
     .empty-message {
       text-align: center;
       font-size: 50px;
-      font-weight: 700;
-      color: var(--sanremo-night);
-      background: rgba(255, 255, 255, 0.95);
+      font-weight: 800;
+      color: #0033CC;
+      background: #FFFFFF;
       padding: 80px;
       border-radius: 30px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-      border: 2px solid var(--sanremo-gold);
-      backdrop-filter: blur(10px);
+      box-shadow: 0 15px 40px rgba(0, 100, 255, 0.4);
+      border: 4px solid #FF007F; /* Bordo fucsia festoso */
       text-transform: uppercase;
     }
     .empty-message::before {
-        content: '💐 🏆 💐';
+        content: '🎉 💐 🏆 💐 🎉';
         display: block;
         font-size: 90px;
         margin-bottom: 20px;
-        filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
     }
 
-    /* ====== FOOTER RED CARPET ESTREMO ====== */
+    /* ====== FOOTER RED CARPET VIVO ====== */
     footer {
-      background: linear-gradient(180deg, #CC0000 0%, #800000 100%);
-      border-top: 6px solid #FFD700;
+      background: linear-gradient(180deg, #FF1A1A 0%, #CC0000 100%); /* Rosso vivo */
+      border-top: 8px solid #FFD700;
       color: white;
       height: var(--footer-height);
       overflow: hidden;
@@ -259,14 +260,14 @@
       position: fixed;
       bottom: 0; left: 0; right: 0;
       z-index: 1000;
-      box-shadow: 0 -10px 40px rgba(230, 0, 0, 0.4);
+      box-shadow: 0 -10px 40px rgba(255, 26, 26, 0.5);
     }
     
     footer::before {
         content: '';
         position: absolute;
         top: 0; left: 0; right: 0; height: 30%;
-        background: linear-gradient(to bottom, rgba(255,255,255,0.2), transparent);
+        background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
         z-index: 1;
     }
 
@@ -290,9 +291,9 @@
       display: inline-block;
       padding-right: 100px;
       font-size: 42px;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 2px;
-      text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
       line-height: var(--footer-height);
     }
     @keyframes ticker {
@@ -411,7 +412,7 @@
           .map(r => r[0])
           .join("  •  ");
 
-        updateTicker(notesText || 'Benvenuti alla Piscina Lampugnano - Serata Finale Sanremo');
+        updateTicker(notesText || 'Benvenuti alla Piscina Lampugnano - Gran Finale Sanremo');
 
       } catch (err) {
         console.error('Errore update:', err);
@@ -430,7 +431,7 @@
            htmlContent = `
             <div class="empty-message">
               🏊‍♂️ IL FESTIVAL DI OGGI È TERMINATO!<br>
-              <span style="font-size:35px; color:#ccc; display:block; margin-top:15px;">A domani per la prossima serata!</span>
+              <span style="font-size:35px; color:#555; display:block; margin-top:15px;">A domani per la prossima serata!</span>
             </div>`;
         } else {
           const visible = courses.slice(0, 4); 
