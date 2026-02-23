@@ -61,17 +61,15 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      /* Sfondo blu elegante per far risaltare le emoji senza scurire troppo */
       background: linear-gradient(to bottom, rgba(26, 54, 93, 0.95), rgba(43, 108, 176, 0.95));
       padding: 0 40px;
-      /* Effetto "lampadine" dell'insegna teatrale */
       border-bottom: 8px dotted var(--sanremo-gold);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       height: var(--header-height);
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 1000;
-      overflow: hidden; /* Contiene le emoji all'interno */
+      overflow: hidden; 
     }
     
     /* Pattern di emoji animate nello sfondo dell'header */
@@ -82,7 +80,7 @@
       font-size: 45px;
       line-height: 1.8;
       letter-spacing: 20px;
-      opacity: 0.12; /* Molto più leggero e delicato */
+      opacity: 0.20; /* Reso leggermente più visibile */
       z-index: 1;
       display: flex;
       flex-wrap: wrap;
@@ -104,7 +102,7 @@
       object-fit: contain;
       filter: drop-shadow(0px 0px 15px rgba(255, 255, 255, 0.3));
       position: relative;
-      z-index: 2; /* Tiene il logo sopra le emoji */
+      z-index: 2; 
     }
 
     .datetime { text-align: right; line-height: 1; position: relative; z-index: 2; }
@@ -139,6 +137,31 @@
       position: relative;
       z-index: 10;
     }
+
+    /* Filigrane giganti sullo sfondo (Musica e Fiori) */
+    .container::before {
+      content: '🎼';
+      position: absolute;
+      top: 50%;
+      left: 8%;
+      transform: translateY(-50%) rotate(-15deg);
+      font-size: 45vh;
+      color: rgba(255, 255, 255, 0.08);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .container::after {
+      content: '💐';
+      position: absolute;
+      top: 50%;
+      right: 8%;
+      transform: translateY(-50%) rotate(15deg);
+      font-size: 35vh;
+      opacity: 0.06;
+      z-index: 0;
+      pointer-events: none;
+    }
+
     #courses {
       width: 100%;
       max-width: 1700px;
@@ -146,6 +169,8 @@
       flex-direction: column;
       justify-content: center;
       gap: 30px; 
+      position: relative;
+      z-index: 2;
     }
 
     /* ====== CORSI (Grafiche "Cantanti in Gara") ====== */
@@ -153,7 +178,6 @@
       display: flex;
       border-radius: 20px; 
       overflow: hidden;
-      /* Sfondo bianco/trasparente molto più leggero e leggibile */
       background-color: rgba(255, 255, 255, 0.95); 
       border: none;
       backdrop-filter: blur(10px);
@@ -162,16 +186,33 @@
       position: relative;
       transition: all 0.3s ease;
     }
+    
+    /* Filigrana Nota Musicale all'interno di ogni corso (Stile VIP Pass) */
+    .course::after {
+      content: '🎵';
+      position: absolute;
+      right: 50px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 110px;
+      color: rgba(212, 175, 55, 0.15); 
+      pointer-events: none;
+      z-index: 0;
+    }
+
     .course > div {
       padding: 25px 35px; 
       display: flex;
       align-items: center;
+      position: relative;
+      z-index: 1; /* Tiene il testo sopra la filigrana */
     }
+    
     .course .attivita {
       flex: 2;
       font-size: 65px; 
       font-weight: 700;
-      color: var(--sanremo-night); /* Testo scuro */
+      color: var(--sanremo-night); 
       text-shadow: none;
       text-transform: uppercase;
     }
@@ -192,28 +233,21 @@
     .info-time { font-size: 65px; font-weight: 700; color: #222; line-height: 1; text-shadow: none;}
 
     /* STATI DEI CORSI ESTREMI */
-    
-    /* GREEN -> SOTTO I RIFLETTORI (Oro brillante) */
     .green  { 
         background: #FEFCF5;
         border-left: 20px solid var(--sanremo-gold); 
         box-shadow: 0 5px 25px rgba(212, 175, 55, 0.3);
     }
-    
-    /* YELLOW -> DIETRO LE QUINTE (Rosso lampeggiante intenso) */
     .yellow { 
         background: #FDF4F5;
         border-left: 20px solid var(--sanremo-red); 
         animation: extreme-pulse 1.5s infinite; 
     }
-    
-    /* GRAY -> IN ATTESA (Trasparente ed elegante) */
     .gray   { 
         background: #F8F9FA;
         border-left: 20px solid #A0AAB2; 
     }
-    .gray .attivita { color: #555; }
-    .gray .info-time { color: #555; }
+    .gray .attivita, .gray .info-time { color: #555; }
     
     @keyframes extreme-pulse {
       0% { border-left-color: var(--sanremo-red); box-shadow: 0 0 0px rgba(230, 0, 0, 0); }
@@ -236,7 +270,7 @@
       text-transform: uppercase;
     }
     .empty-message::before {
-        content: '🏆';
+        content: '💐 🏆 💐';
         display: block;
         font-size: 90px;
         margin-bottom: 20px;
@@ -258,7 +292,6 @@
       box-shadow: 0 -10px 40px rgba(230, 0, 0, 0.4);
     }
     
-    /* Effetto riflesso sul tappeto rosso */
     footer::before {
         content: '';
         position: absolute;
