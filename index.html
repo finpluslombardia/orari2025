@@ -8,11 +8,11 @@
   <style>
     :root {
       /* COLORI TEMA SANREMO GIOIOSO E VIVACE */
-      --sanremo-gold: #FFD700; /* Oro super brillante */
+      --sanremo-gold: #FFD700; 
       --sanremo-gold-glow: #FFF7B0;
-      --sanremo-red: #FF1A1A; /* Rosso vivo e acceso */
-      --sanremo-night: #004DE6; /* Blu elettrico vivace (non più scuro) */
-      --sanremo-stage: #00CCFF; /* Azzurro brillante stile luce da piscina/palco */
+      --sanremo-red: #FF1A1A; 
+      --sanremo-night: #004DE6; 
+      --sanremo-stage: #00CCFF; 
       
       --header-height: 220px; 
       --footer-height: 80px;
@@ -21,8 +21,8 @@
     body {
       font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
       margin: 0;
-      /* Sfondo luminoso ed energico */
-      background: radial-gradient(circle at 50% 10%, var(--sanremo-stage), var(--sanremo-night) 90%);
+      /* Sfondo luminoso ed energico (Il fondale del palco) */
+      background: radial-gradient(circle at 50% 30%, var(--sanremo-stage), var(--sanremo-night) 90%);
       color: white;
       letter-spacing: -0.5px;
       display: flex;
@@ -32,37 +32,43 @@
       position: relative;
     }
 
-    /* ====== FARI DA PALCOSCENICO FESTOSI (ANIMATI) ====== */
-    body::before, body::after {
+    /* ====== IL PALCOSCENICO (Sostituisce i fari animati) ====== */
+    
+    /* 1. Il Pavimento del palco */
+    body::before {
       content: '';
       position: absolute;
-      top: -15vh;
-      width: 50vw;
-      height: 160vh;
-      /* Luci allegre con sfumature bianco, oro e rosa/magenta */
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 0%, rgba(255, 215, 0, 0.5) 20%, rgba(255, 51, 153, 0.3) 50%, transparent 100%);
-      clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+      bottom: var(--footer-height); /* Appoggiato sopra al Red Carpet */
+      left: 0; right: 0;
+      height: 25vh; /* Profondità del palco */
+      /* Effetto pavimento lucido e profondo */
+      background: linear-gradient(to bottom, rgba(0, 34, 102, 0.95) 0%, #000A1F 100%);
+      /* Bordo del palco illuminato d'oro */
+      border-top: 4px solid var(--sanremo-gold);
+      box-shadow: 
+        0 -20px 50px rgba(0, 204, 255, 0.3), /* Bagliore azzurro verso il fondale */
+        inset 0 10px 30px rgba(255, 215, 0, 0.15); /* Riflesso dorato sul pavimento */
+      z-index: 1; /* Dietro ai contenuti ma sopra il fondale */
+    }
+
+    /* 2. Luce statica dal basso (Effetto scenografia) */
+    body::after {
+      content: '';
+      position: absolute;
+      bottom: calc(var(--footer-height) + 25vh); /* Parte esattamente dal bordo del palco */
+      left: 0; right: 0;
+      height: 40vh;
+      background: radial-gradient(ellipse at bottom center, rgba(0, 204, 255, 0.45) 0%, transparent 70%);
       z-index: 0;
       pointer-events: none;
-      filter: blur(30px);
-      transform-origin: top center;
-      animation: sweep 8s infinite alternate ease-in-out;
     }
-    body::before { left: 0%; transform: rotate(35deg); }
-    body::after { right: 0%; transform: rotate(-35deg); animation-delay: -4s; }
 
-    @keyframes sweep {
-      0% { transform: rotate(35deg); opacity: 0.6; filter: blur(35px); }
-      50% { opacity: 1; filter: blur(20px); }
-      100% { transform: rotate(-35deg); opacity: 0.6; filter: blur(35px); }
-    }
 
     /* ====== HEADER FESTOSO ====== */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      /* Blu brillante e pulito */
       background: linear-gradient(to bottom, #0033CC, #0066FF);
       padding: 0 40px;
       border-bottom: 8px solid var(--sanremo-gold);
@@ -74,7 +80,7 @@
       overflow: hidden; 
     }
     
-    /* Onde musicali e note classiche (Sostituisce le stelle) */
+    /* Onde musicali e note classiche */
     header::before {
       content: '';
       position: absolute;
@@ -152,9 +158,9 @@
       display: flex;
       border-radius: 20px; 
       overflow: hidden;
-      background-color: #FFFFFF; /* Bianco puro per massima luminosità */
+      background-color: #FFFFFF; 
       border: none;
-      box-shadow: 0 10px 30px rgba(0, 50, 150, 0.3);
+      box-shadow: 0 15px 35px rgba(0, 10, 50, 0.4); /* Ombra più marcata per staccarli dal palco */
       width: 100%;
       position: relative;
       transition: all 0.3s ease;
@@ -165,7 +171,6 @@
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      /* Linee colore oro brillante e note molto visibili */
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='350' height='120'%3E%3Cg stroke='%23FFCC00' stroke-width='2.5' opacity='0.7'%3E%3Cline x1='0' y1='30' x2='350' y2='30'/%3E%3Cline x1='0' y1='45' x2='350' y2='45'/%3E%3Cline x1='0' y1='60' x2='350' y2='60'/%3E%3Cline x1='0' y1='75' x2='350' y2='75'/%3E%3Cline x1='0' y1='90' x2='350' y2='90'/%3E%3C/g%3E%3Ctext x='15' y='80' font-size='55' opacity='0.5'%3E🎼%3C/text%3E%3Ctext x='150' y='65' font-size='35' opacity='0.5'%3E🎵%3C/text%3E%3Ctext x='260' y='75' font-size='40' opacity='0.5'%3E🎶%3C/text%3E%3C/svg%3E");
       background-size: 350px auto;
       pointer-events: none;
@@ -184,14 +189,14 @@
       flex: 2;
       font-size: 65px; 
       font-weight: 800;
-      color: #002266; /* Blu carico e brillante */
+      color: #002266; 
       text-transform: uppercase;
     }
     .course .dettagli {
       flex: 1.2;
       display: flex;
       justify-content: space-around;
-      background-color: rgba(255, 230, 0, 0.08); /* Leggerissimo riflesso giallo gioioso */
+      background-color: rgba(255, 230, 0, 0.08); 
       border-left: 2px solid rgba(255, 215, 0, 0.4);
     }
     .info-box {
@@ -205,14 +210,12 @@
 
     /* STATI DEI CORSI "POP" */
     
-    /* In corso (Verde vivace) */
     .green  { 
         background-color: #F0FFF0;
         border-left: 20px solid #32CD32; 
-        box-shadow: 0 5px 25px rgba(50, 205, 50, 0.4);
+        box-shadow: 0 10px 30px rgba(50, 205, 50, 0.3);
     }
     
-    /* Tra poco (Arancione/Giallo Solare Pulsante) */
     .yellow { 
         background-color: #FFFFE0;
         border-left: 20px solid #FF8C00; 
@@ -224,7 +227,6 @@
       100% { border-left-color: #FF8C00; box-shadow: 0 0 0px rgba(255, 140, 0, 0); }
     }
 
-    /* In attesa (Azzurro chiarissimo e pulito) */
     .gray   { 
         background-color: #F0F8FF;
         border-left: 20px solid #87CEEB; 
@@ -240,7 +242,7 @@
       padding: 80px;
       border-radius: 30px;
       box-shadow: 0 15px 40px rgba(0, 100, 255, 0.4);
-      border: 4px solid #FF007F; /* Bordo fucsia festoso */
+      border: 4px solid #FF007F; 
       text-transform: uppercase;
     }
     .empty-message::before {
@@ -252,7 +254,7 @@
 
     /* ====== FOOTER RED CARPET VIVO ====== */
     footer {
-      background: linear-gradient(180deg, #FF1A1A 0%, #CC0000 100%); /* Rosso vivo */
+      background: linear-gradient(180deg, #FF1A1A 0%, #CC0000 100%); 
       border-top: 8px solid #FFD700;
       color: white;
       height: var(--footer-height);
