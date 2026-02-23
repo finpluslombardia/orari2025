@@ -21,11 +21,19 @@
     body {
       font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
       margin: 0;
-      /* Sfondo fotografico di un VERO teatro con sipario rosso */
-      background: linear-gradient(to bottom, rgba(60, 0, 10, 0.3), rgba(20, 0, 5, 0.95)), 
-                  url('https://images.unsplash.com/photo-1507676184212-d0330a15233c?auto=format&fit=crop&w=2000&q=80');
-      background-size: cover;
-      background-position: center;
+      /* Sipario Rosso in puro CSS (Nessun link esterno, impossibile che non carichi!) */
+      background: 
+        /* 1. Luce centrale (effetto riflettore sul palco) */
+        radial-gradient(circle at 50% 40%, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.85) 100%),
+        /* 2. Pieghe verticali del sipario */
+        repeating-linear-gradient(to right, 
+          rgba(0, 0, 0, 0.5) 0px, 
+          rgba(255, 255, 255, 0.1) 40px, 
+          rgba(0, 0, 0, 0.5) 80px
+        ),
+        /* 3. Colore base: Rosso Velluto brillante che sfuma nello scuro */
+        linear-gradient(to bottom, #CC0000 0%, #4A0000 100%);
+      background-color: #8B0000;
       color: white;
       letter-spacing: -0.5px;
       display: flex;
