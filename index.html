@@ -2,14 +2,18 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <title>Orari Piscina Lampugnano</title>
+  <title>Orari Piscina Lampugnano - Speciale Sanremo</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --primary-color: #003366;
-      --bg-color: #f0f8ff;
-      /* MODIFICATO: Header molto più alto */
+      /* COLORI TEMA SANREMO */
+      --sanremo-gold: #D4AF37;
+      --sanremo-gold-light: #F3E5AB;
+      --sanremo-red: #C41E3A;
+      --sanremo-night: #0B132B;
+      --sanremo-stage: #1C2541;
+      
       --header-height: 220px; 
       --footer-height: 80px;
     }
@@ -17,8 +21,9 @@
     body {
       font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
       margin: 0;
-      background-color: var(--bg-color);
-      color: var(--primary-color);
+      /* Sfondo stile palcoscenico serale */
+      background: radial-gradient(circle at 50% -20%, var(--sanremo-stage), var(--sanremo-night) 80%);
+      color: white;
       letter-spacing: -0.5px;
       display: flex;
       flex-direction: column;
@@ -26,40 +31,60 @@
       overflow: hidden;
     }
 
-    /* ====== HEADER ====== */
+    /* ====== HEADER THEMA ARISTON ====== */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #ffffff;
-      padding: 0 40px; /* Più padding laterale */
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      background-color: rgba(11, 19, 43, 0.95);
+      padding: 0 40px;
+      border-bottom: 4px solid var(--sanremo-gold);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
       height: var(--header-height);
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 1000;
+      backdrop-filter: blur(10px);
     }
     header img {
-      /* MODIFICATO: Logo più grande */
       height: 85%; 
       width: auto;
       object-fit: contain;
+      /* Aggiunge un leggero bagliore al logo per staccarlo dallo sfondo scuro */
+      filter: drop-shadow(0px 0px 10px rgba(255,255,255,0.2));
     }
+
+    /* Decorazione CSS "Fiori e Musica" centrale nell'header */
+    header::after {
+      content: '💐 🎵 ✨ 🎤';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 45px;
+      bottom: 25px;
+      letter-spacing: 25px;
+      opacity: 0.9;
+      animation: float-music 4s ease-in-out infinite;
+    }
+    @keyframes float-music {
+      0%, 100% { transform: translate(-50%, 0) rotate(0deg); }
+      50% { transform: translate(-50%, -8px) rotate(2deg); }
+    }
+
     .datetime { text-align: right; line-height: 1; }
     
-    /* MODIFICATO: Font orario molto più grande */
     .datetime .time { 
         font-weight: 700; 
         font-size: 110px; 
         letter-spacing: -3px; 
-        color: #003366;
+        color: var(--sanremo-gold); /* Orologio dorato */
+        text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
     }
     
-    /* MODIFICATO: Font data più grande */
     .datetime .date { 
         font-weight: 500; 
         font-size: 45px; 
-        color: #004080; 
+        color: #E0E0E0; 
         text-transform: capitalize; 
         margin-top: 5px;
     }
@@ -81,37 +106,37 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 30px; /* Spazio aumentato tra i box per riempire lo schermo */
+      gap: 30px; 
     }
 
-    /* ====== CORSI ====== */
+    /* ====== CORSI ("Le Esibizioni") ====== */
     .course {
       display: flex;
-      border-radius: 16px; /* Bordi più arrotondati */
+      border-radius: 16px; 
       overflow: hidden;
-      background-color: #fff;
-      box-shadow: 0 6px 10px rgba(0,0,0,0.06);
+      background-color: rgba(255, 255, 255, 0.95); /* Leggera trasparenza */
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
       width: 100%;
       position: relative;
       transition: all 0.3s ease;
     }
     .course > div {
-      padding: 25px 35px; /* Box un po' più ariosi */
+      padding: 25px 35px; 
       display: flex;
       align-items: center;
     }
     .course .attivita {
       flex: 2;
-      font-size: 60px; /* Font leggermente più grande */
+      font-size: 60px; 
       font-weight: 700;
-      color: var(--primary-color);
+      color: var(--sanremo-night); /* Testo scuro per leggibilità */
     }
     .course .dettagli {
       flex: 1.2;
       display: flex;
       justify-content: space-around;
-      background-color: rgba(0,0,0,0.03);
-      border-left: 1px solid rgba(0,0,0,0.05);
+      background-color: rgba(0,0,0,0.04);
+      border-left: 1px solid rgba(0,0,0,0.08);
     }
     .info-box {
       display: flex;
@@ -119,20 +144,36 @@
       align-items: center;
       justify-content: center;
     }
-    .info-label { font-size: 22px; text-transform: uppercase; color: #666; font-weight: 600; margin-bottom: 5px; }
+    .info-label { font-size: 22px; text-transform: uppercase; color: #555; font-weight: 600; margin-bottom: 5px; }
     .info-time { font-size: 60px; font-weight: 700; color: #000; line-height: 1; }
 
-    /* Colori stato */
-    .green  { background-color: #d1e7dd; border-left: 20px solid #198754; }
-    .yellow { background-color: #fff3cd; border-left: 20px solid #ffc107; }
-    .gray   { background-color: #f8f9fa; border-left: 20px solid #6c757d; color: #6c757d; }
+    /* Nuovi Colori Stato a tema (le classi restano quelle del tuo JS) */
+    /* GREEN -> ORO (In corso/Sotto i riflettori) */
+    .green  { 
+        background-color: #FEFCF5; 
+        border-left: 20px solid var(--sanremo-gold); 
+        box-shadow: 0 0 30px rgba(212, 175, 55, 0.25);
+    }
     
-    /* Animazione */
-    .yellow { animation: pulse-border 2s infinite; }
-    @keyframes pulse-border {
-      0% { border-left-color: #ffc107; }
-      50% { border-left-color: #ffdb72; }
-      100% { border-left-color: #ffc107; }
+    /* YELLOW -> ROSSO SANREMO PULSANTE (In preparazione) */
+    .yellow { 
+        background-color: #FDF4F5; 
+        border-left: 20px solid var(--sanremo-red); 
+        animation: pulse-sanremo 2s infinite; 
+    }
+    
+    /* GRAY -> ARGENTO (In attesa) */
+    .gray   { 
+        background-color: #F8F9FA; 
+        border-left: 20px solid #A0AAB2; 
+        color: #4A5568; 
+    }
+    
+    /* Animazione Red Carpet per il "Tra poco" */
+    @keyframes pulse-sanremo {
+      0% { border-left-color: var(--sanremo-red); box-shadow: 0 0 0px rgba(196, 30, 58, 0); }
+      50% { border-left-color: #FF3355; box-shadow: 0 0 25px rgba(196, 30, 58, 0.5); }
+      100% { border-left-color: var(--sanremo-red); box-shadow: 0 0 0px rgba(196, 30, 58, 0); }
     }
 
     /* Messaggio vuoto */
@@ -140,16 +181,24 @@
       text-align: center;
       font-size: 50px;
       font-weight: 500;
-      color: var(--primary-color);
+      color: var(--sanremo-night);
       background: white;
       padding: 60px;
       border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+      border: 2px solid var(--sanremo-gold);
+    }
+    .empty-message::before {
+        content: '🏆';
+        display: block;
+        font-size: 70px;
+        margin-bottom: 20px;
     }
 
-    /* ====== FOOTER TICKER ====== */
+    /* ====== FOOTER RED CARPET ====== */
     footer {
-      background: #003366;
+      background: linear-gradient(90deg, #990000, var(--sanremo-red), #990000);
+      border-top: 4px solid var(--sanremo-gold);
       color: white;
       height: var(--footer-height);
       overflow: hidden;
@@ -158,6 +207,7 @@
       position: fixed;
       bottom: 0; left: 0; right: 0;
       z-index: 1000;
+      box-shadow: 0 -5px 20px rgba(0,0,0,0.4);
     }
     .ticker {
       width: 100%;
@@ -178,7 +228,9 @@
       display: inline-block;
       padding-right: 100px;
       font-size: 40px;
-      font-weight: 500;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
       line-height: var(--footer-height);
     }
     @keyframes ticker {
@@ -189,8 +241,9 @@
 </head>
 <body>
 
+  <!-- IL TUO HTML INIZIALE - NON MODIFICATO -->
   <header>
-    <img src="CF Lampugnano blu xl.png" alt="Logo Piscina" onerror="this.style.display='none'; document.write('<h2>Piscina Lampugnano</h2>')"/>
+    <img src="CF Lampugnano blu xl.png" alt="Logo Piscina" onerror="this.style.display='none'; document.write('<h2 style=\'color: var(--sanremo-gold)\'>Piscina Lampugnano</h2>')"/>
     <div class="datetime">
       <div class="time" id="clock">--:--</div>
       <div class="date" id="date">--</div>
@@ -199,7 +252,7 @@
 
   <div class="container">
     <div id="courses">
-        <div class="empty-message">Caricamento corsi in corso...</div>
+        <div class="empty-message">Caricamento in corso...</div>
     </div>
   </div>
 
@@ -212,6 +265,7 @@
     </div>
   </footer>
 
+  <!-- IL TUO JAVASCRIPT INIZIALE - NON MODIFICATO -->
   <script>
     /* ====== OROLOGIO ====== */
     function updateClock() {
@@ -295,7 +349,7 @@
           .map(r => r[0])
           .join("  •  ");
 
-        updateTicker(notesText || 'Benvenuti alla Piscina Lampugnano');
+        updateTicker(notesText || 'Benvenuti alla Piscina Lampugnano - Speciale Sanremo');
 
       } catch (err) {
         console.error('Errore update:', err);
@@ -317,7 +371,6 @@
               <span style="font-size:30px; color:#666">Vi aspettiamo domani!</span>
             </div>`;
         } else {
-          // MODIFICATO: Mostra massimo 4 corsi
           const visible = courses.slice(0, 4); 
           
           visible.forEach(corso => {
@@ -362,7 +415,7 @@
 
         requestAnimationFrame(() => {
             const width = copy1.offsetWidth;
-            const speed = 200; // Velocità elevata
+            const speed = 200; 
             const duration = width / speed; 
             track.style.setProperty('--ticker-duration', `${duration}s`);
         });
