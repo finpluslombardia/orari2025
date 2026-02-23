@@ -61,10 +61,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      /* Sfondo con fiori e overlay scuro per garantire la leggibilità di loghi e orologio */
-      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(11, 19, 43, 0.85)), url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=2000&q=80');
-      background-size: cover;
-      background-position: center;
+      /* Sfondo scuro per far risaltare le emoji */
+      background: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(11, 19, 43, 0.95));
       padding: 0 40px;
       /* Effetto "lampadine" dell'insegna teatrale */
       border-bottom: 8px dotted var(--sanremo-gold);
@@ -73,12 +71,40 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 1000;
+      overflow: hidden; /* Contiene le emoji all'interno */
     }
+    
+    /* Pattern di emoji animate nello sfondo dell'header */
+    header::before {
+      content: '💐 🎵 ✨ 🎤 🌸 🎶 ⭐ 🌹 💐 🎵 ✨ 🎤 🌸 🎶 ⭐ 🌹 💐 🎵 ✨ 🎤 🌸 🎶 ⭐ 🌹 💐 🎵 ✨ 🎤 🌸 🎶 ⭐ 🌹 💐 🎵 ✨ 🎤 🌸 🎶 ⭐ 🌹 💐 🎵 ✨ 🎤 🌸 🎶 ⭐ 🌹 💐 🎵 ✨ 🎤 🌸 🎶 ⭐ 🌹 💐 🎵 ✨ 🎤 🌸 🎶 ⭐ 🌹 💐 🎵 ✨ 🎤 🌸 🎶 ⭐ 🌹 💐 🎵 ✨ 🎤 🌸 🎶 ⭐ 🌹 💐 🎵 ✨ 🎤 🌸 🎶 ⭐ 🌹';
+      position: absolute;
+      top: -50%; left: -10%; right: -10%; bottom: -50%;
+      font-size: 45px;
+      line-height: 1.8;
+      letter-spacing: 20px;
+      opacity: 0.25; /* Visibili ma non troppo forti per non coprire il testo */
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-content: center;
+      pointer-events: none;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      animation: float-emojis 40s linear infinite;
+    }
+    
+    @keyframes float-emojis {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(-100px) rotate(2deg); }
+    }
+
     header img {
       height: 85%; 
       width: auto;
       object-fit: contain;
       filter: drop-shadow(0px 0px 15px rgba(255, 215, 0, 0.4));
+      position: relative;
+      z-index: 2; /* Tiene il logo sopra le emoji */
     }
 
     .datetime { text-align: right; line-height: 1; position: relative; z-index: 2; }
