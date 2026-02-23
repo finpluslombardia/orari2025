@@ -187,15 +187,13 @@
       transition: all 0.3s ease;
     }
     
-    /* Filigrana Nota Musicale all'interno di ogni corso (Stile VIP Pass) */
-    .course::after {
-      content: '🎵';
+    /* Spartito Musicale di sfondo per i corsi (Pentagramma + Note) */
+    .course::before {
+      content: '';
       position: absolute;
-      right: 50px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 110px;
-      color: rgba(212, 175, 55, 0.15); 
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='350' height='120'%3E%3Cg stroke='%23000' stroke-width='1.5' opacity='0.1'%3E%3Cline x1='0' y1='30' x2='350' y2='30'/%3E%3Cline x1='0' y1='45' x2='350' y2='45'/%3E%3Cline x1='0' y1='60' x2='350' y2='60'/%3E%3Cline x1='0' y1='75' x2='350' y2='75'/%3E%3Cline x1='0' y1='90' x2='350' y2='90'/%3E%3C/g%3E%3Ctext x='15' y='80' font-size='55' opacity='0.08'%3E🎼%3C/text%3E%3Ctext x='150' y='65' font-size='35' opacity='0.08'%3E🎵%3C/text%3E%3Ctext x='260' y='75' font-size='40' opacity='0.08'%3E🎶%3C/text%3E%3C/svg%3E");
+      background-size: 350px auto;
       pointer-events: none;
       z-index: 0;
     }
@@ -205,7 +203,7 @@
       display: flex;
       align-items: center;
       position: relative;
-      z-index: 1; /* Tiene il testo sopra la filigrana */
+      z-index: 1; /* Tiene il testo sopra lo spartito musicale */
     }
     
     .course .attivita {
@@ -234,17 +232,17 @@
 
     /* STATI DEI CORSI ESTREMI */
     .green  { 
-        background: #FEFCF5;
+        background-color: #FEFCF5;
         border-left: 20px solid var(--sanremo-gold); 
         box-shadow: 0 5px 25px rgba(212, 175, 55, 0.3);
     }
     .yellow { 
-        background: #FDF4F5;
+        background-color: #FDF4F5;
         border-left: 20px solid var(--sanremo-red); 
         animation: extreme-pulse 1.5s infinite; 
     }
     .gray   { 
-        background: #F8F9FA;
+        background-color: #F8F9FA;
         border-left: 20px solid #A0AAB2; 
     }
     .gray .attivita, .gray .info-time { color: #555; }
