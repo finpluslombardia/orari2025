@@ -2,18 +2,14 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <title>Orari Piscina Lampugnano - Speciale Sanremo</title>
+  <title>Orari Piscina Lampugnano</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      /* COLORI TEMA SANREMO GIOIOSO E VIVACE */
-      --sanremo-gold: #FFD700; 
-      --sanremo-gold-glow: #FFF7B0;
-      --sanremo-red: #FF1A1A; 
-      --sanremo-night: #004DE6; 
-      --sanremo-stage: #00CCFF; 
-      
+      --primary-color: #003366;
+      --bg-color: #f0f8ff;
+      /* MODIFICATO: Header molto più alto */
       --header-height: 220px; 
       --footer-height: 80px;
     }
@@ -21,94 +17,51 @@
     body {
       font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
       margin: 0;
-      /* SIPARIO CON PIEGHE MOLTO MARCATE (Puro CSS) */
-      background: 
-        /* 1. Riflessi di luce sulle creste delle pieghe */
-        repeating-linear-gradient(to right, 
-          transparent 0px, 
-          rgba(255, 255, 255, 0.12) 40px, 
-          transparent 80px
-        ),
-        /* 2. Ombre profonde nelle valli delle pieghe */
-        repeating-linear-gradient(to right, 
-          rgba(0, 0, 0, 0.35) 0px, 
-          transparent 40px, 
-          rgba(0, 0, 0, 0.35) 80px
-        ),
-        /* 3. Colore base: Rosso Velluto con sfumatura verticale */
-        linear-gradient(to bottom, #FF1A1A 0%, #8B0000 100%);
-      background-color: #8B0000;
-      color: white;
+      background-color: var(--bg-color);
+      color: var(--primary-color);
       letter-spacing: -0.5px;
       display: flex;
       flex-direction: column;
       height: 100vh;
       overflow: hidden;
-      position: relative;
     }
 
-    /* ====== HEADER FESTOSO ====== */
+    /* ====== HEADER ====== */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: linear-gradient(to bottom, #0033CC, #0066FF);
-      padding: 0 40px;
-      border-bottom: 8px solid var(--sanremo-gold);
-      box-shadow: 0 10px 30px rgba(0, 102, 255, 0.5);
+      background-color: #ffffff;
+      padding: 0 40px; /* Più padding laterale */
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       height: var(--header-height);
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 1000;
-      overflow: hidden; 
     }
-    
-    /* Onde musicali e note classiche nell'header */
-    header::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-image: 
-        radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
-        url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 80 Q 50 50 100 80 T 200 80' fill='none' stroke='%23FFD700' stroke-width='1.5' opacity='0.4'/%3E%3Cpath d='M0 90 Q 50 60 100 90 T 200 90' fill='none' stroke='%23FFD700' stroke-width='1.5' opacity='0.4'/%3E%3Cpath d='M0 100 Q 50 70 100 100 T 200 100' fill='none' stroke='%23FFD700' stroke-width='1.5' opacity='0.4'/%3E%3Ctext x='30' y='50' font-family='Arial, sans-serif' font-size='24' fill='%23FFD700' opacity='0.7'%3E%E2%99%AB%3C/text%3E%3Ctext x='140' y='140' font-family='Arial, sans-serif' font-size='28' fill='%23FFFFFF' opacity='0.5'%3E%E2%99%AA%3C/text%3E%3Ctext x='95' y='35' font-family='Arial, sans-serif' font-size='20' fill='%23FFD700' opacity='0.8'%3E%E2%99%AA%3C/text%3E%3C/svg%3E");
-      background-size: cover, cover, 300px 300px;
-      z-index: 1;
-      pointer-events: none;
-      animation: pan-stars 25s linear infinite;
-    }
-
-    @keyframes pan-stars {
-      0% { background-position: 0 0, 0 0, 0 0; }
-      100% { background-position: 0 0, 0 0, -300px 0; }
-    }
-
     header img {
+      /* MODIFICATO: Logo più grande */
       height: 85%; 
       width: auto;
       object-fit: contain;
-      filter: drop-shadow(0px 0px 20px rgba(255, 255, 255, 0.6));
-      position: relative;
-      z-index: 2; 
     }
-
-    .datetime { text-align: right; line-height: 1; position: relative; z-index: 2; }
+    .datetime { text-align: right; line-height: 1; }
     
+    /* MODIFICATO: Font orario molto più grande */
     .datetime .time { 
         font-weight: 700; 
-        font-size: 115px; 
+        font-size: 110px; 
         letter-spacing: -3px; 
-        color: #fff; 
-        text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px var(--sanremo-gold);
+        color: #003366;
     }
     
+    /* MODIFICATO: Font data più grande */
     .datetime .date { 
-        font-weight: 700; 
-        font-size: 40px; 
-        color: var(--sanremo-gold); 
-        text-transform: uppercase; 
-        letter-spacing: 2px;
-        margin-top: 10px;
+        font-weight: 500; 
+        font-size: 45px; 
+        color: #004080; 
+        text-transform: capitalize; 
+        margin-top: 5px;
     }
 
     /* ====== CONTENUTO ====== */
@@ -121,66 +74,44 @@
       margin-top: var(--header-height);
       margin-bottom: var(--footer-height);
       overflow-y: hidden;
-      position: relative;
-      z-index: 10;
     }
-
     #courses {
       width: 100%;
       max-width: 1700px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 30px; 
-      position: relative;
-      z-index: 2;
+      gap: 30px; /* Spazio aumentato tra i box per riempire lo schermo */
     }
 
-    /* ====== CORSI (Luminosi e Allegri) ====== */
+    /* ====== CORSI ====== */
     .course {
       display: flex;
-      border-radius: 20px; 
+      border-radius: 16px; /* Bordi più arrotondati */
       overflow: hidden;
-      background-color: #FFFFFF; 
-      border: none;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5); 
+      background-color: #fff;
+      box-shadow: 0 6px 10px rgba(0,0,0,0.06);
       width: 100%;
       position: relative;
       transition: all 0.3s ease;
     }
-    
-    /* Spartito Musicale DORATO e allegro */
-    .course::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='350' height='120'%3E%3Cg stroke='%23FFCC00' stroke-width='2.5' opacity='0.7'%3E%3Cline x1='0' y1='30' x2='350' y2='30'/%3E%3Cline x1='0' y1='45' x2='350' y2='45'/%3E%3Cline x1='0' y1='60' x2='350' y2='60'/%3E%3Cline x1='0' y1='75' x2='350' y2='75'/%3E%3Cline x1='0' y1='90' x2='350' y2='90'/%3E%3C/g%3E%3Ctext x='15' y='80' font-size='55' opacity='0.5'%3E🎼%3C/text%3E%3Ctext x='150' y='65' font-size='35' opacity='0.5'%3E🎵%3C/text%3E%3Ctext x='260' y='75' font-size='40' opacity='0.5'%3E🎶%3C/text%3E%3C/svg%3E");
-      background-size: 350px auto;
-      pointer-events: none;
-      z-index: 0;
-    }
-
     .course > div {
-      padding: 25px 35px; 
+      padding: 25px 35px; /* Box un po' più ariosi */
       display: flex;
       align-items: center;
-      position: relative;
-      z-index: 1; 
     }
-    
     .course .attivita {
       flex: 2;
-      font-size: 65px; 
-      font-weight: 800;
-      color: #002266; 
-      text-transform: uppercase;
+      font-size: 60px; /* Font leggermente più grande */
+      font-weight: 700;
+      color: var(--primary-color);
     }
     .course .dettagli {
       flex: 1.2;
       display: flex;
       justify-content: space-around;
-      background-color: rgba(255, 230, 0, 0.08); 
-      border-left: 2px solid rgba(255, 215, 0, 0.4);
+      background-color: rgba(0,0,0,0.03);
+      border-left: 1px solid rgba(0,0,0,0.05);
     }
     .info-box {
       display: flex;
@@ -188,57 +119,37 @@
       align-items: center;
       justify-content: center;
     }
-    .info-label { font-size: 20px; text-transform: uppercase; color: #555; font-weight: 700; margin-bottom: 5px; letter-spacing: 2px;}
-    .info-time { font-size: 65px; font-weight: 800; color: #111; line-height: 1;}
+    .info-label { font-size: 22px; text-transform: uppercase; color: #666; font-weight: 600; margin-bottom: 5px; }
+    .info-time { font-size: 60px; font-weight: 700; color: #000; line-height: 1; }
 
-    /* STATI DEI CORSI "POP" */
+    /* Colori stato */
+    .green  { background-color: #d1e7dd; border-left: 20px solid #198754; }
+    .yellow { background-color: #fff3cd; border-left: 20px solid #ffc107; }
+    .gray   { background-color: #f8f9fa; border-left: 20px solid #6c757d; color: #6c757d; }
     
-    .green  { 
-        background-color: #F0FFF0;
-        border-left: 20px solid #32CD32; 
-        box-shadow: 0 10px 30px rgba(50, 205, 50, 0.3);
-    }
-    
-    .yellow { 
-        background-color: #FFFFE0;
-        border-left: 20px solid #FF8C00; 
-        animation: happy-pulse 1.5s infinite; 
-    }
-    @keyframes happy-pulse {
-      0% { border-left-color: #FF8C00; box-shadow: 0 0 0px rgba(255, 140, 0, 0); }
-      50% { border-left-color: #FFD700; box-shadow: 0 0 25px rgba(255, 215, 0, 0.7); }
-      100% { border-left-color: #FF8C00; box-shadow: 0 0 0px rgba(255, 140, 0, 0); }
+    /* Animazione */
+    .yellow { animation: pulse-border 2s infinite; }
+    @keyframes pulse-border {
+      0% { border-left-color: #ffc107; }
+      50% { border-left-color: #ffdb72; }
+      100% { border-left-color: #ffc107; }
     }
 
-    .gray   { 
-        background-color: #F0F8FF;
-        border-left: 20px solid #87CEEB; 
-    }
-    
-    /* Messaggio vuoto super festoso */
+    /* Messaggio vuoto */
     .empty-message {
       text-align: center;
       font-size: 50px;
-      font-weight: 800;
-      color: #0033CC;
-      background: #FFFFFF;
-      padding: 80px;
-      border-radius: 30px;
-      box-shadow: 0 15px 40px rgba(0, 100, 255, 0.4);
-      border: 4px solid #FF007F; 
-      text-transform: uppercase;
-    }
-    .empty-message::before {
-        content: '🎉 💐 🏆 💐 🎉';
-        display: block;
-        font-size: 90px;
-        margin-bottom: 20px;
+      font-weight: 500;
+      color: var(--primary-color);
+      background: white;
+      padding: 60px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
 
-    /* ====== FOOTER RED CARPET VIVO ====== */
+    /* ====== FOOTER TICKER ====== */
     footer {
-      background: linear-gradient(180deg, #FF1A1A 0%, #CC0000 100%); 
-      border-top: 8px solid #FFD700;
+      background: #003366;
       color: white;
       height: var(--footer-height);
       overflow: hidden;
@@ -247,17 +158,7 @@
       position: fixed;
       bottom: 0; left: 0; right: 0;
       z-index: 1000;
-      box-shadow: 0 -10px 40px rgba(255, 26, 26, 0.5);
     }
-    
-    footer::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; right: 0; height: 30%;
-        background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
-        z-index: 1;
-    }
-
     .ticker {
       width: 100%;
       height: 100%;
@@ -266,7 +167,6 @@
       white-space: nowrap;
       display: flex;
       align-items: center;
-      z-index: 2;
     }
     .ticker__track {
       display: inline-block;
@@ -277,10 +177,8 @@
     .ticker__content {
       display: inline-block;
       padding-right: 100px;
-      font-size: 42px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+      font-size: 40px;
+      font-weight: 500;
       line-height: var(--footer-height);
     }
     @keyframes ticker {
@@ -292,7 +190,7 @@
 <body>
 
   <header>
-    <img src="CF Lampugnano blu xl.png" alt="Logo Piscina" onerror="this.style.display='none'; document.write('<h2 style=\'color: var(--sanremo-gold)\'>Piscina Lampugnano</h2>')"/>
+    <img src="CF Lampugnano blu xl.png" alt="Logo Piscina" onerror="this.style.display='none'; document.write('<h2>Piscina Lampugnano</h2>')"/>
     <div class="datetime">
       <div class="time" id="clock">--:--</div>
       <div class="date" id="date">--</div>
@@ -301,7 +199,7 @@
 
   <div class="container">
     <div id="courses">
-        <div class="empty-message">Caricamento in corso...</div>
+        <div class="empty-message">Caricamento corsi in corso...</div>
     </div>
   </div>
 
@@ -330,6 +228,7 @@
     setInterval(updateClock, 1000);
     updateClock();
 
+    /* ====== UTILS ====== */
     function normalizeStr(str) {
       if (!str) return "";
       return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
@@ -349,11 +248,13 @@
       return "";
     }
 
+    /* ====== CARICAMENTO DATI ====== */
     async function loadAll() {
       const SHEET_ID = '1dcs1X7x84g69f14m9Sl2KmqZUbCI6lLBBfi3QCMNqWI';
       const SHEET_BASE = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=`;
       
       try {
+        /* ---- FETCH CORSI ---- */
         const resC = await fetch(SHEET_BASE + 'Corsi');
         if (!resC.ok) throw new Error("Network response was not ok");
         const txtC = await resC.text();
@@ -384,6 +285,7 @@
 
         renderCourses(parsed, currentTime);
 
+        /* ---- FETCH NOTE ---- */
         const resN = await fetch(SHEET_BASE + 'Note');
         const txtN = await resN.text();
         const jsonN = JSON.parse(txtN.substring(47).slice(0, -2));
@@ -393,7 +295,7 @@
           .map(r => r[0])
           .join("  •  ");
 
-        updateTicker(notesText || 'Benvenuti alla Piscina Lampugnano - Gran Finale Sanremo');
+        updateTicker(notesText || 'Benvenuti alla Piscina Lampugnano');
 
       } catch (err) {
         console.error('Errore update:', err);
@@ -411,10 +313,11 @@
         if (courses.length === 0) {
            htmlContent = `
             <div class="empty-message">
-              🏊‍♂️ IL FESTIVAL DI OGGI È TERMINATO!<br>
-              <span style="font-size:35px; color:#555; display:block; margin-top:15px;">A domani per la prossima serata!</span>
+              🏊‍♂️ Le attività di oggi sono terminate.<br>
+              <span style="font-size:30px; color:#666">Vi aspettiamo domani!</span>
             </div>`;
         } else {
+          // MODIFICATO: Mostra massimo 4 corsi
           const visible = courses.slice(0, 4); 
           
           visible.forEach(corso => {
@@ -459,7 +362,7 @@
 
         requestAnimationFrame(() => {
             const width = copy1.offsetWidth;
-            const speed = 200; 
+            const speed = 200; // Velocità elevata
             const duration = width / speed; 
             track.style.setProperty('--ticker-duration', `${duration}s`);
         });
