@@ -185,10 +185,66 @@
       0%   { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
+
+    /* ====== AGGIUNTA: STILI SCHERMATA PROMOZIONALE ====== */
+    #promo-screen {
+      position: fixed;
+      top: var(--header-height); /* Inizia SOTTO l'header */
+      bottom: var(--footer-height); /* Finisce SOPRA il footer */
+      left: 0;
+      right: 0;
+      background-color: var(--bg-color); /* Stesso colore di sfondo della pagina */
+      z-index: 500; /* Z-index minore dell'header/footer (che sono 1000) */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      
+      /* Gestione dissolvenza */
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 1s ease, visibility 1s ease;
+    }
+    
+    /* Classe che viene aggiunta via Javascript per mostrare la promo */
+    #promo-screen.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .promo-content {
+      text-align: center;
+      padding: 20px;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Stile per l'immagine promozionale */
+    .promo-content img {
+      max-width: 95%;
+      max-height: 95%;
+      object-fit: contain; /* Adatta l'immagine senza tagliarla */
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
   </style>
 </head>
 <body>
 
+  <!-- ====== AGGIUNTA: CONTENITORE PROMOZIONALE ====== -->
+  <div id="promo-screen">
+    <div class="promo-content">
+      <!-- PER INSERIRE LA TUA IMMAGINE: 
+           1. Salva il file immagine (es. "volantino.jpg") nella stessa cartella di questo file HTML.
+           2. Cambia src="volantino.jpg" qui sotto con il nome esatto del tuo file. -->
+      <img src="volantino.jpg" alt="Promozione Piscina" onerror="this.src='https://via.placeholder.com/1200x600?text=Sostituisci+il+file+volantino.jpg+con+la+tua+immagine'" />
+    </div>
+  </div>
+
+  <!-- INIZIO BASE IMMUTABILE -->
   <header>
     <img src="CF Lampugnano blu xl.png" alt="Logo Piscina" onerror="this.style.display='none'; document.write('<h2>Piscina Lampugnano</h2>')"/>
     <div class="datetime">
@@ -211,6 +267,7 @@
       </div>
     </div>
   </footer>
+  <!-- FINE BASE IMMUTABILE -->
 
   <script>
     /* ====== OROLOGIO ====== */
@@ -370,6 +427,31 @@
 
     loadAll();
     setInterval(loadAll, 30000); 
+
+    /* ====== AGGIUNTA: LOGICA SCHERMATA PROMOZIONALE ====== */
+    const promoScreen = document.getElementById('promo-screen');
+
+    // IMPOSTA QUI I TEMPI (in millisecondi. 1000 = 1 secondo)
+    const TEMPO_SCHERMATA_NORMALE = 45000; // 45 secondi visualizza i corsi
+    const TEMPO_SCHERMATA_PROMO = 15000;   // 15 secondi visualizza la pubblicità
+
+    function mostraPromo() {
+      promoScreen.classList.add('active'); // Fa apparire la promo
+      
+      // Imposta un timer per nasconderla
+      setTimeout(nascondiPromo, TEMPO_SCHERMATA_PROMO);
+    }
+
+    function nascondiPromo() {
+      promoScreen.classList.remove('active'); // Fa scomparire la promo
+      
+      // Imposta un timer per mostrarla di nuovo
+      setTimeout(mostraPromo, TEMPO_SCHERMATA_NORMALE);
+    }
+
+    // Avvia il ciclo per la prima volta
+    setTimeout(mostraPromo, TEMPO_SCHERMATA_NORMALE);
+
   </script>
 </body>
 </html>
