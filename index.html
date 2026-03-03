@@ -33,13 +33,27 @@
 
     /* ====== DECORAZIONI MIMOSA ====== */
     .mimosa-decoration {
-      position: absolute;
       pointer-events: none;
-      z-index: 1001;
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
     }
-    .mimosa-top-left { top: 10px; left: 10px; width: 120px; transform: rotate(-15deg); }
-    .mimosa-bottom-right { bottom: 90px; right: 20px; width: 150px; transform: rotate(160deg); }
+    
+    /* Mimosa accanto al logo nell'header */
+    .mimosa-header {
+      height: 80%; /* Uguale all'altezza del logo */
+      width: auto;
+      margin-left: 20px;
+      transform: rotate(5deg);
+    }
+
+    /* Mimosa in basso a destra rimasta come decorazione di sfondo */
+    .mimosa-bottom-right { 
+      position: absolute;
+      bottom: 90px; 
+      right: 20px; 
+      width: 150px; 
+      transform: rotate(160deg); 
+      z-index: 1001;
+    }
 
     /* ====== HEADER ====== */
     header {
@@ -56,11 +70,19 @@
       z-index: 1000;
       border-bottom: 4px solid var(--accent-color);
     }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
     header img {
       height: 80%; 
       width: auto;
       object-fit: contain;
     }
+    
     .datetime { text-align: right; line-height: 1; }
     
     .datetime .time { 
@@ -242,8 +264,8 @@
 </head>
 <body>
 
-  <!-- Decorazioni Mimosa SVG -->
-  <svg class="mimosa-decoration mimosa-top-left" viewBox="0 0 100 100">
+  <!-- Decorazione Mimosa in basso a destra (sfondo) -->
+  <svg class="mimosa-decoration mimosa-bottom-right" viewBox="0 0 100 100">
     <circle cx="50" cy="40" r="8" fill="#facc15" />
     <circle cx="60" cy="50" r="8" fill="#fbbf24" />
     <circle cx="45" cy="55" r="8" fill="#facc15" />
@@ -254,8 +276,25 @@
   </svg>
 
   <header>
-    <!-- Logo originale -->
-    <img src="CF Lampugnano blu xl.png" alt="Logo Piscina" onerror="this.style.display='none'; document.write('<h2 style=\'font-family:Playfair Display\'>Piscina Lampugnano</h2>')"/>
+    <div class="logo-container">
+        <!-- Logo originale -->
+        <img src="CF Lampugnano blu xl.png" alt="Logo Piscina" onerror="this.style.display='none'; document.write('<h2 style=\'font-family:Playfair Display\'>Piscina Lampugnano</h2>')"/>
+        
+        <!-- Mimosa a DESTRA del logo e ALTA quanto il logo -->
+        <svg class="mimosa-decoration mimosa-header" viewBox="0 0 100 100">
+            <circle cx="40" cy="20" r="7" fill="#facc15" />
+            <circle cx="55" cy="25" r="8" fill="#fbbf24" />
+            <circle cx="45" cy="35" r="7" fill="#facc15" />
+            <circle cx="60" cy="40" r="8" fill="#fbbf24" />
+            <circle cx="40" cy="50" r="7" fill="#facc15" />
+            <circle cx="55" cy="55" r="8" fill="#fbbf24" />
+            <path d="M45 10 L45 90" stroke="#4d7c0f" stroke-width="2" />
+            <path d="M45 30 L65 20" stroke="#4d7c0f" stroke-width="1.2" />
+            <path d="M45 50 L25 40" stroke="#4d7c0f" stroke-width="1.2" />
+            <path d="M45 70 L65 60" stroke="#4d7c0f" stroke-width="1.2" />
+        </svg>
+    </div>
+
     <div class="datetime">
       <div class="time" id="clock">--:--</div>
       <div class="date" id="date">--</div>
@@ -373,7 +412,6 @@
         const jsonN = JSON.parse(txtN.substring(47).slice(0, -2));
         const rowsN = jsonN.table.rows.map(r => r.c.map(c => c ? formatCell(c) : ""));
         
-        // Aggiunta messaggio auguri fisso se è l'8 Marzo o se le note sono vuote
         let notesText = rowsN
           .filter(r => r[0] && r[0].trim() !== '')
           .map(r => r[0])
@@ -451,7 +489,7 @@
 
         requestAnimationFrame(() => {
             const width = copy1.offsetWidth;
-            const speed = 150; // Leggermente più lento per eleganza
+            const speed = 150; 
             const duration = width / speed; 
             track.style.setProperty('--ticker-duration', `${duration}s`);
         });
