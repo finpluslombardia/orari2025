@@ -2,22 +2,27 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <title>Orari Piscina Lampugnano</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orari Piscina Lampugnano - Festa della Donna</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --primary-color: #003366;
-      --bg-color: #f0f8ff;
-      /* MODIFICATO: Header molto più alto */
+      /* Palette Festa della Donna */
+      --primary-color: #6b21a8; /* Viola */
+      --accent-color: #facc15;  /* Giallo Mimosa */
+      --bg-color: #fffef0;      /* Crema leggerissimo */
       --header-height: 220px; 
       --footer-height: 80px;
+      --mimosa-gold: #fbbf24;
     }
 
     body {
       font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
       margin: 0;
       background-color: var(--bg-color);
+      background-image: radial-gradient(circle at 10% 20%, rgba(250, 204, 21, 0.05) 0%, transparent 20%),
+                        radial-gradient(circle at 90% 80%, rgba(107, 33, 168, 0.05) 0%, transparent 20%);
       color: var(--primary-color);
       letter-spacing: -0.5px;
       display: flex;
@@ -26,40 +31,52 @@
       overflow: hidden;
     }
 
+    /* ====== DECORAZIONI MIMOSA ====== */
+    .mimosa-decoration {
+      position: absolute;
+      pointer-events: none;
+      z-index: 1001;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    }
+    .mimosa-top-left { top: 10px; left: 10px; width: 120px; transform: rotate(-15deg); }
+    .mimosa-bottom-right { bottom: 90px; right: 20px; width: 150px; transform: rotate(160deg); }
+
     /* ====== HEADER ====== */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #ffffff;
-      padding: 0 40px; /* Più padding laterale */
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 0 40px; 
+      box-shadow: 0 4px 20px rgba(107, 33, 168, 0.1);
       height: var(--header-height);
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 1000;
+      border-bottom: 4px solid var(--accent-color);
     }
     header img {
-      /* MODIFICATO: Logo più grande */
-      height: 85%; 
+      height: 80%; 
       width: auto;
       object-fit: contain;
     }
     .datetime { text-align: right; line-height: 1; }
     
-    /* MODIFICATO: Font orario molto più grande */
     .datetime .time { 
-        font-weight: 700; 
+        font-weight: 800; 
         font-size: 110px; 
-        letter-spacing: -3px; 
-        color: #003366;
+        letter-spacing: -4px; 
+        color: var(--primary-color);
+        text-shadow: 2px 2px 0px var(--accent-color);
     }
     
-    /* MODIFICATO: Font data più grande */
     .datetime .date { 
-        font-weight: 500; 
-        font-size: 45px; 
-        color: #004080; 
+        font-family: 'Playfair Display', serif;
+        font-style: italic;
+        font-weight: 700; 
+        font-size: 40px; 
+        color: #8b5cf6; 
         text-transform: capitalize; 
         margin-top: 5px;
     }
@@ -74,44 +91,63 @@
       margin-top: var(--header-height);
       margin-bottom: var(--footer-height);
       overflow-y: hidden;
+      position: relative;
     }
+
+    /* Effetto petali cadenti */
+    .petal {
+      position: absolute;
+      background: var(--accent-color);
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0.6;
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      to { transform: translateY(100vh) rotate(360deg); }
+    }
+
     #courses {
       width: 100%;
       max-width: 1700px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 30px; /* Spazio aumentato tra i box per riempire lo schermo */
+      gap: 25px; 
+      z-index: 2;
     }
 
     /* ====== CORSI ====== */
     .course {
       display: flex;
-      border-radius: 16px; /* Bordi più arrotondati */
+      border-radius: 24px; 
       overflow: hidden;
       background-color: #fff;
-      box-shadow: 0 6px 10px rgba(0,0,0,0.06);
+      box-shadow: 0 10px 25px rgba(107, 33, 168, 0.08);
       width: 100%;
       position: relative;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 2px solid transparent;
     }
+    
     .course > div {
-      padding: 25px 35px; /* Box un po' più ariosi */
+      padding: 25px 35px; 
       display: flex;
       align-items: center;
     }
     .course .attivita {
       flex: 2;
-      font-size: 60px; /* Font leggermente più grande */
-      font-weight: 700;
+      font-size: 55px; 
+      font-weight: 800;
       color: var(--primary-color);
+      font-family: 'Inter', sans-serif;
     }
     .course .dettagli {
       flex: 1.2;
       display: flex;
       justify-content: space-around;
-      background-color: rgba(0,0,0,0.03);
-      border-left: 1px solid rgba(0,0,0,0.05);
+      background-color: rgba(250, 204, 21, 0.05);
+      border-left: 2px dashed rgba(107, 33, 168, 0.1);
     }
     .info-box {
       display: flex;
@@ -119,38 +155,52 @@
       align-items: center;
       justify-content: center;
     }
-    .info-label { font-size: 22px; text-transform: uppercase; color: #666; font-weight: 600; margin-bottom: 5px; }
-    .info-time { font-size: 60px; font-weight: 700; color: #000; line-height: 1; }
+    .info-label { font-size: 20px; text-transform: uppercase; color: #7e22ce; font-weight: 700; margin-bottom: 5px; opacity: 0.7; }
+    .info-time { font-size: 60px; font-weight: 800; color: #1e1b4b; line-height: 1; }
 
-    /* Colori stato */
-    .green  { background-color: #d1e7dd; border-left: 20px solid #198754; }
-    .yellow { background-color: #fff3cd; border-left: 20px solid #ffc107; }
-    .gray   { background-color: #f8f9fa; border-left: 20px solid #6c757d; color: #6c757d; }
-    
-    /* Animazione */
-    .yellow { animation: pulse-border 2s infinite; }
-    @keyframes pulse-border {
-      0% { border-left-color: #ffc107; }
-      50% { border-left-color: #ffdb72; }
-      100% { border-left-color: #ffc107; }
+    /* Colori stato a tema */
+    .green  { 
+      background: linear-gradient(90deg, #f0fdf4 0%, #ffffff 100%); 
+      border-left: 25px solid #22c55e; 
+      border-right: 4px solid #22c55e;
+    }
+    .yellow { 
+      background: linear-gradient(90deg, #fefce8 0%, #ffffff 100%); 
+      border-left: 25px solid var(--accent-color);
+      border-right: 4px solid var(--accent-color);
+      box-shadow: 0 0 30px rgba(250, 204, 21, 0.3);
+      animation: pulse-glow 2s infinite;
+    }
+    .gray   { 
+      background-color: #fcfcfc; 
+      border-left: 25px solid #cbd5e1; 
+      color: #94a3b8; 
+      filter: grayscale(0.5);
+    }
+
+    @keyframes pulse-glow {
+      0% { transform: scale(1); box-shadow: 0 0 20px rgba(250, 204, 21, 0.2); }
+      50% { transform: scale(1.01); box-shadow: 0 0 40px rgba(250, 204, 21, 0.4); }
+      100% { transform: scale(1); box-shadow: 0 0 20px rgba(250, 204, 21, 0.2); }
     }
 
     /* Messaggio vuoto */
     .empty-message {
       text-align: center;
       font-size: 50px;
-      font-weight: 500;
+      font-weight: 700;
       color: var(--primary-color);
       background: white;
       padding: 60px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border-radius: 30px;
+      box-shadow: 0 20px 50px rgba(107, 33, 168, 0.15);
+      border: 3px solid var(--accent-color);
     }
 
     /* ====== FOOTER TICKER ====== */
     footer {
-      background: #003366;
-      color: white;
+      background: var(--primary-color);
+      color: var(--accent-color);
       height: var(--footer-height);
       overflow: hidden;
       display: flex;
@@ -158,6 +208,7 @@
       position: fixed;
       bottom: 0; left: 0; right: 0;
       z-index: 1000;
+      border-top: 4px solid var(--accent-color);
     }
     .ticker {
       width: 100%;
@@ -177,9 +228,11 @@
     .ticker__content {
       display: inline-block;
       padding-right: 100px;
-      font-size: 40px;
-      font-weight: 500;
+      font-size: 42px;
+      font-weight: 700;
       line-height: var(--footer-height);
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
     @keyframes ticker {
       0%   { transform: translateX(0); }
@@ -189,17 +242,29 @@
 </head>
 <body>
 
+  <!-- Decorazioni Mimosa SVG -->
+  <svg class="mimosa-decoration mimosa-top-left" viewBox="0 0 100 100">
+    <circle cx="50" cy="40" r="8" fill="#facc15" />
+    <circle cx="60" cy="50" r="8" fill="#fbbf24" />
+    <circle cx="45" cy="55" r="8" fill="#facc15" />
+    <circle cx="35" cy="45" r="8" fill="#fbbf24" />
+    <path d="M50 60 L50 90" stroke="#4d7c0f" stroke-width="2" />
+    <path d="M50 70 L30 80" stroke="#4d7c0f" stroke-width="1.5" />
+    <path d="M50 75 L70 85" stroke="#4d7c0f" stroke-width="1.5" />
+  </svg>
+
   <header>
-    <img src="CF Lampugnano blu xl.png" alt="Logo Piscina" onerror="this.style.display='none'; document.write('<h2>Piscina Lampugnano</h2>')"/>
+    <!-- Logo originale -->
+    <img src="CF Lampugnano blu xl.png" alt="Logo Piscina" onerror="this.style.display='none'; document.write('<h2 style=\'font-family:Playfair Display\'>Piscina Lampugnano</h2>')"/>
     <div class="datetime">
       <div class="time" id="clock">--:--</div>
       <div class="date" id="date">--</div>
     </div>
   </header>
 
-  <div class="container">
+  <div class="container" id="petal-container">
     <div id="courses">
-        <div class="empty-message">Caricamento corsi in corso...</div>
+        <div class="empty-message">In attesa delle attività di oggi... 🌸</div>
     </div>
   </div>
 
@@ -213,14 +278,31 @@
   </footer>
 
   <script>
+    /* ====== EFFETTO PETALI ====== */
+    function createPetals() {
+        const container = document.getElementById('petal-container');
+        for (let i = 0; i < 15; i++) {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            const size = Math.random() * 15 + 5 + 'px';
+            petal.style.width = size;
+            petal.style.height = size;
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animationDuration = Math.random() * 5 + 5 + 's';
+            petal.style.animationDelay = Math.random() * 5 + 's';
+            container.appendChild(petal);
+        }
+    }
+    createPetals();
+
     /* ====== OROLOGIO ====== */
     function updateClock() {
       const now = new Date();
       const h = now.getHours().toString().padStart(2, '0');
       const m = now.getMinutes().toString().padStart(2, '0');
       
-      const options = { weekday: 'long', year: 'numeric', month: '2-digit', day: '2-digit' };
-      const dateStr = now.toLocaleDateString('it-IT', options); 
+      const options = { weekday: 'long', day: '2-digit', month: 'long' };
+      let dateStr = now.toLocaleDateString('it-IT', options); 
       
       document.getElementById("clock").textContent = `${h}:${m}`;
       document.getElementById("date").textContent  = dateStr;
@@ -290,18 +372,26 @@
         const txtN = await resN.text();
         const jsonN = JSON.parse(txtN.substring(47).slice(0, -2));
         const rowsN = jsonN.table.rows.map(r => r.c.map(c => c ? formatCell(c) : ""));
-        const notesText = rowsN
+        
+        // Aggiunta messaggio auguri fisso se è l'8 Marzo o se le note sono vuote
+        let notesText = rowsN
           .filter(r => r[0] && r[0].trim() !== '')
           .map(r => r[0])
           .join("  •  ");
 
-        updateTicker(notesText || 'Benvenuti alla Piscina Lampugnano');
+        if (!notesText) {
+            notesText = "Buona Festa della Donna a tutte le nostre corsiste! 🌸 Auguri da tutto lo staff della Piscina Lampugnano! 🌸";
+        } else {
+            notesText = "🌸 AUGURI A TUTTE LE DONNE! 🌸  •  " + notesText;
+        }
+
+        updateTicker(notesText);
 
       } catch (err) {
         console.error('Errore update:', err);
         const box = document.getElementById('courses');
-        if (!box.children.length || box.innerText.includes('Caricamento')) {
-           box.innerHTML = `<div class="empty-message">⚠️ Riconnessione in corso...</div>`;
+        if (!box.children.length || box.innerText.includes('attesa')) {
+           box.innerHTML = `<div class="empty-message">⚠️ Riconnessione al database...</div>`;
         }
       }
     }
@@ -313,11 +403,10 @@
         if (courses.length === 0) {
            htmlContent = `
             <div class="empty-message">
-              🏊‍♂️ Le attività di oggi sono terminate.<br>
-              <span style="font-size:30px; color:#666">Vi aspettiamo domani!</span>
+              🌸 Le attività di oggi sono terminate.<br>
+              <span style="font-size:30px; color:#7e22ce; font-weight: 500;">Vi aspettiamo domani. Buona serata a tutte!</span>
             </div>`;
         } else {
-          // MODIFICATO: Mostra massimo 4 corsi
           const visible = courses.slice(0, 4); 
           
           visible.forEach(corso => {
@@ -326,7 +415,7 @@
             let style = 'gray'; 
             if (timeToStart <= 0 && timeToStart > -corso.durata) {
                 style = 'green'; 
-            } else if (timeToStart <= 5 && timeToStart > 0) {
+            } else if (timeToStart <= 10 && timeToStart > 0) {
                 style = 'yellow';
             }
 
@@ -362,7 +451,7 @@
 
         requestAnimationFrame(() => {
             const width = copy1.offsetWidth;
-            const speed = 200; // Velocità elevata
+            const speed = 150; // Leggermente più lento per eleganza
             const duration = width / speed; 
             track.style.setProperty('--ticker-duration', `${duration}s`);
         });
