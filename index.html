@@ -59,15 +59,15 @@
       z-index: 5;
     }
     
-    /* Mimosa più densa e sovrapposta al logo */
+    /* Mimosa più densa e sovrapposta al logo con ramo sottile */
     .mimosa-header {
-      height: 120%; 
+      height: 110%; 
       width: auto;
       position: absolute;
-      left: 170px; /* Regolato per sovrapporsi meglio al logo */
-      top: -20px;
+      left: 175px; 
+      top: -10px;
       z-index: 10;
-      filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.2));
+      filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.15));
       pointer-events: none;
     }
 
@@ -222,70 +222,70 @@
 </head>
 <body>
 
-  <!-- Elementi Grafici Mimosa Elegante con Pallini Pieni -->
+  <!-- Elementi Grafici Mimosa Realistica con Ramo Sottile e Pallini Pieni -->
   <svg style="display: none;">
     <defs>
-      <radialGradient id="grad-flower-bright" cx="40%" cy="40%" r="50%">
-        <stop offset="0%" style="stop-color:#fff9c4;stop-opacity:1" />
-        <stop offset="40%" style="stop-color:#facc15;stop-opacity:1" />
-        <stop offset="100%" style="stop-color:#eab308;stop-opacity:1" />
+      <radialGradient id="grad-flower-bright" cx="35%" cy="35%" r="50%">
+        <stop offset="0%" style="stop-color:#fffde7;stop-opacity:1" />
+        <stop offset="60%" style="stop-color:#facc15;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#ca8a04;stop-opacity:1" />
       </radialGradient>
       
-      <!-- Simbolo Pom-pom Mimosa Pieno -->
+      <!-- Pom-pom Mimosa Ultra-Pieno -->
       <symbol id="flower-puff" viewBox="0 0 20 20">
-        <!-- Strati sovrapposti per dare volume -->
         <circle cx="10" cy="10" r="9" fill="url(#grad-flower-bright)" />
-        <circle cx="8" cy="8" r="3" fill="#fef08a" opacity="0.6" />
-        <circle cx="12" cy="12" r="2.5" fill="#ca8a04" opacity="0.3" />
+        <circle cx="10" cy="10" r="9.5" fill="none" stroke="#fef9c3" stroke-width="0.3" opacity="0.5" />
       </symbol>
 
-      <symbol id="mimosa-branch-full" viewBox="0 0 100 150">
-        <!-- Stelo -->
-        <path d="M50 150 C45 100 55 50 50 10" stroke="#365314" stroke-width="3" fill="none" stroke-linecap="round" />
+      <symbol id="mimosa-branch-refined" viewBox="0 0 100 150">
+        <!-- Stelo più sottile -->
+        <path d="M50 150 C48 100 52 50 50 10" stroke="#365314" stroke-width="1.8" fill="none" stroke-linecap="round" />
         
-        <!-- Molti più fiori pieni per un effetto ricco -->
+        <!-- Fiori più densi e compatti -->
         <g class="fiori">
-            <!-- Cluster Alto -->
-            <use href="#flower-puff" x="42" y="5" width="16" height="16" />
-            <use href="#flower-puff" x="35" y="15" width="18" height="18" />
-            <use href="#flower-puff" x="52" y="20" width="17" height="17" />
+            <use href="#flower-puff" x="43" y="2" width="14" height="14" />
+            <use href="#flower-puff" x="38" y="12" width="16" height="16" />
+            <use href="#flower-puff" x="52" y="18" width="15" height="15" />
+            <use href="#flower-puff" x="42" y="25" width="18" height="18" />
             
-            <!-- Cluster Centrale -->
-            <use href="#flower-puff" x="28" y="45" width="20" height="20" />
-            <use href="#flower-puff" x="48" y="40" width="24" height="24" />
-            <use href="#flower-puff" x="58" y="58" width="19" height="19" />
-            <use href="#flower-puff" x="38" y="65" width="22" height="22" />
+            <use href="#flower-puff" x="30" y="48" width="18" height="18" />
+            <use href="#flower-puff" x="48" y="42" width="22" height="22" />
+            <use href="#flower-puff" x="58" y="55" width="17" height="17" />
+            <use href="#flower-puff" x="40" y="62" width="20" height="20" />
+            <use href="#flower-puff" x="25" y="65" width="15" height="15" />
             
-            <!-- Cluster Basso -->
-            <use href="#flower-puff" x="22" y="90" width="18" height="18" />
-            <use href="#flower-puff" x="45" y="88" width="23" height="23" />
-            <use href="#flower-puff" x="55" y="105" width="21" height="21" />
-            <use href="#flower-puff" x="35" y="115" width="19" height="19" />
+            <use href="#flower-puff" x="24" y="92" width="16" height="16" />
+            <use href="#flower-puff" x="45" y="85" width="22" height="22" />
+            <use href="#flower-puff" x="55" y="102" width="19" height="19" />
+            <use href="#flower-puff" x="36" y="112" width="18" height="18" />
+            <use href="#flower-puff" x="48" y="118" width="15" height="15" />
         </g>
         
-        <!-- Foglie pennate verdi -->
-        <path d="M48 135 L15 120" stroke="#3f6212" stroke-width="2" />
-        <path d="M48 135 L10 135" stroke="#3f6212" stroke-width="2" />
-        <path d="M52 80 L85 70" stroke="#3f6212" stroke-width="2" />
-        <path d="M52 80 L90 85" stroke="#3f6212" stroke-width="2" />
+        <!-- Foglie sottili e pennate -->
+        <g stroke="#3f6212" stroke-width="1.2" stroke-linecap="round">
+            <path d="M49 140 L15 125" />
+            <path d="M49 140 L10 140" />
+            <path d="M51 85 L85 75" />
+            <path d="M51 85 L90 90" />
+            <path d="M50 40 L20 25" />
+        </g>
       </symbol>
     </defs>
   </svg>
 
   <header>
     <div class="logo-wrapper">
-        <!-- Logo -->
         <img src="CF Lampugnano blu xl.png" alt="Logo Piscina" onerror="this.style.display='none'; document.write('<h2 style=\'font-family:Playfair Display; color:#003366\'>Piscina Lampugnano</h2>')"/>
         
-        <!-- Ramo di Mimosa Ricco e Pieno sovrapposto -->
+        <!-- Mimosa con ramo sottile e fiori pieni sovrapposta -->
         <svg class="mimosa-header" viewBox="0 0 150 200">
-            <!-- Ramo primario -->
-            <g transform="rotate(-15, 75, 120)">
-                <use href="#mimosa-branch-full" x="10" y="10" width="130" />
+            <!-- Primo ramo -->
+            <g transform="rotate(-12, 75, 120)">
+                <use href="#mimosa-branch-refined" x="10" y="5" width="120" />
             </g>
-            <!-- Ramo secondario per volume -->
-            <g transform="translate(30, 20) rotate(10, 75, 120) scale(0.85)">
-                <use href="#mimosa-branch-full" x="0" y="0" width="120" />
+            <!-- Secondo ramo incrociato per densità -->
+            <g transform="translate(35, 15) rotate(8, 75, 120) scale(0.8)">
+                <use href="#mimosa-branch-refined" x="0" y="0" width="110" />
             </g>
         </svg>
     </div>
