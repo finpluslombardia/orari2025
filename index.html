@@ -51,7 +51,10 @@
     .datetime { 
       text-align: right; 
       line-height: 1; 
-      position: relative;
+      position: absolute; /* MODIFICATO: Posizione assoluta per far passare la mimosa sotto */
+      right: 40px;
+      top: 50%;
+      transform: translateY(-50%);
       z-index: 10; /* Sopra la mimosa */
     }
     
@@ -73,12 +76,13 @@
 
     /* ====== DECORAZIONE MIMOSA ====== */
     .mimosa-container {
-      flex: 1; /* Prende automaticamente tutto lo spazio centrale */
+      flex: 1; /* Prende tutto lo spazio rimanente a destra del logo */
       height: 100%;
-      margin: 0 40px; /* Lascia un respiro elegante tra i fiori, il logo e l'orologio */
+      margin-left: 20px; /* Piccolo respiro dal logo */
+      margin-right: -40px; /* Annulla il padding dell'header per arrivare al margine destro assoluto dello schermo */
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start; /* Allinea l'SVG esattamente a sinistra (partendo dal logo) */
       pointer-events: none;
       z-index: 0;
       opacity: 0.95;
@@ -229,7 +233,7 @@
     
     <!-- SVB Vettoriale Ramo di Mimosa -->
     <div class="mimosa-container">
-      <svg viewBox="0 0 1200 220" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+      <svg viewBox="0 0 1200 220" width="100%" height="100%" preserveAspectRatio="xMinYMid slice">
         <defs>
           <radialGradient id="mimosa-puff" cx="30%" cy="30%" r="70%">
             <stop offset="0%" stop-color="#FFF59D"/>
