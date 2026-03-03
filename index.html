@@ -2,20 +2,15 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Orari Piscina Lampugnano - Festa della Donna</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --primary-color: #6b21a8; 
-      --accent-color: #facc15;  
-      --bg-color: #fffef0;      
+      --primary-color: #003366; /* Mantenuto il blu del vostro logo per eleganza e contrasto */
+      --bg-color: #FCFBF5; /* Crema caldo ed elegante al posto dell'azzurro */
       --header-height: 220px; 
       --footer-height: 80px;
-      --mimosa-yellow: #fde047;
-      --mimosa-sun: #fbbf24;
-      --mimosa-dark: #ca8a04;
     }
 
     body {
@@ -30,65 +25,62 @@
       overflow: hidden;
     }
 
-    /* ====== HEADER CON LOGO E MIMOSA REALE ====== */
+    /* ====== HEADER ====== */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       background-color: #ffffff;
       padding: 0 40px; 
-      box-shadow: 0 4px 20px rgba(107, 33, 168, 0.1);
+      box-shadow: 0 4px 25px rgba(0,0,0,0.06); /* Ombreggiatura più delicata */
+      border-bottom: 2px solid rgba(255, 215, 0, 0.4); /* Sottile linea gialla */
       height: var(--header-height);
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 1000;
-      border-bottom: 5px solid var(--accent-color);
     }
     
-    .logo-wrapper {
-      position: relative;
-      display: flex;
-      align-items: center;
-      height: 100%;
-    }
-
     header img {
-      height: 70%; 
+      height: 85%; 
       width: auto;
       object-fit: contain;
-      z-index: 5;
+      position: relative;
+      z-index: 10; /* Sopra la mimosa */
     }
     
-    /* Mimosa più densa e sovrapposta al logo con ramo sottile */
-    .mimosa-header {
-      height: 110%; 
-      width: auto;
-      position: absolute;
-      left: 175px; 
-      top: -10px;
-      z-index: 10;
-      filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.15));
-      pointer-events: none;
+    .datetime { 
+      text-align: right; 
+      line-height: 1; 
+      position: relative;
+      z-index: 10; /* Sopra la mimosa */
     }
-
-    .datetime { text-align: right; line-height: 1; z-index: 15; }
     
     .datetime .time { 
-        font-weight: 800; 
+        font-weight: 700; 
         font-size: 110px; 
-        letter-spacing: -4px; 
+        letter-spacing: -3px; 
         color: var(--primary-color);
-        text-shadow: 2px 2px 0px var(--accent-color);
     }
     
     .datetime .date { 
-        font-family: 'Playfair Display', serif;
-        font-style: italic;
-        font-weight: 700; 
-        font-size: 40px; 
-        color: #8b5cf6; 
+        font-weight: 500; 
+        font-size: 45px; 
+        color: #004080; 
         text-transform: capitalize; 
         margin-top: 5px;
+    }
+
+    /* ====== DECORAZIONE MIMOSA ====== */
+    .mimosa-container {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 220px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.95;
     }
 
     /* ====== CONTENUTO ====== */
@@ -102,26 +94,27 @@
       margin-bottom: var(--footer-height);
       overflow-y: hidden;
     }
-
+    
     #courses {
       width: 100%;
       max-width: 1700px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 25px; 
+      gap: 30px; 
     }
 
     /* ====== CORSI ====== */
     .course {
       display: flex;
-      border-radius: 24px; 
+      border-radius: 16px; 
       overflow: hidden;
       background-color: #fff;
-      box-shadow: 0 10px 25px rgba(107, 33, 168, 0.08);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.04), 0 0 15px rgba(255, 215, 0, 0.03); /* Glow elegante */
+      border: 1px solid rgba(255, 215, 0, 0.2);
       width: 100%;
       position: relative;
-      border: 2px solid transparent;
+      transition: all 0.3s ease;
     }
     
     .course > div {
@@ -129,59 +122,63 @@
       display: flex;
       align-items: center;
     }
+    
     .course .attivita {
       flex: 2;
-      font-size: 55px; 
-      font-weight: 800;
+      font-size: 60px; 
+      font-weight: 700;
       color: var(--primary-color);
     }
+    
     .course .dettagli {
       flex: 1.2;
       display: flex;
       justify-content: space-around;
-      background-color: rgba(250, 204, 21, 0.03);
-      border-left: 2px dashed rgba(107, 33, 168, 0.1);
+      background-color: rgba(0,0,0,0.02);
+      border-left: 1px solid rgba(0,0,0,0.05);
     }
+    
     .info-box {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
     }
-    .info-label { font-size: 20px; text-transform: uppercase; color: #7e22ce; font-weight: 700; margin-bottom: 5px; opacity: 0.7; }
-    .info-time { font-size: 60px; font-weight: 800; color: #1e1b4b; line-height: 1; }
+    
+    .info-label { font-size: 22px; text-transform: uppercase; color: #666; font-weight: 600; margin-bottom: 5px; }
+    .info-time { font-size: 60px; font-weight: 700; color: #000; line-height: 1; }
 
-    .green  { background: linear-gradient(90deg, #f0fdf4 0%, #ffffff 100%); border-left: 25px solid #22c55e; border-right: 4px solid #22c55e; }
-    .yellow { 
-      background: linear-gradient(90deg, #fefce8 0%, #ffffff 100%); 
-      border-left: 25px solid var(--accent-color);
-      border-right: 4px solid var(--accent-color);
-      animation: pulse-glow 2s infinite;
+    /* Colori stato (Mantenuti per UX chiara) */
+    .green  { background-color: #d1e7dd; border-left: 20px solid #198754; }
+    .yellow { background-color: #fff3cd; border-left: 20px solid #ffc107; }
+    .gray   { background-color: #f8f9fa; border-left: 20px solid #6c757d; color: #6c757d; }
+    
+    /* Animazione */
+    .yellow { animation: pulse-border 2s infinite; }
+    @keyframes pulse-border {
+      0% { border-left-color: #ffc107; }
+      50% { border-left-color: #ffdb72; }
+      100% { border-left-color: #ffc107; }
     }
-    .gray   { background-color: #fcfcfc; border-left: 25px solid #cbd5e1; color: #94a3b8; filter: grayscale(0.5); }
 
-    @keyframes pulse-glow {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.005); }
-      100% { transform: scale(1); }
-    }
-
+    /* Messaggio vuoto */
     .empty-message {
       text-align: center;
       font-size: 50px;
-      font-weight: 700;
+      font-weight: 500;
       color: var(--primary-color);
       background: white;
       padding: 60px;
-      border-radius: 30px;
-      box-shadow: 0 20px 50px rgba(107, 33, 168, 0.15);
-      border: 3px solid var(--accent-color);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      border-top: 5px solid #FFD700;
     }
 
     /* ====== FOOTER TICKER ====== */
     footer {
-      background: var(--primary-color);
-      color: var(--accent-color);
+      background: linear-gradient(90deg, #FBC02D, #FFD54F, #FBC02D); /* Gradiente Giallo Mimosa */
+      color: var(--primary-color); /* Testo blu per contrasto perfetto */
+      border-top: 3px solid #F57F17; /* Dettaglio fine scuro */
       height: var(--footer-height);
       overflow: hidden;
       display: flex;
@@ -189,8 +186,8 @@
       position: fixed;
       bottom: 0; left: 0; right: 0;
       z-index: 1000;
-      border-top: 4px solid var(--accent-color);
     }
+    
     .ticker {
       width: 100%;
       height: 100%;
@@ -200,20 +197,22 @@
       display: flex;
       align-items: center;
     }
+    
     .ticker__track {
       display: inline-block;
       white-space: nowrap;
       will-change: transform;
       animation: ticker var(--ticker-duration, 20s) linear infinite;
     }
+    
     .ticker__content {
       display: inline-block;
       padding-right: 100px;
-      font-size: 42px;
-      font-weight: 700;
+      font-size: 40px;
+      font-weight: 600; /* Leggermente più spesso per spiccare sul giallo */
       line-height: var(--footer-height);
-      text-transform: uppercase;
     }
+    
     @keyframes ticker {
       0%   { transform: translateX(0); }
       100% { transform: translateX(-50%); }
@@ -222,72 +221,83 @@
 </head>
 <body>
 
-  <!-- Elementi Grafici Mimosa Realistica con Ramo Sottile e Pallini Pieni -->
-  <svg style="display: none;">
-    <defs>
-      <radialGradient id="grad-flower-bright" cx="35%" cy="35%" r="50%">
-        <stop offset="0%" style="stop-color:#fffde7;stop-opacity:1" />
-        <stop offset="60%" style="stop-color:#facc15;stop-opacity:1" />
-        <stop offset="100%" style="stop-color:#ca8a04;stop-opacity:1" />
-      </radialGradient>
-      
-      <!-- Pom-pom Mimosa Ultra-Pieno -->
-      <symbol id="flower-puff" viewBox="0 0 20 20">
-        <circle cx="10" cy="10" r="9" fill="url(#grad-flower-bright)" />
-        <circle cx="10" cy="10" r="9.5" fill="none" stroke="#fef9c3" stroke-width="0.3" opacity="0.5" />
-      </symbol>
-
-      <symbol id="mimosa-branch-refined" viewBox="0 0 100 150">
-        <!-- Stelo più sottile -->
-        <path d="M50 150 C48 100 52 50 50 10" stroke="#365314" stroke-width="1.8" fill="none" stroke-linecap="round" />
-        
-        <!-- Fiori più densi e compatti -->
-        <g class="fiori">
-            <use href="#flower-puff" x="43" y="2" width="14" height="14" />
-            <use href="#flower-puff" x="38" y="12" width="16" height="16" />
-            <use href="#flower-puff" x="52" y="18" width="15" height="15" />
-            <use href="#flower-puff" x="42" y="25" width="18" height="18" />
-            
-            <use href="#flower-puff" x="30" y="48" width="18" height="18" />
-            <use href="#flower-puff" x="48" y="42" width="22" height="22" />
-            <use href="#flower-puff" x="58" y="55" width="17" height="17" />
-            <use href="#flower-puff" x="40" y="62" width="20" height="20" />
-            <use href="#flower-puff" x="25" y="65" width="15" height="15" />
-            
-            <use href="#flower-puff" x="24" y="92" width="16" height="16" />
-            <use href="#flower-puff" x="45" y="85" width="22" height="22" />
-            <use href="#flower-puff" x="55" y="102" width="19" height="19" />
-            <use href="#flower-puff" x="36" y="112" width="18" height="18" />
-            <use href="#flower-puff" x="48" y="118" width="15" height="15" />
-        </g>
-        
-        <!-- Foglie sottili e pennate -->
-        <g stroke="#3f6212" stroke-width="1.2" stroke-linecap="round">
-            <path d="M49 140 L15 125" />
-            <path d="M49 140 L10 140" />
-            <path d="M51 85 L85 75" />
-            <path d="M51 85 L90 90" />
-            <path d="M50 40 L20 25" />
-        </g>
-      </symbol>
-    </defs>
-  </svg>
-
   <header>
-    <div class="logo-wrapper">
-        <img src="CF Lampugnano blu xl.png" alt="Logo Piscina" onerror="this.style.display='none'; document.write('<h2 style=\'font-family:Playfair Display; color:#003366\'>Piscina Lampugnano</h2>')"/>
-        
-        <!-- Mimosa con ramo sottile e fiori pieni sovrapposta -->
-        <svg class="mimosa-header" viewBox="0 0 150 200">
-            <!-- Primo ramo -->
-            <g transform="rotate(-12, 75, 120)">
-                <use href="#mimosa-branch-refined" x="10" y="5" width="120" />
-            </g>
-            <!-- Secondo ramo incrociato per densità -->
-            <g transform="translate(35, 15) rotate(8, 75, 120) scale(0.8)">
-                <use href="#mimosa-branch-refined" x="0" y="0" width="110" />
-            </g>
-        </svg>
+    <img src="CF Lampugnano blu xl.png" alt="Logo Piscina" onerror="this.style.display='none'; document.write('<h2>Piscina Lampugnano</h2>')"/>
+    
+    <!-- SVB Vettoriale Ramo di Mimosa -->
+    <div class="mimosa-container">
+      <svg viewBox="0 0 800 220" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <radialGradient id="mimosa-puff" cx="30%" cy="30%" r="70%">
+            <stop offset="0%" stop-color="#FFF59D"/>
+            <stop offset="40%" stop-color="#FFEB3B"/>
+            <stop offset="80%" stop-color="#FBC02D"/>
+            <stop offset="100%" stop-color="#F57F17"/>
+          </radialGradient>
+          <filter id="fuzzy" x="-30%" y="-30%" width="160%" height="160%">
+             <feGaussianBlur stdDeviation="1.2" result="blur" />
+             <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+          </filter>
+          <g id="puff">
+            <circle cx="0" cy="0" r="8" fill="url(#mimosa-puff)" filter="url(#fuzzy)" />
+            <circle cx="-5" cy="-4" r="6" fill="url(#mimosa-puff)" filter="url(#fuzzy)" />
+            <circle cx="5" cy="-3" r="7" fill="url(#mimosa-puff)" filter="url(#fuzzy)" />
+            <circle cx="-3" cy="6" r="6" fill="url(#mimosa-puff)" filter="url(#fuzzy)" />
+            <circle cx="6" cy="5" r="5" fill="url(#mimosa-puff)" filter="url(#fuzzy)" />
+            <circle cx="0" cy="0" r="3" fill="#FFF59D" />
+          </g>
+          <g id="leaf-sprig">
+             <path d="M0,0 Q10,6 25,0 Q10,-6 0,0" fill="#556B2F" opacity="0.8"/>
+             <path d="M4,0 Q12,10 20,3 Q12,-3 4,0" fill="#4A5D23" opacity="0.8"/>
+             <path d="M7,-2 Q15,-12 22,-5 Q15,-1 7,-2" fill="#556B2F" opacity="0.8"/>
+             <path d="M10,2 Q18,12 25,6 Q18,2 10,2" fill="#6B8E23" opacity="0.8"/>
+          </g>
+        </defs>
+
+        <!-- Rami -->
+        <path d="M 100,-20 Q 300,80 700,250" fill="none" stroke="#556B2F" stroke-width="3" opacity="0.7"/>
+        <path d="M 250,20 Q 450,130 600,100" fill="none" stroke="#556B2F" stroke-width="2" opacity="0.7"/>
+        <path d="M 400,100 Q 550,220 750,150" fill="none" stroke="#556B2F" stroke-width="2" opacity="0.7"/>
+        <path d="M 500,140 Q 600,100 700,180" fill="none" stroke="#556B2F" stroke-width="1.5" opacity="0.7"/>
+        <path d="M 150,-10 Q 250,50 350,-20" fill="none" stroke="#556B2F" stroke-width="2" opacity="0.7"/>
+
+        <!-- Foglie elegantemente posizionate -->
+        <use href="#leaf-sprig" x="180" y="20" transform="rotate(25 180 20)"/>
+        <use href="#leaf-sprig" x="350" y="80" transform="rotate(-15 350 80)"/>
+        <use href="#leaf-sprig" x="500" y="150" transform="rotate(20 500 150)"/>
+        <use href="#leaf-sprig" x="400" y="100" transform="rotate(-45 400 100)"/>
+        <use href="#leaf-sprig" x="580" y="105" transform="rotate(-30 580 105)"/>
+        <use href="#leaf-sprig" x="650" y="190" transform="rotate(10 650 190)"/>
+        <use href="#leaf-sprig" x="250" y="10" transform="rotate(40 250 10)"/>
+
+        <!-- Fiori di Mimosa (Puffs) -->
+        <use href="#puff" x="150" y="10"/> <use href="#puff" x="170" y="15"/>
+        <use href="#puff" x="160" y="25"/> <use href="#puff" x="180" y="5"/>
+        <use href="#puff" x="200" y="30"/> <use href="#puff" x="220" y="40"/>
+        <use href="#puff" x="210" y="50"/> <use href="#puff" x="230" y="25"/>
+        <use href="#puff" x="280" y="60"/> <use href="#puff" x="300" y="55"/>
+        <use href="#puff" x="290" y="75"/> <use href="#puff" x="310" y="70"/>
+        <use href="#puff" x="260" y="50"/>
+        <use href="#puff" x="330" y="90"/> <use href="#puff" x="350" y="85"/>
+        <use href="#puff" x="340" y="105"/> <use href="#puff" x="360" y="100"/>
+        <use href="#puff" x="370" y="80"/> <use href="#puff" x="320" y="80"/>
+        <use href="#puff" x="420" y="120"/> <use href="#puff" x="440" y="115"/>
+        <use href="#puff" x="430" y="135"/> <use href="#puff" x="450" y="130"/>
+        <use href="#puff" x="410" y="105"/>
+        <use href="#puff" x="480" y="145"/> <use href="#puff" x="500" y="140"/>
+        <use href="#puff" x="490" y="160"/> <use href="#puff" x="510" y="155"/>
+        <use href="#puff" x="520" y="135"/>
+        <use href="#puff" x="540" y="115"/> <use href="#puff" x="560" y="120"/>
+        <use href="#puff" x="550" y="100"/> <use href="#puff" x="570" y="105"/>
+        <use href="#puff" x="580" y="165"/> <use href="#puff" x="600" y="170"/>
+        <use href="#puff" x="590" y="150"/> <use href="#puff" x="610" y="155"/>
+        <use href="#puff" x="620" y="180"/> <use href="#puff" x="570" y="175"/>
+        <use href="#puff" x="660" y="175"/> <use href="#puff" x="680" y="180"/>
+        <use href="#puff" x="670" y="160"/> <use href="#puff" x="690" y="165"/>
+        <use href="#puff" x="720" y="145"/> <use href="#puff" x="740" y="150"/>
+        <use href="#puff" x="730" y="130"/> <use href="#puff" x="750" y="135"/>
+        <use href="#puff" x="710" y="160"/>
+      </svg>
     </div>
 
     <div class="datetime">
@@ -298,7 +308,7 @@
 
   <div class="container">
     <div id="courses">
-        <div class="empty-message">Caricamento corsi in corso... 🌸</div>
+        <div class="empty-message">Caricamento corsi in corso...</div>
     </div>
   </div>
 
@@ -312,17 +322,22 @@
   </footer>
 
   <script>
+    /* ====== OROLOGIO ====== */
     function updateClock() {
       const now = new Date();
       const h = now.getHours().toString().padStart(2, '0');
       const m = now.getMinutes().toString().padStart(2, '0');
-      const options = { weekday: 'long', day: '2-digit', month: 'long' };
+      
+      const options = { weekday: 'long', year: 'numeric', month: '2-digit', day: '2-digit' };
+      const dateStr = now.toLocaleDateString('it-IT', options); 
+      
       document.getElementById("clock").textContent = `${h}:${m}`;
-      document.getElementById("date").textContent  = now.toLocaleDateString('it-IT', options);
+      document.getElementById("date").textContent  = dateStr;
     }
     setInterval(updateClock, 1000);
     updateClock();
 
+    /* ====== UTILS ====== */
     function normalizeStr(str) {
       if (!str) return "";
       return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
@@ -337,15 +352,20 @@
     function formatCell(cell) {
       if (!cell) return "";
       if (cell.f) return cell.f;
-      return cell.v ? cell.v.toString() : "";
+      if (typeof cell.v === 'string') return cell.v;
+      if (typeof cell.v === 'number') return cell.v.toString();
+      return "";
     }
 
+    /* ====== CARICAMENTO DATI ====== */
     async function loadAll() {
       const SHEET_ID = '1dcs1X7x84g69f14m9Sl2KmqZUbCI6lLBBfi3QCMNqWI';
       const SHEET_BASE = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=`;
       
       try {
+        /* ---- FETCH CORSI ---- */
         const resC = await fetch(SHEET_BASE + 'Corsi');
+        if (!resC.ok) throw new Error("Network response was not ok");
         const txtC = await resC.text();
         const jsonC = JSON.parse(txtC.substring(47).slice(0, -2));
         const rowsC = jsonC.table.rows.map(r => r.c.map(c => c ? formatCell(c) : ""));
@@ -356,30 +376,45 @@
 
         let parsed = rowsC
           .filter(r => normalizeStr(r[0]) === todayName)
-          .map(r => ({
+          .map(r => {
+            const ingressoMin = parseTime(r[2]);
+            const inizioMin   = parseTime(r[3]);
+            const durata      = Number.parseInt(r[4]) || 60;
+            return {
               attivita: r[1] || '',
               oraIngresso: r[2] || '',
               oraInizio: r[3] || '',
-              durata: Number.parseInt(r[4]) || 60,
-              ingressoMin: parseTime(r[2]),
-              inizioMin: parseTime(r[3])
-          }))
+              durata,
+              ingressoMin,
+              inizioMin
+            };
+          })
           .filter(c => Number.isFinite(c.ingressoMin) && currentTime <= (c.ingressoMin + c.durata))
           .sort((a, b) => a.ingressoMin - b.ingressoMin);
 
         renderCourses(parsed, currentTime);
 
+        /* ---- FETCH NOTE ---- */
         const resN = await fetch(SHEET_BASE + 'Note');
         const txtN = await resN.text();
         const jsonN = JSON.parse(txtN.substring(47).slice(0, -2));
         const rowsN = jsonN.table.rows.map(r => r.c.map(c => c ? formatCell(c) : ""));
-        
-        let notesText = rowsN.filter(r => r[0] && r[0].trim() !== '').map(r => r[0]).join("  •  ");
-        notesText = notesText ? "🌸 AUGURI A TUTTE LE DONNE! 🌸  •  " + notesText : "Buona Festa della Donna a tutte le nostre corsiste! 🌸 Auguri dallo staff Lampugnano! 🌸";
-        updateTicker(notesText);
+        const notesText = rowsN
+          .filter(r => r[0] && r[0].trim() !== '')
+          .map(r => r[0])
+          .join("  •  ");
+
+        // MODIFICATO: Inserito il messaggio di auguri all'inizio delle notizie del footer
+        const womensDayGreeting = "🌼 AUGURI A TUTTE LE DONNE! 🌼  •  ";
+        const baseMessage = notesText || 'Benvenuti alla Piscina Lampugnano';
+        updateTicker(womensDayGreeting + baseMessage);
 
       } catch (err) {
-        console.error('Errore database:', err);
+        console.error('Errore update:', err);
+        const box = document.getElementById('courses');
+        if (!box.children.length || box.innerText.includes('Caricamento')) {
+           box.innerHTML = `<div class="empty-message">⚠️ Riconnessione in corso...</div>`;
+        }
       }
     }
 
@@ -388,22 +423,40 @@
         let htmlContent = '';
 
         if (courses.length === 0) {
-           htmlContent = `<div class="empty-message">🌸 Le attività di oggi sono terminate.<br><span style="font-size:30px; color:#7e22ce; font-weight: 500;">Buona serata a tutte!</span></div>`;
+           // MODIFICATO: Messaggio vuoto a tema
+           htmlContent = `
+            <div class="empty-message">
+              🌼 Le attività di oggi sono terminate.<br>
+              <span style="font-size:30px; color:#666">Vi aspettiamo domani! Auguri a tutte le Donne!</span>
+            </div>`;
         } else {
-          courses.slice(0, 4).forEach(corso => {
+          const visible = courses.slice(0, 4); 
+          
+          visible.forEach(corso => {
             const timeToStart = corso.ingressoMin - currentTime;
+            
             let style = 'gray'; 
-            if (timeToStart <= 0 && timeToStart > -corso.durata) style = 'green'; 
-            else if (timeToStart <= 10 && timeToStart > 0) style = 'yellow';
+            if (timeToStart <= 0 && timeToStart > -corso.durata) {
+                style = 'green'; 
+            } else if (timeToStart <= 5 && timeToStart > 0) {
+                style = 'yellow';
+            }
 
             htmlContent += `
               <div class="course ${style}">
                 <div class="attivita">${corso.attivita}</div>
                 <div class="dettagli">
-                    <div class="info-box"><span class="info-label">Ingresso</span><span class="info-time">${corso.oraIngresso}</span></div>
-                    <div class="info-box"><span class="info-label">Inizio</span><span class="info-time">${corso.oraInizio}</span></div>
+                    <div class="info-box">
+                        <span class="info-label">Ingresso</span>
+                        <span class="info-time">${corso.oraIngresso}</span>
+                    </div>
+                    <div class="info-box">
+                        <span class="info-label">Inizio</span>
+                        <span class="info-time">${corso.oraInizio}</span>
+                    </div>
                 </div>
-              </div>`;
+              </div>
+            `;
           });
         }
         coursesBox.innerHTML = htmlContent;
@@ -412,12 +465,18 @@
     function updateTicker(text) {
         const copy1 = document.getElementById('ticker-copy-1');
         const copy2 = document.getElementById('ticker-copy-2');
+        const track = document.getElementById('ticker-track');
+        
         if (copy1.textContent === text) return;
+
         copy1.textContent = text;
         copy2.textContent = text;
+
         requestAnimationFrame(() => {
-            const duration = copy1.offsetWidth / 130; 
-            document.getElementById('ticker-track').style.setProperty('--ticker-duration', `${duration}s`);
+            const width = copy1.offsetWidth;
+            const speed = 200; 
+            const duration = width / speed; 
+            track.style.setProperty('--ticker-duration', `${duration}s`);
         });
     }
 
