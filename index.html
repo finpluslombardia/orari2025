@@ -515,14 +515,29 @@
         const copy2 = document.getElementById('ticker-copy-2');
         const track = document.getElementById('ticker-track');
         
-        if (copy1.textContent === text) return;
+        // Pulisce il testo e crea un divisore ampio e fisso
+        let cleanText = text.trim();
+        if (cleanText.endsWith("•")) cleanText = cleanText.slice(0, -1).trim();
+        
+        // Usiamo spazi unificatori (\u00A0) per garantire un distacco visivo perfetto ad ogni ripetizione
+        const separator = "\u00A0\u00A0\u00A0\u00A0•\u00A0\u00A0\u00A0\u00A0";
+        
+        let repeatedText = cleanText + separator;
+        
+        // TRUCCO: Moltiplichiamo il testo finché non è larghissimo (> 250 caratteri). 
+        // In questo modo riempie sempre tutto il monitor eliminando il "buco nero" a fine ciclo.
+        while (repeatedText.length < 250) {
+            repeatedText += cleanText + separator;
+        }
 
-        copy1.textContent = text;
-        copy2.textContent = text;
+        if (copy1.textContent === repeatedText) return;
+
+        copy1.textContent = repeatedText;
+        copy2.textContent = repeatedText;
 
         requestAnimationFrame(() => {
             const width = copy1.offsetWidth;
-            const speed = 200; 
+            const speed = 180; // pixel al secondo (puoi alzare per andare più veloce, es: 220)
             const duration = width / speed; 
             track.style.setProperty('--ticker-duration', `${duration}s`);
         });
