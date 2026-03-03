@@ -206,10 +206,12 @@
     }
     
     .ticker__track {
-      display: inline-block;
-      white-space: nowrap;
+      display: flex; /* MODIFICATO: Rimuove il micro-spazio vuoto che causa il salto a fine giro */
+      width: max-content;
       will-change: transform;
       animation: ticker var(--ticker-duration, 20s) linear infinite;
+      -webkit-backface-visibility: hidden; /* MODIFICATO: Forza fluidità GPU */
+      backface-visibility: hidden;
     }
     
     .ticker__content {
@@ -218,11 +220,12 @@
       font-size: 40px;
       font-weight: 600; /* Leggermente più spesso per spiccare sul giallo */
       line-height: var(--footer-height);
+      -webkit-font-smoothing: antialiased; /* MODIFICATO: Testo più definito in movimento */
     }
     
     @keyframes ticker {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+      0%   { transform: translate3d(0, 0, 0); } /* MODIFICATO: translate3d forza l'accelerazione hardware */
+      100% { transform: translate3d(-50%, 0, 0); }
     }
   </style>
 </head>
