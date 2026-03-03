@@ -8,13 +8,14 @@
 
   <style>
     :root {
-      /* Palette Festa della Donna */
-      --primary-color: #6b21a8; /* Viola */
-      --accent-color: #facc15;  /* Giallo Mimosa */
-      --bg-color: #fffef0;      /* Crema leggerissimo */
+      --primary-color: #6b21a8; 
+      --accent-color: #facc15;  
+      --bg-color: #fffef0;      
       --header-height: 220px; 
       --footer-height: 80px;
-      --mimosa-gold: #fbbf24;
+      --mimosa-yellow-bright: #fef08a;
+      --mimosa-yellow-dark: #eab308;
+      --leaf-green: #3f6212;
     }
 
     body {
@@ -31,28 +32,26 @@
       overflow: hidden;
     }
 
-    /* ====== DECORAZIONI MIMOSA ====== */
+    /* ====== DECORAZIONI MIMOSA REALISTICA ====== */
     .mimosa-decoration {
       pointer-events: none;
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
     }
     
-    /* Mimosa accanto al logo nell'header */
     .mimosa-header {
-      height: 80%; /* Uguale all'altezza del logo */
+      height: 90%; 
       width: auto;
       margin-left: 20px;
-      transform: rotate(5deg);
     }
 
-    /* Mimosa in basso a destra rimasta come decorazione di sfondo */
     .mimosa-bottom-right { 
       position: absolute;
       bottom: 90px; 
       right: 20px; 
-      width: 150px; 
-      transform: rotate(160deg); 
+      width: 220px; 
+      transform: rotate(-20deg); 
       z-index: 1001;
+      opacity: 0.9;
     }
 
     /* ====== HEADER ====== */
@@ -116,17 +115,19 @@
       position: relative;
     }
 
-    /* Effetto petali cadenti */
+    /* Effetto pallini mimosa cadenti */
     .petal {
       position: absolute;
       background: var(--accent-color);
       border-radius: 50%;
       pointer-events: none;
-      opacity: 0.6;
+      opacity: 0.7;
+      box-shadow: 0 0 3px var(--mimosa-yellow-bright);
       animation: fall linear infinite;
     }
     @keyframes fall {
-      to { transform: translateY(100vh) rotate(360deg); }
+      0% { transform: translateY(-50px) translateX(0) rotate(0deg); }
+      100% { transform: translateY(100vh) translateX(50px) rotate(360deg); }
     }
 
     #courses {
@@ -162,7 +163,6 @@
       font-size: 55px; 
       font-weight: 800;
       color: var(--primary-color);
-      font-family: 'Inter', sans-serif;
     }
     .course .dettagli {
       flex: 1.2;
@@ -180,12 +180,7 @@
     .info-label { font-size: 20px; text-transform: uppercase; color: #7e22ce; font-weight: 700; margin-bottom: 5px; opacity: 0.7; }
     .info-time { font-size: 60px; font-weight: 800; color: #1e1b4b; line-height: 1; }
 
-    /* Colori stato a tema */
-    .green  { 
-      background: linear-gradient(90deg, #f0fdf4 0%, #ffffff 100%); 
-      border-left: 25px solid #22c55e; 
-      border-right: 4px solid #22c55e;
-    }
+    .green  { background: linear-gradient(90deg, #f0fdf4 0%, #ffffff 100%); border-left: 25px solid #22c55e; border-right: 4px solid #22c55e; }
     .yellow { 
       background: linear-gradient(90deg, #fefce8 0%, #ffffff 100%); 
       border-left: 25px solid var(--accent-color);
@@ -193,20 +188,14 @@
       box-shadow: 0 0 30px rgba(250, 204, 21, 0.3);
       animation: pulse-glow 2s infinite;
     }
-    .gray   { 
-      background-color: #fcfcfc; 
-      border-left: 25px solid #cbd5e1; 
-      color: #94a3b8; 
-      filter: grayscale(0.5);
-    }
+    .gray   { background-color: #fcfcfc; border-left: 25px solid #cbd5e1; color: #94a3b8; filter: grayscale(0.5); }
 
     @keyframes pulse-glow {
-      0% { transform: scale(1); box-shadow: 0 0 20px rgba(250, 204, 21, 0.2); }
-      50% { transform: scale(1.01); box-shadow: 0 0 40px rgba(250, 204, 21, 0.4); }
-      100% { transform: scale(1); box-shadow: 0 0 20px rgba(250, 204, 21, 0.2); }
+      0% { transform: scale(1); }
+      50% { transform: scale(1.005); }
+      100% { transform: scale(1); }
     }
 
-    /* Messaggio vuoto */
     .empty-message {
       text-align: center;
       font-size: 50px;
@@ -254,7 +243,6 @@
       font-weight: 700;
       line-height: var(--footer-height);
       text-transform: uppercase;
-      letter-spacing: 1px;
     }
     @keyframes ticker {
       0%   { transform: translateX(0); }
@@ -264,34 +252,52 @@
 </head>
 <body>
 
-  <!-- Decorazione Mimosa in basso a destra (sfondo) -->
-  <svg class="mimosa-decoration mimosa-bottom-right" viewBox="0 0 100 100">
-    <circle cx="50" cy="40" r="8" fill="#facc15" />
-    <circle cx="60" cy="50" r="8" fill="#fbbf24" />
-    <circle cx="45" cy="55" r="8" fill="#facc15" />
-    <circle cx="35" cy="45" r="8" fill="#fbbf24" />
-    <path d="M50 60 L50 90" stroke="#4d7c0f" stroke-width="2" />
-    <path d="M50 70 L30 80" stroke="#4d7c0f" stroke-width="1.5" />
-    <path d="M50 75 L70 85" stroke="#4d7c0f" stroke-width="1.5" />
+  <!-- Definizione Cluster Mimosa Riutilizzabile -->
+  <svg style="display: none;">
+    <symbol id="mimosa-cluster" viewBox="0 0 40 40">
+        <circle cx="20" cy="20" r="5" fill="#facc15" />
+        <circle cx="15" cy="15" r="4.5" fill="#fde047" />
+        <circle cx="25" cy="15" r="4" fill="#fbbf24" />
+        <circle cx="20" cy="12" r="3.5" fill="#fef08a" />
+        <circle cx="12" cy="22" r="4" fill="#fbbf24" />
+        <circle cx="28" cy="22" r="4.5" fill="#fde047" />
+        <circle cx="18" cy="28" r="4" fill="#facc15" />
+        <circle cx="24" cy="27" r="3.5" fill="#eab308" />
+    </symbol>
+    <symbol id="mimosa-leaf" viewBox="0 0 100 40">
+        <path d="M0 20 Q50 15 100 20" stroke="#365314" stroke-width="1.5" fill="none" />
+        <!-- Piccole foglioline pennate -->
+        <g stroke="#4d7c0f" stroke-width="1">
+            <line x1="10" y1="20" x2="5" y2="10" /> <line x1="10" y1="20" x2="5" y2="30" />
+            <line x1="25" y1="19" x2="20" y2="8" /> <line x1="25" y1="19" x2="20" y2="32" />
+            <line x1="40" y1="18" x2="35" y2="6" /> <line x1="40" y1="18" x2="35" y2="34" />
+            <line x1="55" y1="18" x2="50" y2="6" /> <line x1="55" y1="18" x2="50" y2="34" />
+            <line x1="70" y1="19" x2="65" y2="8" /> <line x1="70" y1="19" x2="65" y2="32" />
+            <line x1="85" y1="20" x2="80" y2="10" /> <line x1="85" y1="20" x2="80" y2="30" />
+        </g>
+    </symbol>
   </svg>
 
   <header>
     <div class="logo-container">
-        <!-- Logo originale -->
         <img src="CF Lampugnano blu xl.png" alt="Logo Piscina" onerror="this.style.display='none'; document.write('<h2 style=\'font-family:Playfair Display\'>Piscina Lampugnano</h2>')"/>
         
-        <!-- Mimosa a DESTRA del logo e ALTA quanto il logo -->
-        <svg class="mimosa-decoration mimosa-header" viewBox="0 0 100 100">
-            <circle cx="40" cy="20" r="7" fill="#facc15" />
-            <circle cx="55" cy="25" r="8" fill="#fbbf24" />
-            <circle cx="45" cy="35" r="7" fill="#facc15" />
-            <circle cx="60" cy="40" r="8" fill="#fbbf24" />
-            <circle cx="40" cy="50" r="7" fill="#facc15" />
-            <circle cx="55" cy="55" r="8" fill="#fbbf24" />
-            <path d="M45 10 L45 90" stroke="#4d7c0f" stroke-width="2" />
-            <path d="M45 30 L65 20" stroke="#4d7c0f" stroke-width="1.2" />
-            <path d="M45 50 L25 40" stroke="#4d7c0f" stroke-width="1.2" />
-            <path d="M45 70 L65 60" stroke="#4d7c0f" stroke-width="1.2" />
+        <!-- Ramo di Mimosa Realistico nell'Header -->
+        <svg class="mimosa-decoration mimosa-header" viewBox="0 0 120 200">
+            <!-- Stelo principale -->
+            <path d="M40 190 Q50 100 45 10" stroke="#365314" stroke-width="3" fill="none" />
+            
+            <!-- Foglie -->
+            <g transform="translate(10, 150) rotate(-30) scale(0.6)"> <use href="#mimosa-leaf" /> </g>
+            <g transform="translate(60, 100) rotate(20) scale(0.7)"> <use href="#mimosa-leaf" /> </g>
+            
+            <!-- Cluster di fiori -->
+            <use href="#mimosa-cluster" x="35" y="20" width="30" />
+            <use href="#mimosa-cluster" x="25" y="50" width="35" />
+            <use href="#mimosa-cluster" x="50" y="70" width="25" />
+            <use href="#mimosa-cluster" x="20" y="90" width="40" />
+            <use href="#mimosa-cluster" x="45" y="120" width="30" />
+            <use href="#mimosa-cluster" x="30" y="150" width="35" />
         </svg>
     </div>
 
@@ -302,6 +308,16 @@
   </header>
 
   <div class="container" id="petal-container">
+    <!-- Decorazione grande in basso a destra -->
+    <svg class="mimosa-decoration mimosa-bottom-right" viewBox="0 0 200 200">
+        <path d="M180 180 Q100 150 20 160" stroke="#365314" stroke-width="4" fill="none" />
+        <g transform="translate(40, 140) rotate(-10) scale(1.2)"> <use href="#mimosa-leaf" /> </g>
+        <use href="#mimosa-cluster" x="120" y="130" width="50" />
+        <use href="#mimosa-cluster" x="80" y="120" width="60" />
+        <use href="#mimosa-cluster" x="40" y="130" width="55" />
+        <use href="#mimosa-cluster" x="100" y="100" width="45" />
+    </svg>
+
     <div id="courses">
         <div class="empty-message">In attesa delle attività di oggi... 🌸</div>
     </div>
@@ -317,39 +333,37 @@
   </footer>
 
   <script>
-    /* ====== EFFETTO PETALI ====== */
+    /* ====== EFFETTO PALLINI MIMOSA ====== */
     function createPetals() {
         const container = document.getElementById('petal-container');
-        for (let i = 0; i < 15; i++) {
+        for (let i = 0; i < 25; i++) {
             const petal = document.createElement('div');
             petal.className = 'petal';
-            const size = Math.random() * 15 + 5 + 'px';
+            const size = Math.random() * 8 + 4 + 'px';
             petal.style.width = size;
             petal.style.height = size;
             petal.style.left = Math.random() * 100 + 'vw';
-            petal.style.animationDuration = Math.random() * 5 + 5 + 's';
-            petal.style.animationDelay = Math.random() * 5 + 's';
+            petal.style.animationDuration = Math.random() * 7 + 6 + 's';
+            petal.style.animationDelay = Math.random() * 8 + 's';
+            // Variamo leggermente il giallo
+            const yellows = ['#facc15', '#fde047', '#fbbf24', '#fef08a'];
+            petal.style.backgroundColor = yellows[Math.floor(Math.random() * yellows.length)];
             container.appendChild(petal);
         }
     }
     createPetals();
 
-    /* ====== OROLOGIO ====== */
     function updateClock() {
       const now = new Date();
       const h = now.getHours().toString().padStart(2, '0');
       const m = now.getMinutes().toString().padStart(2, '0');
-      
       const options = { weekday: 'long', day: '2-digit', month: 'long' };
-      let dateStr = now.toLocaleDateString('it-IT', options); 
-      
       document.getElementById("clock").textContent = `${h}:${m}`;
-      document.getElementById("date").textContent  = dateStr;
+      document.getElementById("date").textContent  = now.toLocaleDateString('it-IT', options);
     }
     setInterval(updateClock, 1000);
     updateClock();
 
-    /* ====== UTILS ====== */
     function normalizeStr(str) {
       if (!str) return "";
       return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
@@ -364,20 +378,15 @@
     function formatCell(cell) {
       if (!cell) return "";
       if (cell.f) return cell.f;
-      if (typeof cell.v === 'string') return cell.v;
-      if (typeof cell.v === 'number') return cell.v.toString();
-      return "";
+      return cell.v ? cell.v.toString() : "";
     }
 
-    /* ====== CARICAMENTO DATI ====== */
     async function loadAll() {
       const SHEET_ID = '1dcs1X7x84g69f14m9Sl2KmqZUbCI6lLBBfi3QCMNqWI';
       const SHEET_BASE = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=`;
       
       try {
-        /* ---- FETCH CORSI ---- */
         const resC = await fetch(SHEET_BASE + 'Corsi');
-        if (!resC.ok) throw new Error("Network response was not ok");
         const txtC = await resC.text();
         const jsonC = JSON.parse(txtC.substring(47).slice(0, -2));
         const rowsC = jsonC.table.rows.map(r => r.c.map(c => c ? formatCell(c) : ""));
@@ -389,16 +398,13 @@
         let parsed = rowsC
           .filter(r => normalizeStr(r[0]) === todayName)
           .map(r => {
-            const ingressoMin = parseTime(r[2]);
-            const inizioMin   = parseTime(r[3]);
-            const durata      = Number.parseInt(r[4]) || 60;
             return {
               attivita: r[1] || '',
               oraIngresso: r[2] || '',
               oraInizio: r[3] || '',
-              durata,
-              ingressoMin,
-              inizioMin
+              durata: Number.parseInt(r[4]) || 60,
+              ingressoMin: parseTime(r[2]),
+              inizioMin: parseTime(r[3])
             };
           })
           .filter(c => Number.isFinite(c.ingressoMin) && currentTime <= (c.ingressoMin + c.durata))
@@ -406,31 +412,17 @@
 
         renderCourses(parsed, currentTime);
 
-        /* ---- FETCH NOTE ---- */
         const resN = await fetch(SHEET_BASE + 'Note');
         const txtN = await resN.text();
         const jsonN = JSON.parse(txtN.substring(47).slice(0, -2));
         const rowsN = jsonN.table.rows.map(r => r.c.map(c => c ? formatCell(c) : ""));
         
-        let notesText = rowsN
-          .filter(r => r[0] && r[0].trim() !== '')
-          .map(r => r[0])
-          .join("  •  ");
-
-        if (!notesText) {
-            notesText = "Buona Festa della Donna a tutte le nostre corsiste! 🌸 Auguri da tutto lo staff della Piscina Lampugnano! 🌸";
-        } else {
-            notesText = "🌸 AUGURI A TUTTE LE DONNE! 🌸  •  " + notesText;
-        }
-
+        let notesText = rowsN.filter(r => r[0] && r[0].trim() !== '').map(r => r[0]).join("  •  ");
+        notesText = notesText ? "🌸 AUGURI A TUTTE LE DONNE! 🌸  •  " + notesText : "Buona Festa della Donna a tutte le nostre corsiste! 🌸 Auguri da tutto lo staff della Piscina Lampugnano! 🌸";
         updateTicker(notesText);
 
       } catch (err) {
         console.error('Errore update:', err);
-        const box = document.getElementById('courses');
-        if (!box.children.length || box.innerText.includes('attesa')) {
-           box.innerHTML = `<div class="empty-message">⚠️ Riconnessione al database...</div>`;
-        }
       }
     }
 
@@ -439,39 +431,22 @@
         let htmlContent = '';
 
         if (courses.length === 0) {
-           htmlContent = `
-            <div class="empty-message">
-              🌸 Le attività di oggi sono terminate.<br>
-              <span style="font-size:30px; color:#7e22ce; font-weight: 500;">Vi aspettiamo domani. Buona serata a tutte!</span>
-            </div>`;
+           htmlContent = `<div class="empty-message">🌸 Le attività di oggi sono terminate.<br><span style="font-size:30px; color:#7e22ce; font-weight: 500;">Vi aspettiamo domani. Buona serata a tutte!</span></div>`;
         } else {
-          const visible = courses.slice(0, 4); 
-          
-          visible.forEach(corso => {
+          courses.slice(0, 4).forEach(corso => {
             const timeToStart = corso.ingressoMin - currentTime;
-            
             let style = 'gray'; 
-            if (timeToStart <= 0 && timeToStart > -corso.durata) {
-                style = 'green'; 
-            } else if (timeToStart <= 10 && timeToStart > 0) {
-                style = 'yellow';
-            }
+            if (timeToStart <= 0 && timeToStart > -corso.durata) style = 'green'; 
+            else if (timeToStart <= 10 && timeToStart > 0) style = 'yellow';
 
             htmlContent += `
               <div class="course ${style}">
                 <div class="attivita">${corso.attivita}</div>
                 <div class="dettagli">
-                    <div class="info-box">
-                        <span class="info-label">Ingresso</span>
-                        <span class="info-time">${corso.oraIngresso}</span>
-                    </div>
-                    <div class="info-box">
-                        <span class="info-label">Inizio</span>
-                        <span class="info-time">${corso.oraInizio}</span>
-                    </div>
+                    <div class="info-box"><span class="info-label">Ingresso</span><span class="info-time">${corso.oraIngresso}</span></div>
+                    <div class="info-box"><span class="info-label">Inizio</span><span class="info-time">${corso.oraInizio}</span></div>
                 </div>
-              </div>
-            `;
+              </div>`;
           });
         }
         coursesBox.innerHTML = htmlContent;
@@ -480,18 +455,12 @@
     function updateTicker(text) {
         const copy1 = document.getElementById('ticker-copy-1');
         const copy2 = document.getElementById('ticker-copy-2');
-        const track = document.getElementById('ticker-track');
-        
         if (copy1.textContent === text) return;
-
         copy1.textContent = text;
         copy2.textContent = text;
-
         requestAnimationFrame(() => {
-            const width = copy1.offsetWidth;
-            const speed = 150; 
-            const duration = width / speed; 
-            track.style.setProperty('--ticker-duration', `${duration}s`);
+            const duration = copy1.offsetWidth / 130; 
+            document.getElementById('ticker-track').style.setProperty('--ticker-duration', `${duration}s`);
         });
     }
 
