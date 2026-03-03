@@ -15,15 +15,12 @@
       --footer-height: 80px;
       --mimosa-yellow-bright: #fef08a;
       --mimosa-yellow-dark: #eab308;
-      --leaf-green: #3f6212;
     }
 
     body {
       font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
       margin: 0;
       background-color: var(--bg-color);
-      background-image: radial-gradient(circle at 10% 20%, rgba(250, 204, 21, 0.05) 0%, transparent 20%),
-                        radial-gradient(circle at 90% 80%, rgba(107, 33, 168, 0.05) 0%, transparent 20%);
       color: var(--primary-color);
       letter-spacing: -0.5px;
       display: flex;
@@ -32,57 +29,47 @@
       overflow: hidden;
     }
 
-    /* ====== DECORAZIONI MIMOSA REALISTICA ====== */
-    .mimosa-decoration {
-      pointer-events: none;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-    }
-    
-    .mimosa-header {
-      height: 90%; 
-      width: auto;
-      margin-left: 20px;
-    }
-
-    .mimosa-bottom-right { 
-      position: absolute;
-      bottom: 90px; 
-      right: 20px; 
-      width: 220px; 
-      transform: rotate(-20deg); 
-      z-index: 1001;
-      opacity: 0.9;
-    }
-
-    /* ====== HEADER ====== */
+    /* ====== HEADER CON LOGO E MIMOSA SOVRAPPOSTA ====== */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
+      background-color: #ffffff;
       padding: 0 40px; 
       box-shadow: 0 4px 20px rgba(107, 33, 168, 0.1);
       height: var(--header-height);
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 1000;
-      border-bottom: 4px solid var(--accent-color);
+      border-bottom: 5px solid var(--accent-color);
     }
     
-    .logo-container {
+    .logo-wrapper {
+      position: relative;
       display: flex;
       align-items: center;
       height: 100%;
     }
 
     header img {
-      height: 80%; 
+      height: 75%; 
       width: auto;
       object-fit: contain;
+      z-index: 1;
     }
     
-    .datetime { text-align: right; line-height: 1; }
+    /* Mimosa attaccata e parzialmente sovrapposta al logo */
+    .mimosa-header {
+      height: 90%; 
+      width: auto;
+      position: absolute;
+      left: 200px; /* Regolato per sovrapporsi alla fine del logo blu */
+      z-index: 2;
+      filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.1));
+      pointer-events: none;
+    }
+
+    .datetime { text-align: right; line-height: 1; z-index: 3; }
     
     .datetime .time { 
         font-weight: 800; 
@@ -115,21 +102,6 @@
       position: relative;
     }
 
-    /* Effetto pallini mimosa cadenti */
-    .petal {
-      position: absolute;
-      background: var(--accent-color);
-      border-radius: 50%;
-      pointer-events: none;
-      opacity: 0.7;
-      box-shadow: 0 0 3px var(--mimosa-yellow-bright);
-      animation: fall linear infinite;
-    }
-    @keyframes fall {
-      0% { transform: translateY(-50px) translateX(0) rotate(0deg); }
-      100% { transform: translateY(100vh) translateX(50px) rotate(360deg); }
-    }
-
     #courses {
       width: 100%;
       max-width: 1700px;
@@ -137,7 +109,6 @@
       flex-direction: column;
       justify-content: center;
       gap: 25px; 
-      z-index: 2;
     }
 
     /* ====== CORSI ====== */
@@ -149,7 +120,6 @@
       box-shadow: 0 10px 25px rgba(107, 33, 168, 0.08);
       width: 100%;
       position: relative;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       border: 2px solid transparent;
     }
     
@@ -168,7 +138,7 @@
       flex: 1.2;
       display: flex;
       justify-content: space-around;
-      background-color: rgba(250, 204, 21, 0.05);
+      background-color: rgba(250, 204, 21, 0.03);
       border-left: 2px dashed rgba(107, 33, 168, 0.1);
     }
     .info-box {
@@ -185,7 +155,6 @@
       background: linear-gradient(90deg, #fefce8 0%, #ffffff 100%); 
       border-left: 25px solid var(--accent-color);
       border-right: 4px solid var(--accent-color);
-      box-shadow: 0 0 30px rgba(250, 204, 21, 0.3);
       animation: pulse-glow 2s infinite;
     }
     .gray   { background-color: #fcfcfc; border-left: 25px solid #cbd5e1; color: #94a3b8; filter: grayscale(0.5); }
@@ -266,32 +235,25 @@
     </symbol>
     <symbol id="mimosa-leaf" viewBox="0 0 100 40">
         <path d="M0 20 Q50 15 100 20" stroke="#365314" stroke-width="1.5" fill="none" />
-        <!-- Piccole foglioline pennate -->
         <g stroke="#4d7c0f" stroke-width="1">
             <line x1="10" y1="20" x2="5" y2="10" /> <line x1="10" y1="20" x2="5" y2="30" />
             <line x1="25" y1="19" x2="20" y2="8" /> <line x1="25" y1="19" x2="20" y2="32" />
             <line x1="40" y1="18" x2="35" y2="6" /> <line x1="40" y1="18" x2="35" y2="34" />
             <line x1="55" y1="18" x2="50" y2="6" /> <line x1="55" y1="18" x2="50" y2="34" />
             <line x1="70" y1="19" x2="65" y2="8" /> <line x1="70" y1="19" x2="65" y2="32" />
-            <line x1="85" y1="20" x2="80" y2="10" /> <line x1="85" y1="20" x2="80" y2="30" />
         </g>
     </symbol>
   </svg>
 
   <header>
-    <div class="logo-container">
-        <img src="CF Lampugnano blu xl.png" alt="Logo Piscina" onerror="this.style.display='none'; document.write('<h2 style=\'font-family:Playfair Display\'>Piscina Lampugnano</h2>')"/>
+    <div class="logo-wrapper">
+        <img src="CF Lampugnano blu xl.png" alt="Logo Piscina" onerror="this.style.display='none'; document.write('<h2 style=\'font-family:Playfair Display; color:#003366\'>Piscina Lampugnano</h2>')"/>
         
-        <!-- Ramo di Mimosa Realistico nell'Header -->
-        <svg class="mimosa-decoration mimosa-header" viewBox="0 0 120 200">
-            <!-- Stelo principale -->
+        <!-- Ramo di Mimosa Realistico sovrapposto al logo -->
+        <svg class="mimosa-header" viewBox="0 0 120 200">
             <path d="M40 190 Q50 100 45 10" stroke="#365314" stroke-width="3" fill="none" />
-            
-            <!-- Foglie -->
             <g transform="translate(10, 150) rotate(-30) scale(0.6)"> <use href="#mimosa-leaf" /> </g>
             <g transform="translate(60, 100) rotate(20) scale(0.7)"> <use href="#mimosa-leaf" /> </g>
-            
-            <!-- Cluster di fiori -->
             <use href="#mimosa-cluster" x="35" y="20" width="30" />
             <use href="#mimosa-cluster" x="25" y="50" width="35" />
             <use href="#mimosa-cluster" x="50" y="70" width="25" />
@@ -307,19 +269,9 @@
     </div>
   </header>
 
-  <div class="container" id="petal-container">
-    <!-- Decorazione grande in basso a destra -->
-    <svg class="mimosa-decoration mimosa-bottom-right" viewBox="0 0 200 200">
-        <path d="M180 180 Q100 150 20 160" stroke="#365314" stroke-width="4" fill="none" />
-        <g transform="translate(40, 140) rotate(-10) scale(1.2)"> <use href="#mimosa-leaf" /> </g>
-        <use href="#mimosa-cluster" x="120" y="130" width="50" />
-        <use href="#mimosa-cluster" x="80" y="120" width="60" />
-        <use href="#mimosa-cluster" x="40" y="130" width="55" />
-        <use href="#mimosa-cluster" x="100" y="100" width="45" />
-    </svg>
-
+  <div class="container">
     <div id="courses">
-        <div class="empty-message">In attesa delle attività di oggi... 🌸</div>
+        <div class="empty-message">Caricamento corsi in corso... 🌸</div>
     </div>
   </div>
 
@@ -333,26 +285,6 @@
   </footer>
 
   <script>
-    /* ====== EFFETTO PALLINI MIMOSA ====== */
-    function createPetals() {
-        const container = document.getElementById('petal-container');
-        for (let i = 0; i < 25; i++) {
-            const petal = document.createElement('div');
-            petal.className = 'petal';
-            const size = Math.random() * 8 + 4 + 'px';
-            petal.style.width = size;
-            petal.style.height = size;
-            petal.style.left = Math.random() * 100 + 'vw';
-            petal.style.animationDuration = Math.random() * 7 + 6 + 's';
-            petal.style.animationDelay = Math.random() * 8 + 's';
-            // Variamo leggermente il giallo
-            const yellows = ['#facc15', '#fde047', '#fbbf24', '#fef08a'];
-            petal.style.backgroundColor = yellows[Math.floor(Math.random() * yellows.length)];
-            container.appendChild(petal);
-        }
-    }
-    createPetals();
-
     function updateClock() {
       const now = new Date();
       const h = now.getHours().toString().padStart(2, '0');
@@ -397,16 +329,14 @@
 
         let parsed = rowsC
           .filter(r => normalizeStr(r[0]) === todayName)
-          .map(r => {
-            return {
+          .map(r => ({
               attivita: r[1] || '',
               oraIngresso: r[2] || '',
               oraInizio: r[3] || '',
               durata: Number.parseInt(r[4]) || 60,
               ingressoMin: parseTime(r[2]),
               inizioMin: parseTime(r[3])
-            };
-          })
+          }))
           .filter(c => Number.isFinite(c.ingressoMin) && currentTime <= (c.ingressoMin + c.durata))
           .sort((a, b) => a.ingressoMin - b.ingressoMin);
 
@@ -422,7 +352,7 @@
         updateTicker(notesText);
 
       } catch (err) {
-        console.error('Errore update:', err);
+        console.error('Errore database:', err);
       }
     }
 
@@ -431,7 +361,7 @@
         let htmlContent = '';
 
         if (courses.length === 0) {
-           htmlContent = `<div class="empty-message">🌸 Le attività di oggi sono terminate.<br><span style="font-size:30px; color:#7e22ce; font-weight: 500;">Vi aspettiamo domani. Buona serata a tutte!</span></div>`;
+           htmlContent = `<div class="empty-message">🌸 Le attività di oggi sono terminate.<br><span style="font-size:30px; color:#7e22ce; font-weight: 500;">Buona serata a tutte!</span></div>`;
         } else {
           courses.slice(0, 4).forEach(corso => {
             const timeToStart = corso.ingressoMin - currentTime;
