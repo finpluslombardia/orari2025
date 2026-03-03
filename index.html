@@ -73,12 +73,12 @@
 
     /* ====== DECORAZIONE MIMOSA ====== */
     .mimosa-container {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 800px;
-      height: 220px;
+      flex: 1; /* Prende automaticamente tutto lo spazio centrale */
+      height: 100%;
+      margin: 0 40px; /* Lascia un respiro elegante tra i fiori, il logo e l'orologio */
+      display: flex;
+      align-items: center;
+      justify-content: center;
       pointer-events: none;
       z-index: 0;
       opacity: 0.95;
@@ -229,7 +229,7 @@
     
     <!-- SVB Vettoriale Ramo di Mimosa -->
     <div class="mimosa-container">
-      <svg viewBox="0 0 800 220" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+      <svg viewBox="0 0 1200 220" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
         <defs>
           <radialGradient id="mimosa-puff" cx="30%" cy="30%" r="70%">
             <stop offset="0%" stop-color="#FFF59D"/>
@@ -255,51 +255,89 @@
              <path d="M7,-2 Q15,-12 22,-5 Q15,-1 7,-2" fill="#556B2F" opacity="0.8"/>
              <path d="M10,2 Q18,12 25,6 Q18,2 10,2" fill="#6B8E23" opacity="0.8"/>
           </g>
+          <!-- Cluster Grande -->
+          <g id="cluster-large">
+            <use href="#leaf-sprig" x="-10" y="5" transform="rotate(-30)"/>
+            <use href="#leaf-sprig" x="15" y="0" transform="rotate(40)"/>
+            <use href="#leaf-sprig" x="0" y="15" transform="rotate(80)"/>
+            <use href="#puff" x="0" y="0"/>
+            <use href="#puff" x="-15" y="-10"/>
+            <use href="#puff" x="15" y="-5"/>
+            <use href="#puff" x="-5" y="15"/>
+            <use href="#puff" x="12" y="12"/>
+            <use href="#puff" x="22" y="5"/>
+            <use href="#puff" x="-12" y="8"/>
+            <use href="#puff" x="-22" y="2"/>
+            <use href="#puff" x="5" y="-12"/>
+            <use href="#puff" x="0" y="25"/>
+            <use href="#puff" x="25" y="-12"/>
+          </g>
+          <!-- Cluster Piccolo -->
+          <g id="cluster-small">
+            <use href="#leaf-sprig" x="0" y="0" transform="rotate(15)"/>
+            <use href="#puff" x="0" y="0"/>
+            <use href="#puff" x="-10" y="8"/>
+            <use href="#puff" x="10" y="-5"/>
+            <use href="#puff" x="15" y="10"/>
+            <use href="#puff" x="-5" y="-10"/>
+          </g>
         </defs>
 
-        <!-- Rami -->
-        <path d="M 100,-20 Q 300,80 700,250" fill="none" stroke="#556B2F" stroke-width="3" opacity="0.7"/>
-        <path d="M 250,20 Q 450,130 600,100" fill="none" stroke="#556B2F" stroke-width="2" opacity="0.7"/>
-        <path d="M 400,100 Q 550,220 750,150" fill="none" stroke="#556B2F" stroke-width="2" opacity="0.7"/>
-        <path d="M 500,140 Q 600,100 700,180" fill="none" stroke="#556B2F" stroke-width="1.5" opacity="0.7"/>
-        <path d="M 150,-10 Q 250,50 350,-20" fill="none" stroke="#556B2F" stroke-width="2" opacity="0.7"/>
+        <!-- Rami Principali (Onda S-curve) -->
+        <path d="M -50,110 Q 300,220 600,110 T 1250,110" fill="none" stroke="#556B2F" stroke-width="3" opacity="0.7"/>
+        <path d="M -50,115 Q 300,230 600,115 T 1250,115" fill="none" stroke="#4A5D23" stroke-width="2" opacity="0.6"/>
+        
+        <!-- Rametti Secondari per dare volume -->
+        <path d="M 100,136 Q 130,170 180,165" fill="none" stroke="#556B2F" stroke-width="2" opacity="0.7"/>
+        <path d="M 250,154 Q 280,190 330,180" fill="none" stroke="#556B2F" stroke-width="2" opacity="0.7"/>
+        <path d="M 450,140 Q 480,180 520,160" fill="none" stroke="#556B2F" stroke-width="2" opacity="0.7"/>
+        <path d="M 700,85 Q 730,50 780,55" fill="none" stroke="#556B2F" stroke-width="2" opacity="0.7"/>
+        <path d="M 850,67 Q 880,30 930,40" fill="none" stroke="#556B2F" stroke-width="2" opacity="0.7"/>
+        <path d="M 1050,80 Q 1080,45 1130,60" fill="none" stroke="#556B2F" stroke-width="2" opacity="0.7"/>
 
-        <!-- Foglie elegantemente posizionate -->
-        <use href="#leaf-sprig" x="180" y="20" transform="rotate(25 180 20)"/>
-        <use href="#leaf-sprig" x="350" y="80" transform="rotate(-15 350 80)"/>
-        <use href="#leaf-sprig" x="500" y="150" transform="rotate(20 500 150)"/>
-        <use href="#leaf-sprig" x="400" y="100" transform="rotate(-45 400 100)"/>
-        <use href="#leaf-sprig" x="580" y="105" transform="rotate(-30 580 105)"/>
-        <use href="#leaf-sprig" x="650" y="190" transform="rotate(10 650 190)"/>
-        <use href="#leaf-sprig" x="250" y="10" transform="rotate(40 250 10)"/>
+        <!-- Popolamento della Mimosa lungo la curva principale -->
+        <!-- Zona 1: Discesa -->
+        <use href="#cluster-large" x="0" y="110" transform="rotate(10 0 110)"/>
+        <use href="#cluster-small" x="50" y="125" transform="rotate(-15 50 125)"/>
+        <use href="#cluster-large" x="100" y="136" transform="rotate(20 100 136)"/>
+        <use href="#cluster-small" x="150" y="145" transform="rotate(-5 150 145)"/>
+        <use href="#cluster-large" x="200" y="152" transform="rotate(35 200 152)"/>
+        <use href="#cluster-small" x="250" y="154" transform="rotate(-20 250 154)"/>
+        
+        <!-- Zona 2: Avvallamento centrale -->
+        <use href="#cluster-large" x="300" y="155" transform="rotate(5 300 155)"/>
+        <use href="#cluster-small" x="350" y="154" transform="rotate(25 350 154)"/>
+        <use href="#cluster-large" x="400" y="148" transform="rotate(-10 400 148)"/>
+        <use href="#cluster-small" x="450" y="140" transform="rotate(15 450 140)"/>
+        
+        <!-- Zona 3: Risalita verso il centro -->
+        <use href="#cluster-large" x="500" y="130" transform="rotate(-25 500 130)"/>
+        <use href="#cluster-small" x="550" y="120" transform="rotate(10 550 120)"/>
+        <use href="#cluster-large" x="600" y="110" transform="rotate(-5 600 110)"/>
 
-        <!-- Fiori di Mimosa (Puffs) -->
-        <use href="#puff" x="150" y="10"/> <use href="#puff" x="170" y="15"/>
-        <use href="#puff" x="160" y="25"/> <use href="#puff" x="180" y="5"/>
-        <use href="#puff" x="200" y="30"/> <use href="#puff" x="220" y="40"/>
-        <use href="#puff" x="210" y="50"/> <use href="#puff" x="230" y="25"/>
-        <use href="#puff" x="280" y="60"/> <use href="#puff" x="300" y="55"/>
-        <use href="#puff" x="290" y="75"/> <use href="#puff" x="310" y="70"/>
-        <use href="#puff" x="260" y="50"/>
-        <use href="#puff" x="330" y="90"/> <use href="#puff" x="350" y="85"/>
-        <use href="#puff" x="340" y="105"/> <use href="#puff" x="360" y="100"/>
-        <use href="#puff" x="370" y="80"/> <use href="#puff" x="320" y="80"/>
-        <use href="#puff" x="420" y="120"/> <use href="#puff" x="440" y="115"/>
-        <use href="#puff" x="430" y="135"/> <use href="#puff" x="450" y="130"/>
-        <use href="#puff" x="410" y="105"/>
-        <use href="#puff" x="480" y="145"/> <use href="#puff" x="500" y="140"/>
-        <use href="#puff" x="490" y="160"/> <use href="#puff" x="510" y="155"/>
-        <use href="#puff" x="520" y="135"/>
-        <use href="#puff" x="540" y="115"/> <use href="#puff" x="560" y="120"/>
-        <use href="#puff" x="550" y="100"/> <use href="#puff" x="570" y="105"/>
-        <use href="#puff" x="580" y="165"/> <use href="#puff" x="600" y="170"/>
-        <use href="#puff" x="590" y="150"/> <use href="#puff" x="610" y="155"/>
-        <use href="#puff" x="620" y="180"/> <use href="#puff" x="570" y="175"/>
-        <use href="#puff" x="660" y="175"/> <use href="#puff" x="680" y="180"/>
-        <use href="#puff" x="670" y="160"/> <use href="#puff" x="690" y="165"/>
-        <use href="#puff" x="720" y="145"/> <use href="#puff" x="740" y="150"/>
-        <use href="#puff" x="730" y="130"/> <use href="#puff" x="750" y="135"/>
-        <use href="#puff" x="710" y="160"/>
+        <!-- Zona 4: Salita verso destra -->
+        <use href="#cluster-small" x="650" y="98" transform="rotate(20 650 98)"/>
+        <use href="#cluster-large" x="700" y="85" transform="rotate(-15 700 85)"/>
+        <use href="#cluster-small" x="750" y="75" transform="rotate(30 750 75)"/>
+        <use href="#cluster-large" x="800" y="68" transform="rotate(-5 800 68)"/>
+        <use href="#cluster-small" x="850" y="67" transform="rotate(15 850 67)"/>
+        <use href="#cluster-large" x="900" y="65" transform="rotate(-20 900 65)"/>
+
+        <!-- Zona 5: Ritorno al livello -->
+        <use href="#cluster-small" x="950" y="67" transform="rotate(10 950 67)"/>
+        <use href="#cluster-large" x="1000" y="73" transform="rotate(-15 1000 73)"/>
+        <use href="#cluster-small" x="1050" y="80" transform="rotate(25 1050 80)"/>
+        <use href="#cluster-large" x="1100" y="90" transform="rotate(-5 1100 90)"/>
+        <use href="#cluster-small" x="1150" y="100" transform="rotate(15 1150 100)"/>
+        <use href="#cluster-large" x="1200" y="110" transform="rotate(-10 1200 110)"/>
+
+        <!-- Aggiunte sui rametti secondari per volume extra -->
+        <use href="#cluster-small" x="180" y="165" transform="rotate(45 180 165)"/>
+        <use href="#cluster-large" x="330" y="180" transform="rotate(10 330 180)"/>
+        <use href="#cluster-small" x="520" y="160" transform="rotate(-30 520 160)"/>
+        <use href="#cluster-small" x="780" y="55" transform="rotate(60 780 55)"/>
+        <use href="#cluster-large" x="930" y="40" transform="rotate(-10 930 40)"/>
+        <use href="#cluster-small" x="1130" y="60" transform="rotate(25 1130 60)"/>
       </svg>
     </div>
 
