@@ -7,8 +7,8 @@
 
   <style>
     :root {
-      --primary-color: #003366; /* Mantenuto il blu del vostro logo per eleganza e contrasto */
-      --bg-color: #FCFBF5; /* Crema caldo ed elegante al posto dell'azzurro */
+      --primary-color: #003366; 
+      --bg-color: #FCFBF5; 
       --header-height: 220px; 
       --footer-height: 80px;
     }
@@ -32,8 +32,8 @@
       align-items: center;
       background-color: #ffffff;
       padding: 0 40px; 
-      box-shadow: 0 4px 25px rgba(0,0,0,0.06); /* Ombreggiatura più delicata */
-      border-bottom: 2px solid rgba(255, 215, 0, 0.4); /* Sottile linea gialla */
+      box-shadow: 0 4px 25px rgba(0,0,0,0.06); 
+      border-bottom: 2px solid rgba(255, 215, 0, 0.4); 
       height: var(--header-height);
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -45,30 +45,30 @@
       width: auto;
       object-fit: contain;
       position: relative;
-      z-index: 10; /* Sopra la mimosa */
+      z-index: 10; 
     }
     
     .datetime { 
       text-align: right; 
       line-height: 1; 
-      position: absolute; /* MODIFICATO: Posizione assoluta per far passare la mimosa sotto */
+      position: absolute; 
       right: 40px;
       top: 50%;
       transform: translateY(-50%);
-      z-index: 10; /* Sopra la mimosa */
+      z-index: 10; 
     }
     
     .datetime .time { 
         font-weight: 700; 
         font-size: 110px; 
         letter-spacing: -3px; 
-        color: #9b59b6; /* MODIFICATO: Colore Lilla */
+        color: #9b59b6; 
     }
     
     .datetime .date { 
-        font-family: 'Dancing Script', cursive; /* MODIFICATO: Font elegante e corsivo */
+        font-family: 'Dancing Script', cursive; 
         font-weight: 700; 
-        font-size: 55px; /* Aumentato per compensare le proporzioni del corsivo */
+        font-size: 55px; 
         color: #9b59b6; 
         text-transform: capitalize; 
         margin-top: 0px;
@@ -76,13 +76,13 @@
 
     /* ====== DECORAZIONE MIMOSA ====== */
     .mimosa-container {
-      flex: 1; /* Prende tutto lo spazio rimanente a destra del logo */
+      flex: 1; 
       height: 100%;
-      margin-left: 20px; /* Piccolo respiro dal logo */
-      margin-right: -40px; /* Annulla il padding dell'header per arrivare al margine destro assoluto dello schermo */
+      margin-left: 20px; 
+      margin-right: -40px; 
       display: flex;
       align-items: center;
-      justify-content: flex-start; /* Allinea l'SVG esattamente a sinistra (partendo dal logo) */
+      justify-content: flex-start; 
       pointer-events: none;
       z-index: 0;
       opacity: 0.95;
@@ -115,7 +115,7 @@
       border-radius: 16px; 
       overflow: hidden;
       background-color: #fff;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.04), 0 0 15px rgba(255, 215, 0, 0.03); /* Glow elegante */
+      box-shadow: 0 8px 20px rgba(0,0,0,0.04), 0 0 15px rgba(255, 215, 0, 0.03); 
       border: 1px solid rgba(255, 215, 0, 0.2);
       width: 100%;
       position: relative;
@@ -130,8 +130,8 @@
     
     .course .attivita {
       flex: 2;
-      font-family: 'Dancing Script', cursive; /* MODIFICATO: Font elegante e corsivo */
-      font-size: 75px; /* Aumentato per compensare le proporzioni del corsivo */
+      font-family: 'Dancing Script', cursive; 
+      font-size: 75px; 
       font-weight: 700;
       color: #9b59b6; 
       line-height: 1.1;
@@ -153,14 +153,12 @@
     }
     
     .info-label { font-size: 22px; text-transform: uppercase; color: #666; font-weight: 600; margin-bottom: 5px; }
-    .info-time { font-size: 60px; font-weight: 700; color: #9b59b6; line-height: 1; } /* MODIFICATO: Colore Lilla */
+    .info-time { font-size: 60px; font-weight: 700; color: #9b59b6; line-height: 1; } 
 
-    /* Colori stato (Mantenuti per UX chiara) */
     .green  { background-color: #d1e7dd; border-left: 20px solid #198754; }
     .yellow { background-color: #fff3cd; border-left: 20px solid #ffc107; }
     .gray   { background-color: #f8f9fa; border-left: 20px solid #6c757d; color: #6c757d; }
     
-    /* Animazione */
     .yellow { animation: pulse-border 2s infinite; }
     @keyframes pulse-border {
       0% { border-left-color: #ffc107; }
@@ -168,7 +166,6 @@
       100% { border-left-color: #ffc107; }
     }
 
-    /* Messaggio vuoto */
     .empty-message {
       text-align: center;
       font-size: 50px;
@@ -183,13 +180,11 @@
 
     /* ====== FOOTER TICKER ====== */
     footer {
-      background: linear-gradient(90deg, #FBC02D, #FFD54F, #FBC02D); /* Gradiente Giallo Mimosa */
-      color: #9b59b6; /* MODIFICATO: Testo lilla per uniformare */
-      border-top: 3px solid #F57F17; /* Dettaglio fine scuro */
+      background: linear-gradient(90deg, #FBC02D, #FFD54F, #FBC02D); 
+      color: #9b59b6; 
+      border-top: 3px solid #F57F17; 
       height: var(--footer-height);
       overflow: hidden;
-      display: flex;
-      align-items: center;
       position: fixed;
       bottom: 0; left: 0; right: 0;
       z-index: 1000;
@@ -199,32 +194,31 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      position: relative;
-      white-space: nowrap;
       display: flex;
       align-items: center;
     }
     
     .ticker__track {
-      display: flex; /* MODIFICATO: Rimuove il micro-spazio vuoto che causa il salto a fine giro */
+      display: flex; 
       width: max-content;
       will-change: transform;
       animation: ticker var(--ticker-duration, 20s) linear infinite;
-      -webkit-backface-visibility: hidden; /* MODIFICATO: Forza fluidità GPU */
+      -webkit-backface-visibility: hidden; 
       backface-visibility: hidden;
     }
     
     .ticker__content {
       display: inline-block;
-      padding-right: 100px;
       font-size: 40px;
-      font-weight: 600; /* Leggermente più spesso per spiccare sul giallo */
+      font-weight: 600; 
       line-height: var(--footer-height);
-      -webkit-font-smoothing: antialiased; /* MODIFICATO: Testo più definito in movimento */
+      -webkit-font-smoothing: antialiased; 
+      white-space: pre; 
+      flex-shrink: 0; 
     }
     
     @keyframes ticker {
-      0%   { transform: translate3d(0, 0, 0); } /* MODIFICATO: translate3d forza l'accelerazione hardware */
+      0%   { transform: translate3d(0, 0, 0); } 
       100% { transform: translate3d(-50%, 0, 0); }
     }
   </style>
@@ -234,7 +228,6 @@
   <header>
     <img src="CF Lampugnano blu xl.png" alt="Logo Piscina" onerror="this.style.display='none'; document.write('<h2>Piscina Lampugnano</h2>')"/>
     
-    <!-- SVB Vettoriale Ramo di Mimosa -->
     <div class="mimosa-container">
       <svg viewBox="0 0 1200 220" width="100%" height="100%" preserveAspectRatio="xMinYMid slice">
         <defs>
@@ -262,7 +255,6 @@
              <path d="M7,-2 Q15,-12 22,-5 Q15,-1 7,-2" fill="#556B2F" opacity="0.8"/>
              <path d="M10,2 Q18,12 25,6 Q18,2 10,2" fill="#6B8E23" opacity="0.8"/>
           </g>
-          <!-- Cluster Grande -->
           <g id="cluster-large">
             <use href="#leaf-sprig" x="-10" y="5" transform="rotate(-30)"/>
             <use href="#leaf-sprig" x="15" y="0" transform="rotate(40)"/>
@@ -279,7 +271,6 @@
             <use href="#puff" x="0" y="25"/>
             <use href="#puff" x="25" y="-12"/>
           </g>
-          <!-- Cluster Piccolo -->
           <g id="cluster-small">
             <use href="#leaf-sprig" x="0" y="0" transform="rotate(15)"/>
             <use href="#puff" x="0" y="0"/>
@@ -290,11 +281,9 @@
           </g>
         </defs>
 
-        <!-- Rami Principali (Onda S-curve) -->
         <path d="M -50,110 Q 300,220 600,110 T 1250,110" fill="none" stroke="#556B2F" stroke-width="3" opacity="0.7"/>
         <path d="M -50,115 Q 300,230 600,115 T 1250,115" fill="none" stroke="#4A5D23" stroke-width="2" opacity="0.6"/>
         
-        <!-- Rametti Secondari per dare volume -->
         <path d="M 100,136 Q 130,170 180,165" fill="none" stroke="#556B2F" stroke-width="2" opacity="0.7"/>
         <path d="M 250,154 Q 280,190 330,180" fill="none" stroke="#556B2F" stroke-width="2" opacity="0.7"/>
         <path d="M 450,140 Q 480,180 520,160" fill="none" stroke="#556B2F" stroke-width="2" opacity="0.7"/>
@@ -302,8 +291,6 @@
         <path d="M 850,67 Q 880,30 930,40" fill="none" stroke="#556B2F" stroke-width="2" opacity="0.7"/>
         <path d="M 1050,80 Q 1080,45 1130,60" fill="none" stroke="#556B2F" stroke-width="2" opacity="0.7"/>
 
-        <!-- Popolamento della Mimosa lungo la curva principale -->
-        <!-- Zona 1: Discesa -->
         <use href="#cluster-large" x="0" y="110" transform="rotate(10 0 110)"/>
         <use href="#cluster-small" x="50" y="125" transform="rotate(-15 50 125)"/>
         <use href="#cluster-large" x="100" y="136" transform="rotate(20 100 136)"/>
@@ -311,18 +298,15 @@
         <use href="#cluster-large" x="200" y="152" transform="rotate(35 200 152)"/>
         <use href="#cluster-small" x="250" y="154" transform="rotate(-20 250 154)"/>
         
-        <!-- Zona 2: Avvallamento centrale -->
         <use href="#cluster-large" x="300" y="155" transform="rotate(5 300 155)"/>
         <use href="#cluster-small" x="350" y="154" transform="rotate(25 350 154)"/>
         <use href="#cluster-large" x="400" y="148" transform="rotate(-10 400 148)"/>
         <use href="#cluster-small" x="450" y="140" transform="rotate(15 450 140)"/>
         
-        <!-- Zona 3: Risalita verso il centro -->
         <use href="#cluster-large" x="500" y="130" transform="rotate(-25 500 130)"/>
         <use href="#cluster-small" x="550" y="120" transform="rotate(10 550 120)"/>
         <use href="#cluster-large" x="600" y="110" transform="rotate(-5 600 110)"/>
 
-        <!-- Zona 4: Salita verso destra -->
         <use href="#cluster-small" x="650" y="98" transform="rotate(20 650 98)"/>
         <use href="#cluster-large" x="700" y="85" transform="rotate(-15 700 85)"/>
         <use href="#cluster-small" x="750" y="75" transform="rotate(30 750 75)"/>
@@ -330,7 +314,6 @@
         <use href="#cluster-small" x="850" y="67" transform="rotate(15 850 67)"/>
         <use href="#cluster-large" x="900" y="65" transform="rotate(-20 900 65)"/>
 
-        <!-- Zona 5: Ritorno al livello -->
         <use href="#cluster-small" x="950" y="67" transform="rotate(10 950 67)"/>
         <use href="#cluster-large" x="1000" y="73" transform="rotate(-15 1000 73)"/>
         <use href="#cluster-small" x="1050" y="80" transform="rotate(25 1050 80)"/>
@@ -338,7 +321,6 @@
         <use href="#cluster-small" x="1150" y="100" transform="rotate(15 1150 100)"/>
         <use href="#cluster-large" x="1200" y="110" transform="rotate(-10 1200 110)"/>
 
-        <!-- Aggiunte sui rametti secondari per volume extra -->
         <use href="#cluster-small" x="180" y="165" transform="rotate(45 180 165)"/>
         <use href="#cluster-large" x="330" y="180" transform="rotate(10 330 180)"/>
         <use href="#cluster-small" x="520" y="160" transform="rotate(-30 520 160)"/>
@@ -363,14 +345,13 @@
   <footer>
     <div class="ticker" id="ticker">
       <div class="ticker__track" id="ticker-track">
-        <span class="ticker__content" id="ticker-copy-1">...</span>
-        <span class="ticker__content" id="ticker-copy-2">...</span>
+        <span class="ticker__content" id="ticker-copy-1"></span>
+        <span class="ticker__content" id="ticker-copy-2"></span>
       </div>
     </div>
   </footer>
 
   <script>
-    /* ====== OROLOGIO ====== */
     function updateClock() {
       const now = new Date();
       const h = now.getHours().toString().padStart(2, '0');
@@ -385,7 +366,6 @@
     setInterval(updateClock, 1000);
     updateClock();
 
-    /* ====== UTILS ====== */
     function normalizeStr(str) {
       if (!str) return "";
       return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
@@ -405,13 +385,11 @@
       return "";
     }
 
-    /* ====== CARICAMENTO DATI ====== */
     async function loadAll() {
       const SHEET_ID = '1dcs1X7x84g69f14m9Sl2KmqZUbCI6lLBBfi3QCMNqWI';
       const SHEET_BASE = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=`;
       
       try {
-        /* ---- FETCH CORSI ---- */
         const resC = await fetch(SHEET_BASE + 'Corsi');
         if (!resC.ok) throw new Error("Network response was not ok");
         const txtC = await resC.text();
@@ -442,7 +420,6 @@
 
         renderCourses(parsed, currentTime);
 
-        /* ---- FETCH NOTE ---- */
         const resN = await fetch(SHEET_BASE + 'Note');
         const txtN = await resN.text();
         const jsonN = JSON.parse(txtN.substring(47).slice(0, -2));
@@ -452,7 +429,6 @@
           .map(r => r[0])
           .join("  •  ");
 
-        // MODIFICATO: Inserito il messaggio di auguri all'inizio delle notizie del footer
         const womensDayGreeting = "🌼 AUGURI A TUTTE LE DONNE! 🌼  •  ";
         const baseMessage = notesText || 'Benvenuti alla Piscina Lampugnano';
         updateTicker(womensDayGreeting + baseMessage);
@@ -471,7 +447,6 @@
         let htmlContent = '';
 
         if (courses.length === 0) {
-           // MODIFICATO: Messaggio vuoto a tema
            htmlContent = `
             <div class="empty-message">
               🌼 Le attività di oggi sono terminate.<br>
@@ -510,34 +485,36 @@
         coursesBox.innerHTML = htmlContent;
     }
 
+    let lastTickerText = ""; 
+
     function updateTicker(text) {
-        const copy1 = document.getElementById('ticker-copy-1');
-        const copy2 = document.getElementById('ticker-copy-2');
-        const track = document.getElementById('ticker-track');
-        
-        // Pulisce il testo e crea un divisore ampio e fisso
         let cleanText = text.trim();
         if (cleanText.endsWith("•")) cleanText = cleanText.slice(0, -1).trim();
         
-        // Usiamo spazi unificatori (\u00A0) per garantire un distacco visivo perfetto ad ogni ripetizione
-        const separator = "\u00A0\u00A0\u00A0\u00A0•\u00A0\u00A0\u00A0\u00A0";
+        let baseString = cleanText + "   •   ";
+        let displayString = baseString;
         
-        let repeatedText = cleanText + separator;
-        
-        // TRUCCO: Moltiplichiamo il testo finché non è larghissimo (> 250 caratteri). 
-        // In questo modo riempie sempre tutto il monitor eliminando il "buco nero" a fine ciclo.
-        while (repeatedText.length < 250) {
-            repeatedText += cleanText + separator;
+        // Moltiplichiamo il testo finché non è sicuramente più lungo del monitor
+        // per evitare che si svuoti e si blocchi quando la frase è troppo corta
+        while (displayString.length < 250) {
+            displayString += baseString;
         }
 
-        if (copy1.textContent === repeatedText) return;
+        // Se il testo è lo stesso del giro prima, ignoriamo.
+        // Questo impedisce il fastidioso salto all'indietro ogni 30 secondi.
+        if (displayString === lastTickerText) return;
+        lastTickerText = displayString;
 
-        copy1.textContent = repeatedText;
-        copy2.textContent = repeatedText;
+        const copy1 = document.getElementById('ticker-copy-1');
+        const copy2 = document.getElementById('ticker-copy-2');
+        const track = document.getElementById('ticker-track');
+
+        copy1.textContent = displayString;
+        copy2.textContent = displayString;
 
         requestAnimationFrame(() => {
             const width = copy1.offsetWidth;
-            const speed = 180; // pixel al secondo (puoi alzare per andare più veloce, es: 220)
+            const speed = 180; // Pixel al secondo
             const duration = width / speed; 
             track.style.setProperty('--ticker-duration', `${duration}s`);
         });
