@@ -2,13 +2,14 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <title>Orari Piscina Lampugnano - Festa della Donna</title>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <title>Orari Piscina Lampugnano</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --primary-color: #003366; 
-      --bg-color: #FCFBF5; 
+      --primary-color: #003366;
+      --bg-color: #f0f8ff;
+      /* MODIFICATO: Header molto più alto */
       --header-height: 220px; 
       --footer-height: 80px;
     }
@@ -31,61 +32,36 @@
       justify-content: space-between;
       align-items: center;
       background-color: #ffffff;
-      padding: 0 40px; 
-      box-shadow: 0 4px 25px rgba(0,0,0,0.06); 
-      border-bottom: 2px solid rgba(255, 215, 0, 0.4); 
+      padding: 0 40px; /* Più padding laterale */
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       height: var(--header-height);
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 1000;
     }
-    
     header img {
+      /* MODIFICATO: Logo più grande */
       height: 85%; 
       width: auto;
       object-fit: contain;
-      position: relative;
-      z-index: 10; 
     }
+    .datetime { text-align: right; line-height: 1; }
     
-    .datetime { 
-      text-align: right; 
-      line-height: 1; 
-      position: absolute; 
-      right: 40px;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 10; 
-    }
-    
+    /* MODIFICATO: Font orario molto più grande */
     .datetime .time { 
         font-weight: 700; 
         font-size: 110px; 
         letter-spacing: -3px; 
-        color: #9b59b6; 
+        color: #003366;
     }
     
+    /* MODIFICATO: Font data più grande */
     .datetime .date { 
-        font-family: 'Dancing Script', cursive; 
-        font-weight: 700; 
-        font-size: 55px; 
-        color: #9b59b6; 
+        font-weight: 500; 
+        font-size: 45px; 
+        color: #004080; 
         text-transform: capitalize; 
-        margin-top: 0px;
-    }
-
-    /* ====== DECORAZIONE MIMOSA ====== */
-    .mimosa-container {
-      flex: 1; 
-      height: 100%;
-      margin-left: 20px; 
-      margin-right: -40px; 
-      display: flex;
-      align-items: center;
-      justify-content: flex-start; 
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.95;
+        margin-top: 5px;
     }
 
     /* ====== CONTENUTO ====== */
@@ -99,66 +75,59 @@
       margin-bottom: var(--footer-height);
       overflow-y: hidden;
     }
-    
     #courses {
       width: 100%;
       max-width: 1700px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 30px; 
+      gap: 30px; /* Spazio aumentato tra i box per riempire lo schermo */
     }
 
     /* ====== CORSI ====== */
     .course {
       display: flex;
-      border-radius: 16px; 
+      border-radius: 16px; /* Bordi più arrotondati */
       overflow: hidden;
       background-color: #fff;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.04), 0 0 15px rgba(255, 215, 0, 0.03); 
-      border: 1px solid rgba(255, 215, 0, 0.2);
+      box-shadow: 0 6px 10px rgba(0,0,0,0.06);
       width: 100%;
       position: relative;
       transition: all 0.3s ease;
     }
-    
     .course > div {
-      padding: 25px 35px; 
+      padding: 25px 35px; /* Box un po' più ariosi */
       display: flex;
       align-items: center;
     }
-    
     .course .attivita {
       flex: 2;
-      font-family: 'Dancing Script', cursive; 
-      font-size: 75px; 
+      font-size: 60px; /* Font leggermente più grande */
       font-weight: 700;
-      color: #9b59b6; 
-      line-height: 1.1;
+      color: var(--primary-color);
     }
-    
     .course .dettagli {
       flex: 1.2;
       display: flex;
       justify-content: space-around;
-      background-color: rgba(0,0,0,0.02);
+      background-color: rgba(0,0,0,0.03);
       border-left: 1px solid rgba(0,0,0,0.05);
     }
-    
     .info-box {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
     }
-    
     .info-label { font-size: 22px; text-transform: uppercase; color: #666; font-weight: 600; margin-bottom: 5px; }
-    .info-time { font-size: 60px; font-weight: 700; color: #9b59b6; line-height: 1; } 
+    .info-time { font-size: 60px; font-weight: 700; color: #000; line-height: 1; }
 
+    /* Colori stato */
     .green  { background-color: #d1e7dd; border-left: 20px solid #198754; }
     .yellow { background-color: #fff3cd; border-left: 20px solid #ffc107; }
     .gray   { background-color: #f8f9fa; border-left: 20px solid #6c757d; color: #6c757d; }
     
+    /* Animazione */
     .yellow { animation: pulse-border 2s infinite; }
     @keyframes pulse-border {
       0% { border-left-color: #ffc107; }
@@ -166,6 +135,7 @@
       100% { border-left-color: #ffc107; }
     }
 
+    /* Messaggio vuoto */
     .empty-message {
       text-align: center;
       font-size: 50px;
@@ -174,52 +144,46 @@
       background: white;
       padding: 60px;
       border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      border-top: 5px solid #FFD700;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
 
     /* ====== FOOTER TICKER ====== */
     footer {
-      background: linear-gradient(90deg, #FBC02D, #FFD54F, #FBC02D); 
-      color: #9b59b6; 
-      border-top: 3px solid #F57F17; 
+      background: #003366;
+      color: white;
       height: var(--footer-height);
       overflow: hidden;
+      display: flex;
+      align-items: center;
       position: fixed;
       bottom: 0; left: 0; right: 0;
       z-index: 1000;
     }
-    
     .ticker {
       width: 100%;
       height: 100%;
       overflow: hidden;
+      position: relative;
+      white-space: nowrap;
       display: flex;
       align-items: center;
     }
-    
     .ticker__track {
-      display: flex; 
-      width: max-content;
+      display: inline-block;
+      white-space: nowrap;
       will-change: transform;
       animation: ticker var(--ticker-duration, 20s) linear infinite;
-      -webkit-backface-visibility: hidden; 
-      backface-visibility: hidden;
     }
-    
     .ticker__content {
       display: inline-block;
+      padding-right: 100px;
       font-size: 40px;
-      font-weight: 600; 
+      font-weight: 500;
       line-height: var(--footer-height);
-      -webkit-font-smoothing: antialiased; 
-      white-space: pre; 
-      flex-shrink: 0; 
     }
-    
     @keyframes ticker {
-      0%   { transform: translate3d(0, 0, 0); } 
-      100% { transform: translate3d(-50%, 0, 0); }
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
   </style>
 </head>
@@ -227,109 +191,6 @@
 
   <header>
     <img src="CF Lampugnano blu xl.png" alt="Logo Piscina" onerror="this.style.display='none'; document.write('<h2>Piscina Lampugnano</h2>')"/>
-    
-    <div class="mimosa-container">
-      <svg viewBox="0 0 1200 220" width="100%" height="100%" preserveAspectRatio="xMinYMid slice">
-        <defs>
-          <radialGradient id="mimosa-puff" cx="30%" cy="30%" r="70%">
-            <stop offset="0%" stop-color="#FFF59D"/>
-            <stop offset="40%" stop-color="#FFEB3B"/>
-            <stop offset="80%" stop-color="#FBC02D"/>
-            <stop offset="100%" stop-color="#F57F17"/>
-          </radialGradient>
-          <filter id="fuzzy" x="-30%" y="-30%" width="160%" height="160%">
-             <feGaussianBlur stdDeviation="1.2" result="blur" />
-             <feComposite in="SourceGraphic" in2="blur" operator="over"/>
-          </filter>
-          <g id="puff">
-            <circle cx="0" cy="0" r="8" fill="url(#mimosa-puff)" filter="url(#fuzzy)" />
-            <circle cx="-5" cy="-4" r="6" fill="url(#mimosa-puff)" filter="url(#fuzzy)" />
-            <circle cx="5" cy="-3" r="7" fill="url(#mimosa-puff)" filter="url(#fuzzy)" />
-            <circle cx="-3" cy="6" r="6" fill="url(#mimosa-puff)" filter="url(#fuzzy)" />
-            <circle cx="6" cy="5" r="5" fill="url(#mimosa-puff)" filter="url(#fuzzy)" />
-            <circle cx="0" cy="0" r="3" fill="#FFF59D" />
-          </g>
-          <g id="leaf-sprig">
-             <path d="M0,0 Q10,6 25,0 Q10,-6 0,0" fill="#556B2F" opacity="0.8"/>
-             <path d="M4,0 Q12,10 20,3 Q12,-3 4,0" fill="#4A5D23" opacity="0.8"/>
-             <path d="M7,-2 Q15,-12 22,-5 Q15,-1 7,-2" fill="#556B2F" opacity="0.8"/>
-             <path d="M10,2 Q18,12 25,6 Q18,2 10,2" fill="#6B8E23" opacity="0.8"/>
-          </g>
-          <g id="cluster-large">
-            <use href="#leaf-sprig" x="-10" y="5" transform="rotate(-30)"/>
-            <use href="#leaf-sprig" x="15" y="0" transform="rotate(40)"/>
-            <use href="#leaf-sprig" x="0" y="15" transform="rotate(80)"/>
-            <use href="#puff" x="0" y="0"/>
-            <use href="#puff" x="-15" y="-10"/>
-            <use href="#puff" x="15" y="-5"/>
-            <use href="#puff" x="-5" y="15"/>
-            <use href="#puff" x="12" y="12"/>
-            <use href="#puff" x="22" y="5"/>
-            <use href="#puff" x="-12" y="8"/>
-            <use href="#puff" x="-22" y="2"/>
-            <use href="#puff" x="5" y="-12"/>
-            <use href="#puff" x="0" y="25"/>
-            <use href="#puff" x="25" y="-12"/>
-          </g>
-          <g id="cluster-small">
-            <use href="#leaf-sprig" x="0" y="0" transform="rotate(15)"/>
-            <use href="#puff" x="0" y="0"/>
-            <use href="#puff" x="-10" y="8"/>
-            <use href="#puff" x="10" y="-5"/>
-            <use href="#puff" x="15" y="10"/>
-            <use href="#puff" x="-5" y="-10"/>
-          </g>
-        </defs>
-
-        <path d="M -50,110 Q 300,220 600,110 T 1250,110" fill="none" stroke="#556B2F" stroke-width="3" opacity="0.7"/>
-        <path d="M -50,115 Q 300,230 600,115 T 1250,115" fill="none" stroke="#4A5D23" stroke-width="2" opacity="0.6"/>
-        
-        <path d="M 100,136 Q 130,170 180,165" fill="none" stroke="#556B2F" stroke-width="2" opacity="0.7"/>
-        <path d="M 250,154 Q 280,190 330,180" fill="none" stroke="#556B2F" stroke-width="2" opacity="0.7"/>
-        <path d="M 450,140 Q 480,180 520,160" fill="none" stroke="#556B2F" stroke-width="2" opacity="0.7"/>
-        <path d="M 700,85 Q 730,50 780,55" fill="none" stroke="#556B2F" stroke-width="2" opacity="0.7"/>
-        <path d="M 850,67 Q 880,30 930,40" fill="none" stroke="#556B2F" stroke-width="2" opacity="0.7"/>
-        <path d="M 1050,80 Q 1080,45 1130,60" fill="none" stroke="#556B2F" stroke-width="2" opacity="0.7"/>
-
-        <use href="#cluster-large" x="0" y="110" transform="rotate(10 0 110)"/>
-        <use href="#cluster-small" x="50" y="125" transform="rotate(-15 50 125)"/>
-        <use href="#cluster-large" x="100" y="136" transform="rotate(20 100 136)"/>
-        <use href="#cluster-small" x="150" y="145" transform="rotate(-5 150 145)"/>
-        <use href="#cluster-large" x="200" y="152" transform="rotate(35 200 152)"/>
-        <use href="#cluster-small" x="250" y="154" transform="rotate(-20 250 154)"/>
-        
-        <use href="#cluster-large" x="300" y="155" transform="rotate(5 300 155)"/>
-        <use href="#cluster-small" x="350" y="154" transform="rotate(25 350 154)"/>
-        <use href="#cluster-large" x="400" y="148" transform="rotate(-10 400 148)"/>
-        <use href="#cluster-small" x="450" y="140" transform="rotate(15 450 140)"/>
-        
-        <use href="#cluster-large" x="500" y="130" transform="rotate(-25 500 130)"/>
-        <use href="#cluster-small" x="550" y="120" transform="rotate(10 550 120)"/>
-        <use href="#cluster-large" x="600" y="110" transform="rotate(-5 600 110)"/>
-
-        <use href="#cluster-small" x="650" y="98" transform="rotate(20 650 98)"/>
-        <use href="#cluster-large" x="700" y="85" transform="rotate(-15 700 85)"/>
-        <use href="#cluster-small" x="750" y="75" transform="rotate(30 750 75)"/>
-        <use href="#cluster-large" x="800" y="68" transform="rotate(-5 800 68)"/>
-        <use href="#cluster-small" x="850" y="67" transform="rotate(15 850 67)"/>
-        <use href="#cluster-large" x="900" y="65" transform="rotate(-20 900 65)"/>
-
-        <use href="#cluster-small" x="950" y="67" transform="rotate(10 950 67)"/>
-        <use href="#cluster-large" x="1000" y="73" transform="rotate(-15 1000 73)"/>
-        <use href="#cluster-small" x="1050" y="80" transform="rotate(25 1050 80)"/>
-        <use href="#cluster-large" x="1100" y="90" transform="rotate(-5 1100 90)"/>
-        <use href="#cluster-small" x="1150" y="100" transform="rotate(15 1150 100)"/>
-        <use href="#cluster-large" x="1200" y="110" transform="rotate(-10 1200 110)"/>
-
-        <use href="#cluster-small" x="180" y="165" transform="rotate(45 180 165)"/>
-        <use href="#cluster-large" x="330" y="180" transform="rotate(10 330 180)"/>
-        <use href="#cluster-small" x="520" y="160" transform="rotate(-30 520 160)"/>
-        <use href="#cluster-small" x="780" y="55" transform="rotate(60 780 55)"/>
-        <use href="#cluster-large" x="930" y="40" transform="rotate(-10 930 40)"/>
-        <use href="#cluster-small" x="1130" y="60" transform="rotate(25 1130 60)"/>
-      </svg>
-    </div>
-
     <div class="datetime">
       <div class="time" id="clock">--:--</div>
       <div class="date" id="date">--</div>
@@ -345,13 +206,14 @@
   <footer>
     <div class="ticker" id="ticker">
       <div class="ticker__track" id="ticker-track">
-        <span class="ticker__content" id="ticker-copy-1"></span>
-        <span class="ticker__content" id="ticker-copy-2"></span>
+        <span class="ticker__content" id="ticker-copy-1">...</span>
+        <span class="ticker__content" id="ticker-copy-2">...</span>
       </div>
     </div>
   </footer>
 
   <script>
+    /* ====== OROLOGIO ====== */
     function updateClock() {
       const now = new Date();
       const h = now.getHours().toString().padStart(2, '0');
@@ -366,6 +228,7 @@
     setInterval(updateClock, 1000);
     updateClock();
 
+    /* ====== UTILS ====== */
     function normalizeStr(str) {
       if (!str) return "";
       return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
@@ -385,11 +248,13 @@
       return "";
     }
 
+    /* ====== CARICAMENTO DATI ====== */
     async function loadAll() {
       const SHEET_ID = '1dcs1X7x84g69f14m9Sl2KmqZUbCI6lLBBfi3QCMNqWI';
       const SHEET_BASE = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=`;
       
       try {
+        /* ---- FETCH CORSI ---- */
         const resC = await fetch(SHEET_BASE + 'Corsi');
         if (!resC.ok) throw new Error("Network response was not ok");
         const txtC = await resC.text();
@@ -420,6 +285,7 @@
 
         renderCourses(parsed, currentTime);
 
+        /* ---- FETCH NOTE ---- */
         const resN = await fetch(SHEET_BASE + 'Note');
         const txtN = await resN.text();
         const jsonN = JSON.parse(txtN.substring(47).slice(0, -2));
@@ -429,9 +295,7 @@
           .map(r => r[0])
           .join("  •  ");
 
-        const womensDayGreeting = "🌼 AUGURI A TUTTE LE DONNE! 🌼  •  ";
-        const baseMessage = notesText || 'Benvenuti alla Piscina Lampugnano';
-        updateTicker(womensDayGreeting + baseMessage);
+        updateTicker(notesText || 'Benvenuti alla Piscina Lampugnano');
 
       } catch (err) {
         console.error('Errore update:', err);
@@ -449,10 +313,11 @@
         if (courses.length === 0) {
            htmlContent = `
             <div class="empty-message">
-              🌼 Le attività di oggi sono terminate.<br>
-              <span style="font-size:30px; color:#666">Vi aspettiamo domani! Auguri a tutte le Donne!</span>
+              🏊‍♂️ Le attività di oggi sono terminate.<br>
+              <span style="font-size:30px; color:#666">Vi aspettiamo domani!</span>
             </div>`;
         } else {
+          // MODIFICATO: Mostra massimo 4 corsi
           const visible = courses.slice(0, 4); 
           
           visible.forEach(corso => {
@@ -485,36 +350,19 @@
         coursesBox.innerHTML = htmlContent;
     }
 
-    let lastTickerText = ""; 
-
     function updateTicker(text) {
-        let cleanText = text.trim();
-        if (cleanText.endsWith("•")) cleanText = cleanText.slice(0, -1).trim();
-        
-        let baseString = cleanText + "   •   ";
-        let displayString = baseString;
-        
-        // Moltiplichiamo il testo finché non è sicuramente più lungo del monitor
-        // per evitare che si svuoti e si blocchi quando la frase è troppo corta
-        while (displayString.length < 250) {
-            displayString += baseString;
-        }
-
-        // Se il testo è lo stesso del giro prima, ignoriamo.
-        // Questo impedisce il fastidioso salto all'indietro ogni 30 secondi.
-        if (displayString === lastTickerText) return;
-        lastTickerText = displayString;
-
         const copy1 = document.getElementById('ticker-copy-1');
         const copy2 = document.getElementById('ticker-copy-2');
         const track = document.getElementById('ticker-track');
+        
+        if (copy1.textContent === text) return;
 
-        copy1.textContent = displayString;
-        copy2.textContent = displayString;
+        copy1.textContent = text;
+        copy2.textContent = text;
 
         requestAnimationFrame(() => {
             const width = copy1.offsetWidth;
-            const speed = 180; // Pixel al secondo
+            const speed = 200; // Velocità elevata
             const duration = width / speed; 
             track.style.setProperty('--ticker-duration', `${duration}s`);
         });
