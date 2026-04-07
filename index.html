@@ -2,15 +2,14 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <title>Orari Piscina Lampugnano - Pasqua</title>
+  <title>Orari Piscina Lampugnano</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      /* Palette Pasquale */
-      --primary-color: #6a1b9a; /* Viola intenso */
-      --secondary-color: #ab47bc; /* Lilla */
-      --bg-color: #fffaf0; /* Bianco crema caldo */
+      --primary-color: #003366;
+      --bg-color: #f0f8ff;
+      /* MODIFICATO: Header molto più alto */
       --header-height: 220px; 
       --footer-height: 80px;
     }
@@ -19,125 +18,50 @@
       font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
       margin: 0;
       background-color: var(--bg-color);
-      /* Pattern primaverile molto delicato a pois */
-      background-image: radial-gradient(#f3e5f5 15%, transparent 15%), radial-gradient(#f3e5f5 15%, transparent 15%);
-      background-size: 40px 40px;
-      background-position: 0 0, 20px 20px;
       color: var(--primary-color);
       letter-spacing: -0.5px;
       display: flex;
       flex-direction: column;
       height: 100vh;
       overflow: hidden;
-      position: relative;
     }
 
-    /* Decorazioni in filigrana (Easter Eggs & Bunnies) */
-    body::before, body::after {
-      position: absolute;
-      font-size: 150px;
-      opacity: 0.05; /* Molto trasparente per non disturbare la lettura */
-      z-index: -1;
-      pointer-events: none;
-    }
-    body::before {
-      content: "🐰";
-      bottom: 150px;
-      left: 100px;
-      transform: rotate(-15deg);
-    }
-    body::after {
-      content: "🐣";
-      top: 300px;
-      right: 120px;
-      transform: rotate(15deg);
-    }
-
-    /* ====== HEADER PASQUALE COMPLETO ====== */
+    /* ====== HEADER ====== */
     header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #ffffff;
+      padding: 0 40px; /* Più padding laterale */
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      height: var(--header-height);
       position: fixed;
       top: 0; left: 0; right: 0;
-      height: var(--header-height);
-      background: linear-gradient(to bottom, #f3e5f5 0%, #fff9c4 100%);
-      box-shadow: 0 4px 20px rgba(106, 27, 154, 0.2);
-      border-bottom: 6px solid #81c784; /* Bordo erba */
       z-index: 1000;
-      overflow: hidden;
     }
-
-    /* Sfogo creativo: Prato, Cielo e Festoni */
-    .easter-grass {
-      position: absolute; bottom: 0; left: -5%; right: -5%; height: 50px;
-      background: #aed581; border-radius: 50% 50% 0 0 / 100% 100% 0 0; z-index: 2;
+    header img {
+      /* MODIFICATO: Logo più grande */
+      height: 85%; 
+      width: auto;
+      object-fit: contain;
     }
-    .easter-grass-2 {
-      position: absolute; bottom: -10px; left: -10%; right: -10%; height: 50px;
-      background: #81c784; border-radius: 50% 50% 0 0 / 100% 100% 0 0; z-index: 3; transform: rotate(-1.5deg);
-    }
-    .easter-bunting {
-      position: absolute; top: 0; left: 0; right: 0; height: 60px;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="60"><path d="M0,0 Q30,15 60,0 Q90,15 120,0" fill="none" stroke="%23ffffff" stroke-width="3"/><path d="M10,0 L30,50 L50,0 Z" fill="%23ab47bc"/><path d="M70,0 L90,50 L110,0 Z" fill="%2366bb6a"/></svg>');
-      background-size: 120px 60px; z-index: 5; opacity: 0.9;
-    }
-
-    /* Elementi sparsi nell'header */
-    .cloud {
-      position: absolute; font-size: 70px; opacity: 0.6; z-index: 1; filter: drop-shadow(0 5px 15px rgba(255,255,255,0.8));
-    }
-    .c1 { top: 10px; left: 10%; animation: float-clouds 20s linear infinite alternate; }
-    .c2 { top: 40px; left: 50%; font-size: 50px; animation: float-clouds 25s linear infinite alternate-reverse; }
-    .c3 { top: 15px; left: 80%; font-size: 80px; animation: float-clouds 22s linear infinite alternate; }
+    .datetime { text-align: right; line-height: 1; }
     
-    .easter-item {
-      position: absolute; z-index: 4; font-size: 65px; 
-      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
-    }
-    .e1 { bottom: 20px; left: 18%; font-size: 85px; z-index: 3; } 
-    .e2 { bottom: 15px; left: 26%; transform: rotate(-15deg); }
-    .e3 { bottom: 20px; left: 34%; font-size: 70px; }
-    .e4 { bottom: 25px; left: 42%; animation: hop 2s infinite; }
-    .e5 { bottom: 12px; left: 49%; transform: rotate(10deg); }
-    .e6 { bottom: 20px; left: 56%; font-size: 80px; }
-    .e7 { bottom: 10px; left: 63%; font-size: 55px; transform: rotate(20deg); }
-    .e8 { bottom: 18px; left: 70%; }
-    .e9 { top: 50px; left: 28%; font-size: 50px; animation: fly 3s ease-in-out infinite alternate; } 
-    .e10 { top: 35px; left: 65%; font-size: 45px; animation: fly 2.5s ease-in-out infinite alternate-reverse; } 
-    .e11 { bottom: 15px; left: 8%; transform: rotate(-10deg); font-size: 60px; }
-    .e12 { bottom: 25px; left: 78%; font-size: 75px; }
-
-    @keyframes hop { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-25px); } }
-    @keyframes fly { 0% { transform: translateY(0) rotate(0deg); } 100% { transform: translateY(-20px) rotate(10deg); } }
-    @keyframes float-clouds { 0% { transform: translateX(-30px); } 100% { transform: translateX(30px); } }
-
-    /* Contenitore reale per Logo e Orologio (Z-index alto) */
-    .header-content {
-      position: relative; z-index: 10;
-      display: flex; justify-content: space-between; align-items: center;
-      width: 100%; height: 100%; padding: 0 40px; box-sizing: border-box;
-    }
-
-    /* Elementi liberi senza box di sfondo */
-    .logo-wrapper {
-      height: 80%;
-      display: flex; align-items: center;
-      filter: drop-shadow(0 4px 10px rgba(255, 255, 255, 0.9)); /* Ombra chiara per contrasto */
-    }
-    .logo-wrapper img {
-      height: 100%; width: auto; object-fit: contain;
-    }
-
-    .datetime { 
-      text-align: right; line-height: 1; 
-    }
+    /* MODIFICATO: Font orario molto più grande */
     .datetime .time { 
-        font-weight: 700; font-size: 110px; 
-        letter-spacing: -3px; color: var(--primary-color);
-        text-shadow: 0 4px 15px rgba(255, 255, 255, 0.9); /* Ombra chiara per leggibilità */
+        font-weight: 700; 
+        font-size: 110px; 
+        letter-spacing: -3px; 
+        color: #003366;
     }
+    
+    /* MODIFICATO: Font data più grande */
     .datetime .date { 
-        font-weight: 500; font-size: 45px; 
-        color: var(--secondary-color); text-transform: capitalize; margin-top: 5px;
-        text-shadow: 0 4px 15px rgba(255, 255, 255, 0.9);
+        font-weight: 500; 
+        font-size: 45px; 
+        color: #004080; 
+        text-transform: capitalize; 
+        margin-top: 5px;
     }
 
     /* ====== CONTENUTO ====== */
@@ -157,28 +81,28 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 30px; 
+      gap: 30px; /* Spazio aumentato tra i box per riempire lo schermo */
     }
 
     /* ====== CORSI ====== */
     .course {
       display: flex;
-      border-radius: 20px; /* Bordi ancora più morbidi */
+      border-radius: 16px; /* Bordi più arrotondati */
       overflow: hidden;
       background-color: #fff;
-      box-shadow: 0 8px 15px rgba(0,0,0,0.05);
+      box-shadow: 0 6px 10px rgba(0,0,0,0.06);
       width: 100%;
       position: relative;
       transition: all 0.3s ease;
     }
     .course > div {
-      padding: 25px 35px; 
+      padding: 25px 35px; /* Box un po' più ariosi */
       display: flex;
       align-items: center;
     }
     .course .attivita {
       flex: 2;
-      font-size: 60px; 
+      font-size: 60px; /* Font leggermente più grande */
       font-weight: 700;
       color: var(--primary-color);
     }
@@ -186,8 +110,8 @@
       flex: 1.2;
       display: flex;
       justify-content: space-around;
-      background-color: rgba(106, 27, 154, 0.03); /* Fondo leggermente lilla */
-      border-left: 1px solid rgba(106, 27, 154, 0.1);
+      background-color: rgba(0,0,0,0.03);
+      border-left: 1px solid rgba(0,0,0,0.05);
     }
     .info-box {
       display: flex;
@@ -195,39 +119,37 @@
       align-items: center;
       justify-content: center;
     }
-    .info-label { font-size: 22px; text-transform: uppercase; color: #888; font-weight: 600; margin-bottom: 5px; }
-    .info-time { font-size: 60px; font-weight: 700; color: #333; line-height: 1; }
+    .info-label { font-size: 22px; text-transform: uppercase; color: #666; font-weight: 600; margin-bottom: 5px; }
+    .info-time { font-size: 60px; font-weight: 700; color: #000; line-height: 1; }
 
-    /* Colori stato - TEMA PASTELLO */
-    .green  { background-color: #e8f5e9; border-left: 20px solid #66bb6a; } /* Verde menta */
-    .yellow { background-color: #fffde7; border-left: 20px solid #ffee58; } /* Giallo pulcino */
-    .gray   { background-color: #f3e5f5; border-left: 20px solid #ce93d8; } /* Lilla chiaro invece del grigio */
-    .gray .attivita { color: #8e24aa; } /* Testo più chiaro per i corsi futuri */
+    /* Colori stato */
+    .green  { background-color: #d1e7dd; border-left: 20px solid #198754; }
+    .yellow { background-color: #fff3cd; border-left: 20px solid #ffc107; }
+    .gray   { background-color: #f8f9fa; border-left: 20px solid #6c757d; color: #6c757d; }
     
-    /* Animazione per il giallo (inizio imminente) */
+    /* Animazione */
     .yellow { animation: pulse-border 2s infinite; }
     @keyframes pulse-border {
-      0% { border-left-color: #ffee58; }
-      50% { border-left-color: #fff59d; }
-      100% { border-left-color: #ffee58; }
+      0% { border-left-color: #ffc107; }
+      50% { border-left-color: #ffdb72; }
+      100% { border-left-color: #ffc107; }
     }
 
     /* Messaggio vuoto */
     .empty-message {
       text-align: center;
       font-size: 50px;
-      font-weight: 600;
+      font-weight: 500;
       color: var(--primary-color);
       background: white;
       padding: 60px;
       border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(106, 27, 154, 0.1);
-      border: 3px dashed var(--secondary-color);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
 
     /* ====== FOOTER TICKER ====== */
     footer {
-      background: var(--secondary-color); /* Footer lilla */
+      background: #003366;
       color: white;
       height: var(--footer-height);
       overflow: hidden;
@@ -236,7 +158,6 @@
       position: fixed;
       bottom: 0; left: 0; right: 0;
       z-index: 1000;
-      box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
     }
     .ticker {
       width: 100%;
@@ -269,43 +190,16 @@
 <body>
 
   <header>
-    <!-- Scenografia Pasquale di Sfondo -->
-    <div class="easter-bunting"></div>
-    <div class="easter-grass"></div>
-    <div class="easter-grass-2"></div>
-    
-    <div class="cloud c1">☁️</div>
-    <div class="cloud c2">☁️</div>
-    <div class="cloud c3">☁️</div>
-    
-    <div class="easter-item e1">🐰</div>
-    <div class="easter-item e2">🥚</div>
-    <div class="easter-item e3">🌷</div>
-    <div class="easter-item e4">🐣</div>
-    <div class="easter-item e5">🍫</div>
-    <div class="easter-item e6">🐇</div>
-    <div class="easter-item e7">🥚</div>
-    <div class="easter-item e8">🌼</div>
-    <div class="easter-item e9">🦋</div>
-    <div class="easter-item e10">🦋</div>
-    <div class="easter-item e11">🥚</div>
-    <div class="easter-item e12">🌷</div>
-
-    <!-- Contenuto in primo piano -->
-    <div class="header-content">
-      <div class="logo-wrapper">
-        <img src="CF Lampugnano blu xl.png" alt="Logo Piscina" onerror="this.style.display='none'; document.write('<h2>Piscina Lampugnano</h2>')"/>
-      </div>
-      <div class="datetime">
-        <div class="time" id="clock">--:--</div>
-        <div class="date" id="date">--</div>
-      </div>
+    <img src="CF Lampugnano blu xl.png" alt="Logo Piscina" onerror="this.style.display='none'; document.write('<h2>Piscina Lampugnano</h2>')"/>
+    <div class="datetime">
+      <div class="time" id="clock">--:--</div>
+      <div class="date" id="date">--</div>
     </div>
   </header>
 
   <div class="container">
     <div id="courses">
-        <div class="empty-message">🐰 Caricamento corsi in corso... 🐣</div>
+        <div class="empty-message">Caricamento corsi in corso...</div>
     </div>
   </div>
 
@@ -401,8 +295,7 @@
           .map(r => r[0])
           .join("  •  ");
 
-        // Aggiungiamo un tocco pasquale di default alle note se non ce ne sono
-        updateTicker(notesText || '🌸 Benvenuti alla Piscina Lampugnano • Vi auguriamo una serena Pasqua! 🌸');
+        updateTicker(notesText || 'Benvenuti alla Piscina Lampugnano');
 
       } catch (err) {
         console.error('Errore update:', err);
@@ -420,12 +313,11 @@
         if (courses.length === 0) {
            htmlContent = `
             <div class="empty-message">
-              🐰 Le attività di oggi sono terminate.<br>
-              <span style="font-size:30px; color:var(--secondary-color); display:block; margin-top:15px;">
-                Vi aspettiamo domani! Buona Pasqua! 🐣
-              </span>
+              🏊‍♂️ Le attività di oggi sono terminate.<br>
+              <span style="font-size:30px; color:#666">Vi aspettiamo domani!</span>
             </div>`;
         } else {
+          // MODIFICATO: Mostra massimo 4 corsi
           const visible = courses.slice(0, 4); 
           
           visible.forEach(corso => {
