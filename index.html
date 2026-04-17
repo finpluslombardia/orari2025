@@ -89,11 +89,11 @@
     }
     
     #ad-banner img {
-      width: calc(100% - 40px); /* MODIFICATO: Stessa larghezza del box corsi, calcolando il padding */
-      max-width: 1700px;        /* MODIFICATO: Identico al max-width del box corsi */
-      max-height: 100%; 
-      object-fit: contain; 
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4); /* L'ombra avvolge esattamente la foto */
+      width: calc(100% - 40px); /* Stessa larghezza del box corsi */
+      max-width: 1700px;        /* Identico al max-width del box corsi */
+      height: auto;             /* MODIFICATO: L'altezza segue la larghezza senza restrizioni */
+      /* Rimosso max-height e object-fit che la bloccavano */
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4); 
     }
 
     /* ====== CONTENUTO ====== */
