@@ -266,6 +266,23 @@
     setInterval(updateClock, 1000);
     updateClock();
 
+    /* ====== COUNTDOWN LIVE ====== */
+    function updateCountdowns() {
+      const now = Date.now();
+      document.querySelectorAll('.live-countdown').forEach(el => {
+        const target = parseInt(el.getAttribute('data-target'));
+        const diff = target - now;
+        if (diff >= 0) {
+          const m = Math.floor(diff / 60000).toString().padStart(2, '0');
+          const s = Math.floor((diff % 60000) / 1000).toString().padStart(2, '0');
+          el.textContent = `${m}:${s}`;
+        } else {
+          el.textContent = "00:00";
+        }
+      });
+    }
+    setInterval(updateCountdowns, 1000);
+
     /* ====== NUOVO: LOGICA BANNER PUBBLICITARIO ====== */
     const adBanner = document.getElementById('ad-banner');
     const overlay = document.getElementById('overlay');
@@ -387,10 +404,24 @@
             const timeToStart = corso.ingressoMin - currentTime;
             
             let style = 'gray'; 
+            let ingressoHtml = `
+                <span class="info-label">Ingresso</span>
+                <span class="info-time">${corso.oraIngresso}</span>
+            `;
+
             if (timeToStart <= 0 && timeToStart > -corso.durata) {
                 style = 'green'; 
             } else if (timeToStart <= 5 && timeToStart > 0) {
                 style = 'yellow';
+                if (corso.oraIngresso && corso.oraIngresso.includes(':')) {
+                    const [h, m] = corso.oraIngresso.split(':').map(Number);
+                    const targetDate = new Date();
+                    targetDate.setHours(h, m, 0, 0);
+                    ingressoHtml = `
+                        <span class="info-label" style="color: #d32f2f;">Tra</span>
+                        <span class="info-time live-countdown" data-target="${targetDate.getTime()}">--:--</span>
+                    `;
+                }
             }
 
             htmlContent += `
@@ -398,8 +429,7 @@
                 <div class="attivita">${corso.attivita}</div>
                 <div class="dettagli">
                     <div class="info-box">
-                        <span class="info-label">Ingresso</span>
-                        <span class="info-time">${corso.oraIngresso}</span>
+                        ${ingressoHtml}
                     </div>
                     <div class="info-box">
                         <span class="info-label">Inizio</span>
@@ -411,6 +441,7 @@
           });
         }
         coursesBox.innerHTML = htmlContent;
+        updateCountdowns(); // Aggiorna i contatori istantaneamente
     }
 
     function updateTicker(text) {
