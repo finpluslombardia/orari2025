@@ -424,6 +424,21 @@
                 }
             }
 
+            let inizioHtml = `
+                <span class="info-label">Inizio</span>
+                <span class="info-time">${corso.oraInizio}</span>
+            `;
+
+            if (corso.attivita && corso.attivita.toLowerCase().includes('nuoto libero') && !isNaN(corso.inizioMin) && currentTime >= corso.inizioMin) {
+                const fineMin = corso.inizioMin + corso.durata;
+                const hStr = Math.floor(fineMin / 60).toString().padStart(2, '0');
+                const mStr = (fineMin % 60).toString().padStart(2, '0');
+                inizioHtml = `
+                    <span class="info-label">Fine</span>
+                    <span class="info-time">${hStr}:${mStr}</span>
+                `;
+            }
+
             htmlContent += `
               <div class="course ${style}">
                 <div class="attivita">${corso.attivita}</div>
@@ -432,8 +447,7 @@
                         ${ingressoHtml}
                     </div>
                     <div class="info-box">
-                        <span class="info-label">Inizio</span>
-                        <span class="info-time">${corso.oraInizio}</span>
+                        ${inizioHtml}
                     </div>
                 </div>
               </div>
