@@ -64,6 +64,36 @@
         margin-top: 5px;
     }
 
+    /* ====== BANNER PUBBLICITARIO (NUOVO) ====== */
+    #ad-banner {
+      position: fixed;
+      top: var(--header-height);
+      left: 0;
+      right: 0;
+      bottom: var(--footer-height);
+      z-index: 900; /* Sotto l'header (1000) e il footer (1000), ma sopra i corsi */
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* Animazione di scorrimento fluida */
+      transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+      /* Parte nascosto in alto (fuori dallo schermo/sotto l'header) */
+      transform: translateY(-120%);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    
+    #ad-banner.show {
+      /* Quando viene aggiunta la classe, scivola giù */
+      transform: translateY(0);
+    }
+    
+    #ad-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Cambia in 'contain' se non vuoi tagliare l'immagine */
+    }
+
     /* ====== CONTENUTO ====== */
     .container {
       flex: 1;
@@ -197,6 +227,12 @@
     </div>
   </header>
 
+  <!-- ====== NUOVO: BANNER PUBBLICITARIO ====== -->
+  <div id="ad-banner">
+    <!-- Inserisci qui il nome del file della tua foto -->
+    <img src="banner.jpg" alt="Pubblicità" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'empty-message\'>Spazio Pubblicitario</div>';"/>
+  </div>
+
   <div class="container">
     <div id="courses">
         <div class="empty-message">Caricamento corsi in corso...</div>
@@ -227,6 +263,28 @@
     }
     setInterval(updateClock, 1000);
     updateClock();
+
+    /* ====== NUOVO: LOGICA BANNER PUBBLICITARIO ====== */
+    const adBanner = document.getElementById('ad-banner');
+    const AD_INTERVAL_MS = 15 * 60 * 1000; // 15 minuti
+    const AD_DURATION_MS = 15 * 1000;      // 15 secondi
+
+    function runAdCycle() {
+      // 1. Fai scendere il banner
+      adBanner.classList.add('show');
+      
+      // 2. Dopo 15 secondi, fallo risalire
+      setTimeout(() => {
+        adBanner.classList.remove('show');
+      }, AD_DURATION_MS);
+    }
+
+    // Imposta il ciclo che si ripete ogni 15 minuti
+    setInterval(runAdCycle, AD_INTERVAL_MS);
+    
+    // Fai apparire il banner poco dopo l'apertura (es. 2 secondi)
+    setTimeout(runAdCycle, 2000);
+
 
     /* ====== UTILS ====== */
     function normalizeStr(str) {
