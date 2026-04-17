@@ -72,7 +72,7 @@
       right: 0;
       bottom: var(--footer-height);
       z-index: 900; /* Sotto l'header (1000) e il footer (1000), ma sopra i corsi */
-      background-color: var(--bg-color);
+      background-color: transparent; /* MODIFICATO: Sfondo reso invisibile */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -80,7 +80,7 @@
       transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
       /* Parte nascosto in alto (fuori dallo schermo/sotto l'header) */
       transform: translateY(-120%);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      /* MODIFICATO: box-shadow rimosso da qui e spostato sull'immagine */
     }
     
     #ad-banner.show {
@@ -89,9 +89,10 @@
     }
     
     #ad-banner img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain; /* Modificato: mantiene le proporzioni esatte senza tagliare l'immagine */
+      max-width: 100%;  /* MODIFICATO: L'immagine non forza un bordo pieno, ma si adatta al suo 16:9 */
+      max-height: 100%; /* MODIFICATO */
+      object-fit: contain; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4); /* MODIFICATO: L'ombra avvolge esattamente la foto */
     }
 
     /* ====== CONTENUTO ====== */
