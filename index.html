@@ -268,16 +268,19 @@
 
     /* ====== NUOVO: LOGICA BANNER PUBBLICITARIO ====== */
     const adBanner = document.getElementById('ad-banner');
+    const overlay = document.getElementById('overlay');
     const AD_INTERVAL_MS = 2.5 * 60 * 1000; // 2 minuti e mezzo
     const AD_DURATION_MS = 10 * 1000;      // 10 secondi
 
     function runAdCycle() {
-      // 1. Fai scendere il banner
+      // 1. Fai scendere il banner e mostra l'overlay scuro
       adBanner.classList.add('show');
+      overlay.classList.add('show');
       
-      // 2. Dopo 15 secondi, fallo risalire
+      // 2. Dopo 10 secondi, fai risalire il banner e nascondi l'overlay
       setTimeout(() => {
         adBanner.classList.remove('show');
+        overlay.classList.remove('show');
       }, AD_DURATION_MS);
     }
 
