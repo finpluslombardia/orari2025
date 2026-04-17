@@ -290,14 +290,14 @@
     const AD_DURATION_MS = 10 * 1000;      // 10 secondi
 
     function runAdCycle() {
-      // 1. Fai scendere il banner e mostra l'overlay scuro
-      adBanner.classList.add('show');
-      overlay.classList.add('show');
+      // 1. Fai scendere il banner e mostra l'overlay scuro (se presente)
+      if (adBanner) adBanner.classList.add('show');
+      if (overlay) overlay.classList.add('show');
       
       // 2. Dopo 10 secondi, fai risalire il banner e nascondi l'overlay
       setTimeout(() => {
-        adBanner.classList.remove('show');
-        overlay.classList.remove('show');
+        if (adBanner) adBanner.classList.remove('show');
+        if (overlay) overlay.classList.remove('show');
       }, AD_DURATION_MS);
     }
 
